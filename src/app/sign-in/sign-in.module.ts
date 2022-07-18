@@ -4,7 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {SignInComponent} from "./sign-in.component";
 
 export const routes: Routes = [
-  {path: 'signIn', component: SignInComponent},
+  {path: '', component: SignInComponent},
   {path: '**', redirectTo: ''}
 ];
 
