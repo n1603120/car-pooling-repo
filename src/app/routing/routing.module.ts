@@ -4,6 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {SignInComponent} from "../sign-in/sign-in.component";
 import {HomeComponent} from "../home/home.component";
 import {TripDetailsComponent} from "../trip-details/trip-details.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 export const routes: Routes = [
   {path: 'signIn', component: SignInComponent},
@@ -19,7 +20,9 @@ export const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   exports: [
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class RoutingModule {
