@@ -1,1 +1,25 @@
-<p>trip-details works!</p>
+<div class="container">
+  <div class ="inputContainer">
+    <h1>Trip Details</h1>
+    <form [formGroup]="updateForm" (ngSubmit)="tripDetailsCompleted()">
+      <fieldset>
+        <label>Course ID: <input type="text" formControlName="tripPostcode"></label>
+        <span class="error-msg" *ngIf="updateForm.controls.tripPostcode.errors">
+      The Course ID is required
+    </span>
+      </fieldset>
+      <fieldset>
+        <input type="submit" [disabled]="!updateForm.valid" value="Update Course"/>
+      </fieldset>
+<!--      <label for="postcode">Postcode:</label>-->
+<!--      <input type="text" id="postcode" formControlName="tripPostcode">-->
+<!--      <label for="destination">Destination:</label>-->
+<!--      <input type="text" id="destination" formControlName="tripDestination">-->
+<!--      <label for="datePicker">Select date: </label>-->
+<!--      <input type="date" id="datePicker" formControlName="tripDate">-->
+<!--      <label for="timePicker">Select time: </label>-->
+<!--      <input type="time" id="timePicker" formControlName="tripTime">-->
+<!--      <input type="submit" [disabled]="!updateForm.valid" value="Submit">-->
+    </form>
+  </div>
+</div>

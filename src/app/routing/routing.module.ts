@@ -3,9 +3,11 @@ import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {SignInComponent} from "../sign-in/sign-in.component";
 import {HomeComponent} from "../home/home.component";
+import {TripDetailsComponent} from "../trip-details/trip-details.component";
 
 export const routes: Routes = [
   {path: 'signIn', component: SignInComponent},
+  {path: 'tripDetails', component: TripDetailsComponent},
   {path: '', component: HomeComponent},
   {path: '**', redirectTo: ''}
 ];
@@ -22,4 +24,4 @@ export const routes: Routes = [
 })
 export class RoutingModule {
 }
-export const routingComponents = [SignInComponent, HomeComponent]
+
