@@ -1,11 +1,9 @@
 h2{
 
           background-color: yellow;
-          padding: 20px;
-          margin: 0;
           postion: absolute;
           bottom: 0;
-
+          width:100%
         }
 
 
