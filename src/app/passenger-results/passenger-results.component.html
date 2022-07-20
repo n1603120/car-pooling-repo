@@ -1,1 +1,44 @@
-<p>passenger-results works!</p>
+<link rel="stylesheet" type="text/css" href="passenger-results.component.css">
+<div class='card'>
+  <div class='card-header' style="text-align:center">
+    {{pageTitle}}    <p>Request a Driver to car share with:</p>
+  </div>
+  <div class='table-responsive'>
+    <table class='content-table' *ngIf="drivers.length">
+      <thead>
+      <tr>
+        <th>Driver Name</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr class= "active-row" *ngFor="let driver of drivers" >
+          <td>
+            {{ driver.name}}
+            <button type='btn-primary' style="float: right;"> Request Driver</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class='card-header' style="text-align:center">
+     <p>Drivers Outside Your Area</p>
+  </div>
+  <div class='table-responsive'>
+    <table class='content-table' >
+      <thead>
+      <tr>
+        <th>Driver Name</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class= "active-row"  >
+        <td>
+
+          <button type='btn-primary' style="float: right;"> Request Driver</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

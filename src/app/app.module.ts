@@ -8,6 +8,7 @@ import {TripDetailsComponent} from "./trip-details/trip-details.component";
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
+import {PassengerResultsComponent} from "./passenger-results/passenger-results.component";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MenuComponent } from './menu/menu.component';
     TripDetailsComponent,
     FooterComponent,
     HeaderComponent,
-    MenuComponent
+    MenuComponent,
+    PassengerResultsComponent
   ],
   imports: [
     BrowserModule,
