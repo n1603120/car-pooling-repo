@@ -1,5 +1,5 @@
 import {Component, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, ViewChild} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {Trip} from "../model/trip";
 import {createRequiredRegexValidator} from "../utility/validators";
 import {HttpClient} from "@angular/common/http";
@@ -16,6 +16,7 @@ export class TripDetailsComponent implements OnInit {
   tripForm: FormGroup;
   submitted: boolean = false;
   timeValid: boolean = false;
+  private dataError: ValidationErrors | null | undefined;
 
   onSubmit(): void {
     this.submitted = true;
@@ -47,9 +48,31 @@ export class TripDetailsComponent implements OnInit {
     console.log(this.getCurrentDate());
     if(this.tripForm.value.tripDate === this.getCurrentDate()){
       this.timeValid = this.tripForm.value.tripTime >= this.getCurrentTime();
+      if(!this.timeValid){
+        // @ts-ignore
+        document.getElementById("tripTime").style.border = '2pt solid red';
+      }
     }
     else{
       this.timeValid = true;
+    }
+    if(this.timeValid){
+      // @ts-ignore
+      document.getElementById("tripTime").style.border = '1pt solid black';
+    }
+  }
+
+  errorPresent(tripData: string): boolean {
+    this.dataError = this.tripForm.get(tripData)?.errors
+    if(this.dataError){
+      // @ts-ignore
+      document.getElementById(tripData).style.border = '2pt solid red';
+      return true;
+    }
+    else{
+      // @ts-ignore
+      document.getElementById(tripData).style.border = '1pt solid black';
+      return false;
     }
   }
 }

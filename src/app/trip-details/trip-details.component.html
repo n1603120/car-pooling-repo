@@ -1,11 +1,11 @@
-<div class="container">
+<div id="pageContainer">
   <div class ="inputContainer">
     <h1>Trip Details</h1>
     <form [formGroup] ="tripForm" (ngSubmit)="onSubmit()">
       <fieldset>
         <label for = "tripPostcode">Postcode: <input maxlength = "8" type="text" id = "tripPostcode" formControlName="tripPostcode"></label>
-        <span class="text-danger" *ngIf="(submitted || tripForm.get('tripPostcode')?.touched) && tripForm.get('tripPostcode')?.errors">
-          Please enter a valid Postcode
+        <span class="text-danger" *ngIf="(submitted || tripForm.get('tripPostcode')?.touched) && errorPresent('tripPostcode')">
+          ! Please enter a valid Postcode
         </span>
       </fieldset>
       <fieldset>
@@ -13,20 +13,20 @@
           <option value="Belfast Office" >Belfast Office</option>
           <option value="Dublin Office">Dublin Office</option>
         </select></label>
-        <span class="text-danger" *ngIf="(submitted || tripForm.get('tripDestination')?.touched) && tripForm.get('tripDestination')?.errors">
-          Please select a Destination
+        <span class="text-danger" *ngIf="(submitted || tripForm.get('tripDestination')?.touched) && errorPresent('tripDestination')">
+          ! Please select a Destination
         </span>
       </fieldset>
       <fieldset>
         <label for = "tripDate">Select Date:<input type="date" min = {{getCurrentDate()}} id = "tripDate" (change) ="checkTimeValid()" formControlName="tripDate"></label>
-        <span class="text-danger" *ngIf="(submitted || tripForm.get('tripDate')?.touched) && tripForm.get('tripDate')?.errors">
-          Please select a Date
+        <span class="text-danger" *ngIf="(submitted || tripForm.get('tripDate')?.touched) && errorPresent('tripDate')">
+          ! Please select a Date
         </span>
       </fieldset>
       <fieldset>
         <label for = "tripDate">Select Time:<input type="time" id = "tripTime" (change) ="checkTimeValid()" formControlName="tripTime"></label>
         <span class="text-danger" *ngIf="(submitted || tripForm.get('tripTime')?.touched) && (tripForm.get('tripTime')?.errors || !timeValid)">
-          Please select a Time
+          ! Please select a Time
         </span>
       </fieldset>
       <input type="submit" value="Submit">
