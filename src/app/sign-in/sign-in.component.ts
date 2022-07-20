@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {createRequiredRegexValidator} from './validators';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sign-in',
@@ -7,26 +9,33 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-  title = 'ReactiveForms';
-  tripForm: FormGroup;
-  submitted = false;
+  detailsForm: FormGroup;
+  private userEmail = 'email@email.com';
+  private userPassword = 'Password1!';
+  newEmail = '';
+  newPassword = '';
+  errorMessage = ''
 
-  onSubmit(): void {
-    this.submitted = true;
-    if(!this.tripForm.valid) {
-      return;
-    }
-    console.log(this.tripForm);
-  }
-  constructor(private formBuilder: FormBuilder) {
-    this.tripForm = formBuilder.group({
-      tripPostcode: ['', Validators.required],
-      tripDestination: ['', Validators.required],
-      tripDate: ['', Validators.required],
-      tripTime: ['', Validators.required]
+  constructor(private formBuilder: FormBuilder, private readonly router: Router) {
+    this.detailsForm = formBuilder.group({
+      email: ['', createRequiredRegexValidator(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)],
+      password: ['', createRequiredRegexValidator(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]
     });
-  }
+  };
+
   ngOnInit(): void {
   }
 
+  checkUserAuth(): void {
+    if (this.newEmail === this.userEmail && this.newPassword === this.userPassword) {
+      this.router.navigate(['/home-page']);
+    } else {
+      this.showText()
+    }
+  }
+
+  showText() {
+    this.errorMessage = 'It looks like there\'s an error in your email address or password. Please try again';
+    return this.errorMessage;
+  }
 }
