@@ -1,10 +1,10 @@
-<div class="container" xmlns="http://www.w3.org/1999/html">
+<div class="container">
   <div class ="inputContainer">
     <h1>Driver Details</h1>
     <form [formGroup] ="driverForm" (ngSubmit)="onSubmit()">
       <fieldset>
         <label class="driverForm" for = "driverCarMake">Car Make: </label>
-        <select id = "driverCarMake">
+        <select id = "driverCarMake" type = "dropdown">
           <option value="driverCarMake"> Select Car Make</option>
           <option value="ford"> ford </option>
           <option value="renault"> renault </option>
@@ -26,21 +26,16 @@
 
       <fieldset>
         <div>
-          <label class="driverForm" for = "driverPreferredContact">Preferred Contact: </label>
-          <select class = 'form-control' id = "driverPreferredContact" [(ngModel)]="selectedValue" ] >
-            <option value="driverPreferredContact"> Select Preferred Contact...</option>
-            <option value="email"> Email </option>
-            <option value="phone"> Phone Number </option>
-          </select>
+          <label>Preferred Method of Contact: </label>
+            <button class="btn btn-primary" (click)="isEmailCheck()">Email</button>
+            <button class="btn btn-primary" (click)="isPhoneCheck()">Phone</button>
         </div>
-
-        <div class="form-group" *ngIf="selectedValue == 'email'">
-          <label for="email"> Enter Email:</label>
-          <input type="text" class="form-control" id="email" ngModel name="emailAddress" required>
+        <div *ngIf="isEmail">
+          <label>Email Address: <input type="email"></label>
         </div>
-
-
-
+        <div *ngIf="isPhone">
+          <label>Phone Number: <input type="number"></label>
+        </div>
       </fieldset>
 
       <label class="driverForm" for = "driverSmokingOption">Smoking Option: </label>
@@ -51,8 +46,8 @@
       </select>
 
       <fieldset>
-        <label for="driverAccessibility">Accessibility: </label>
-        <input type="text" id="driverAccessibility" formControlName="driverAccessibility"> <!---may need to change from text type--->
+        <label for="driverAccessibility">Accessibility: <input type="text" id="driverAccessibility" formControlName="driverAccessibility"></label>
+         <!---may need to change from text type--->
       </fieldset>
       <fieldset>
         <label for = "driverPickUp">Preferred Pick Up Point: <input type="text" id = "driverPickUp" formControlName="driverPickUp" placeholder="Enter Your Preferred Point of Pick up"></label>
@@ -60,6 +55,7 @@
           The Pick Up Place is required
         </span>
       </fieldset>
+
       <input type="submit" value="Register Car">
     </form>
   </div>

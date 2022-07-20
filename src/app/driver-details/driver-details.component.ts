@@ -12,6 +12,7 @@ export class DriverDetailsComponent implements OnInit {
   driverForm: FormGroup;
   submitted = false;
 
+
   carMake = '';
   reg = '';
   noOfPassengers = 0;
@@ -20,7 +21,9 @@ export class DriverDetailsComponent implements OnInit {
   accessibility = '';
   preferredPickUp = '';
 
-  selectedValue: string = '';
+
+  isEmail: boolean = false;
+  isPhone: boolean = false;
 
 
   onSubmit(): void {
@@ -42,6 +45,14 @@ export class DriverDetailsComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+  }
+
+  isEmailCheck(): void{
+    this.isEmail =! this.isEmail;
+  }
+
+  isPhoneCheck(): void{
+    this.isPhone =! this.isPhone;
   }
 
 }
