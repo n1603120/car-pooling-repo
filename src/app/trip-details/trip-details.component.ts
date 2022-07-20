@@ -14,6 +14,7 @@ export class TripDetailsComponent implements OnInit {
  // @Output() tripEntered = new EventEmitter<Trip>();
   title = 'ReactiveForms';
   tripForm: FormGroup;
+  submitted = false;
 
   // ngOnInit() {
   //   this.tripForm = new FormGroup({
@@ -25,6 +26,7 @@ export class TripDetailsComponent implements OnInit {
   // }
   //private trip: Trip;
   onSubmit(): void {
+    this.submitted = true;
     console.log(this.tripForm);
     //this.tripEntered.emit(this.trip);
   }
@@ -40,13 +42,9 @@ export class TripDetailsComponent implements OnInit {
   ngOnInit(): void {
    // this.updateFromModel(this.trip);
   }
-
-  private updateFromModel(trip: Trip): void {
-    this.tripForm.setValue({
-      tripPostcode: trip.postcode,
-      tripDestination: trip.destination,
-      tripDate: trip.date.toISOString(),
-      tripTime: trip.time
-    });
+  get registerTripControl() {
+    return this.tripForm.controls;
   }
+  get getTripPostcode() { return this.tripForm.get('tripPostcode'); }
+
 }

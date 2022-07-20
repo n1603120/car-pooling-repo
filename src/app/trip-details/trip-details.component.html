@@ -3,13 +3,17 @@
     <h1>Trip Details</h1>
     <form [formGroup] ="tripForm" (ngSubmit)="onSubmit()">
       <fieldset>
-        <label>Postcode: <input maxlength="8" type="text" formControlName="tripPostcode"></label>
+        <label for = "tripPostcode">Postcode: <input maxlength="8" type="text" id = "tripPostcode" formControlName="tripPostcode"></label>
+<!--        <span class="error-msg" *ngIf="getTripPostcode && getTripPostcode.invalid">-->
+<!--      The Postcode is required-->
+<!--    </span>-->
+<!--        <span class="text-danger" *ngIf="(registerTripControl.tripPostcode.touched || submitted) && registerTripControl.tripPostcode.errors?.required">-->
+<!--      The Flight ID is required-->
+<!--    </span>-->
         <span class="error-msg" *ngIf="tripForm.controls.tripPostcode.errors">
-      The Postcode is required
+      The Flight ID is required
     </span>
       </fieldset>
-      <label for="postcode">Postcode:</label>
-      <input type="text" id="postcode" formControlName="tripPostcode">
       <label for="destination">Destination:</label>
       <input type="text" id="destination" formControlName="tripDestination">
       <label for="datePicker">Select date: </label>
