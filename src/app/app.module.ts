@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import {PassengerResultsComponent} from "./passenger-results/passenger-results.component";
+import {DriverDetailsComponent} from "./driver-details/driver-details.component";
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {PassengerResultsComponent} from "./passenger-results/passenger-results.c
     FooterComponent,
     HeaderComponent,
     MenuComponent,
-    PassengerResultsComponent
+    PassengerResultsComponent,
+    DriverDetailsComponent
   ],
   imports: [
     BrowserModule,
