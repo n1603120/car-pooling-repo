@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PassengerSummaryComponent implements OnInit {
   pageTitle: string = "Summary Screen";
+
+
+
   drivers: any[] = [
     {"name": "Alfred Hitchcock"},
     {"name": "Bruce Wayne"},
@@ -27,7 +30,10 @@ export class PassengerSummaryComponent implements OnInit {
   }
   constructor() { }
 
+
+
   ngOnInit(): void {
+
 
 
 

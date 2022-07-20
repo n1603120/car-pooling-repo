@@ -13,6 +13,7 @@
       <tbody>
       <tr class= "active-row" *ngFor="let driver of drivers" >
         <td>
+
           {{ driver.name}}
           <button  routerLink="/pSummary" style="float: right;"> Request Driver</button>
 
@@ -21,7 +22,7 @@
       <tr class= "active-row" *ngFor="let driver of drivers1" >
         <td>
           {{ driver.name}}
-          <button  routerLink="/pSummary" style="float: right;"> Request Driver</button>
+          <button  routerLink="/tripDetails" style="float: right;"> Request Driver</button>
 
         </td>
       </tr>
@@ -57,7 +58,7 @@
       <tr class= "active-row"  >
         <td>
 
-          <button type='btn-primary' style="float: right;"> Request Driver</button>
+          <button  routerLink="/pSummary" style="float: right;"> Request Driver</button>
         </td>
       </tr>
       </tbody>
