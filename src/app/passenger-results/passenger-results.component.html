@@ -11,18 +11,41 @@
       </tr>
       </thead>
       <tbody>
-        <tr class= "active-row" *ngFor="let driver of drivers" >
-          <td>
-            {{ driver.name}}
-            <button type='btn-primary' style="float: right;"> Request Driver</button>
-          </td>
-        </tr>
+      <tr class= "active-row" *ngFor="let driver of drivers" >
+        <td>
+
+          {{ driver.name}}
+          <button  routerLink="/pSummary" style="float: right;"> Request Driver</button>
+
+        </td>
+      </tr>
+      <tr class= "active-row" *ngFor="let driver of drivers1" >
+        <td>
+          {{ driver.name}}
+          <button  routerLink="/tripDetails" style="float: right;"> Request Driver</button>
+
+        </td>
+      </tr>
+      <tr class= "active-row" *ngFor="let driver of drivers2" >
+        <td>
+          {{ driver.name}}
+          <button  routerLink="/pSummary" style="float: right;"> Request Driver</button>
+
+        </td>
+      </tr>
+      <tr class= "active-row" *ngFor="let driver of drivers3" >
+        <td>
+          {{ driver.name}}
+          <button  routerLink="/pSummary" style="float: right;"> Request Driver</button>
+
+        </td>
+      </tr>
       </tbody>
     </table>
   </div>
 
   <div class='card-header' style="text-align:center">
-     <p>Drivers Outside Your Area</p>
+    <p>Drivers Outside Your Area</p>
   </div>
   <div class='table-responsive'>
     <table class='content-table' >
@@ -35,7 +58,7 @@
       <tr class= "active-row"  >
         <td>
 
-          <button type='btn-primary' style="float: right;"> Request Driver</button>
+          <button  routerLink="/pSummary" style="float: right;"> Request Driver</button>
         </td>
       </tr>
       </tbody>

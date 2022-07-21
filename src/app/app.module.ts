@@ -10,6 +10,10 @@ import { MenuComponent } from './menu/menu.component';
 import {PassengerResultsComponent} from "./passenger-results/passenger-results.component";
 import {DriverDetailsComponent} from "./driver-details/driver-details.component";
 
+import {CreateAccountComponent} from "./create-account/create-account.component";
+
+import {PassengerSummaryComponent} from "./passenger-summary/passenger-summary.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,8 +21,13 @@ import {DriverDetailsComponent} from "./driver-details/driver-details.component"
     FooterComponent,
     HeaderComponent,
     MenuComponent,
+
     PassengerResultsComponent,
-    DriverDetailsComponent
+    DriverDetailsComponent,
+    CreateAccountComponent,
+    PassengerSummaryComponent
+
+
   ],
   imports: [
     BrowserModule,
