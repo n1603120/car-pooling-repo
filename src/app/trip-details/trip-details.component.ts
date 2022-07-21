@@ -1,10 +1,6 @@
 import {Component, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
-import {Trip} from "../model/trip";
 import {createRequiredRegexValidator} from "../utility/validators";
-import {HttpClient} from "@angular/common/http";
-import {catchError, map, Observable, of} from "rxjs";
-import {GoogleMap} from "@angular/google-maps";
 
 @Component({
   selector: 'app-trip-details',
