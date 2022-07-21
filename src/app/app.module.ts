@@ -8,7 +8,10 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import {PassengerResultsComponent} from "./passenger-results/passenger-results.component";
+
 import {CreateAccountComponent} from "./create-account/create-account.component";
+
+import {PassengerSummaryComponent} from "./passenger-summary/passenger-summary.component";
 
 @NgModule({
   declarations: [
@@ -17,8 +20,12 @@ import {CreateAccountComponent} from "./create-account/create-account.component"
     FooterComponent,
     HeaderComponent,
     MenuComponent,
+
     PassengerResultsComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+
+    PassengerSummaryComponent
+
   ],
   imports: [
     BrowserModule,
