@@ -1,9 +1,10 @@
 h2{
   padding: 10px;
   display: inline;
+
 }
 img{
-  object-fit: contain;
+  height: 70%;
 }
 
 #header{
@@ -12,8 +13,10 @@ img{
   padding-top: 20px;
   height: 20%;
   background-color: #ffd000;
+  font-size: 1em;
 }
 #mainDisplay{
   height: 80%;
+  width: 100%;
 }
 
