@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 
 import {Router} from "@angular/router";
 import {createRequiredRegexValidator} from "../utility/validators";
@@ -11,33 +11,37 @@ import {createRequiredRegexValidator} from "../utility/validators";
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-  detailsForm: FormGroup;
+  loginForm: FormGroup;
   private userEmail = 'email@email.com';
   private userPassword = 'Password1!';
-  newEmail = '';
-  newPassword = '';
   errorMessage = ''
+  submitted: boolean = false;
+  private dataError: ValidationErrors | null | undefined;
 
   constructor(private formBuilder: FormBuilder, private readonly router: Router) {
-    this.detailsForm = formBuilder.group({
-      email: ['', createRequiredRegexValidator(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)],
-      password: ['', createRequiredRegexValidator(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]
+    this.loginForm = formBuilder.group({
+      email: ['', createRequiredRegexValidator(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/)],
+      password: ['', createRequiredRegexValidator(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]
     });
   };
 
   ngOnInit(): void {
   }
 
-  checkUserAuth(): void {
-    if (this.newEmail === this.userEmail && this.newPassword === this.userPassword) {
-      this.router.navigate(['/home-page']);
+  checkUserAuth(): boolean {
+    // @ts-ignore
+    if (this.loginForm.value.email === this.userEmail && this.loginForm.value.password  === this.userPassword) {
+      this.router.navigate(['/home']);
+      return true;
     } else {
-      this.showText()
+      // @ts-ignore
+      document.getElementById("errorBlock").style.display = "block";
+      return false;
     }
   }
 
-  showText() {
-    this.errorMessage = 'It looks like there\'s an error in your email address or password. Please try again';
-    return this.errorMessage;
+  onSubmit() {
+    this.submitted = true;
+    this.checkUserAuth();
   }
 }
