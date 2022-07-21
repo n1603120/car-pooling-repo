@@ -1,83 +1,119 @@
 /* Style inputs */
-/*
+
 input[type=text], select {
+ height: 80%;
   width: 100%;
-  width: 80%;
   padding: 12px 40px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-}*/
+}
 
 input[type=dropdown], select {
-  width: 50%;
+  width: 100%;
   padding: 12px 40px;
-  margin: 8px 10px;
+  margin: 8px 0px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
-
-input[type=checkbox] {
-  width: 5%;
-  padding: 15px 15px;
-  margin: 8px 0;
-}
-
-/* Style the submit button */
+/*!* Style the submit button *!*/
 input[type=submit] {
   width: 100%;
-  background-color: #0cb6de;
+  background-color: #04AA6D;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 1.5em;
 }
-
 /* Add a background color to the submit button on mouse-over */
 input[type=submit]:hover {
   background-color: #45a049;
 }
 
-
-.dropbtn {
+input[type=interactiveButton] {
+  width: 49%;
   background-color: #04AA6D;
   color: white;
-  padding: 16px;
-  font-size: 16px;
+  padding: 14px 20px;
+  margin: 8px 1px;
   border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.5em;
+  text-align: center;
+}
+/* Add a background color to the submit button on mouse-over */
+input[type=interactiveButton]:hover {
+  background-color: #45a049;
 }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
+input[type=interactiveButton]:focus {
+  background: #F5F5F5;
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+input{
+  font-size: 1em;
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color:#343741;
 }
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+#tripDestination{
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color:#343741;
+}
+form{
+  width: 100%;
+}
+label{
+  width: 100%;
+  font-size: 1.3em;
+  margin-bottom: 3%;
+}
+.inputContainer{
+  border: 1pt solid rgba(0,0,0,0.5);
+  padding: 2%;
+  width: 50%;
+  margin: 2% auto 0;
+  max-width: 600px;
 }
 
-.dropdown-content a:hover {background-color: #ddd;}
+.text-danger{
+  font-size: 1em;
+  font-weight: bold;
+}
 
-.dropdown:hover .dropdown-content {display: block;}
+.scroll-object{
+  color: #dddddd;
+  font-family: cursive;
+  font-size: 15px;
+}
+.scroll-div{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
 
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+
+
+
 
