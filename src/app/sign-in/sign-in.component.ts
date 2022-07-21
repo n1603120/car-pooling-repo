@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 import {Router} from "@angular/router";
-import {createRequiredRegexValidator} from "../utilitty/validators";
+import {createRequiredRegexValidator} from "../utility/validators";
+
 
 @Component({
   selector: 'app-sign-in',

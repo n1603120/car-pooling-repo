@@ -1,5 +1,7 @@
 /* Style inputs */
+
 input[type=text], select {
+ height: 80%;
   width: 100%;
   padding: 12px 40px;
   margin: 8px 0;
@@ -10,35 +12,108 @@ input[type=text], select {
 }
 
 input[type=dropdown], select {
-  width: 50%;
+  width: 100%;
   padding: 12px 40px;
-  margin: 8px 10px;
+  margin: 8px 0px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
-input[type=checkbox] {
-  width: 5%;
-  padding: 40px 15px;
-  margin: 8px 0;
-}
-
-/* Style the submit button */
+/*!* Style the submit button *!*/
 input[type=submit] {
   width: 100%;
-  background-color: #0cb6de;
+  background-color: #04AA6D;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 1.5em;
 }
-
 /* Add a background color to the submit button on mouse-over */
 input[type=submit]:hover {
   background-color: #45a049;
 }
+
+input[type=interactiveButton] {
+  width: 49%;
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 1px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.5em;
+  text-align: center;
+}
+/* Add a background color to the submit button on mouse-over */
+input[type=interactiveButton]:hover {
+  background-color: #45a049;
+}
+
+input[type=interactiveButton]:focus {
+  background: #F5F5F5;
+}
+
+input{
+  font-size: 1em;
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color:#343741;
+}
+
+#tripDestination{
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color:#343741;
+}
+form{
+  width: 100%;
+}
+label{
+  width: 100%;
+  font-size: 1.3em;
+  margin-bottom: 3%;
+}
+.inputContainer{
+  border: 1pt solid rgba(0,0,0,0.5);
+  padding: 2%;
+  width: 50%;
+  margin: 2% auto 0;
+  max-width: 600px;
+}
+
+.text-danger{
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.scroll-object{
+  color: #dddddd;
+  font-family: cursive;
+  font-size: 15px;
+}
+.scroll-div{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+
+
+
+
 

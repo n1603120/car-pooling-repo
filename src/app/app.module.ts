@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import {RoutingModule} from './routing/routing.module';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -22,13 +21,12 @@ import {PassengerSummaryComponent} from "./passenger-summary/passenger-summary.c
     FooterComponent,
     HeaderComponent,
     MenuComponent,
-    PassengerResultsComponent,
-    DriverDetailsComponent
 
     PassengerResultsComponent,
+    DriverDetailsComponent,
     CreateAccountComponent,
-
     PassengerSummaryComponent
+
 
   ],
   imports: [

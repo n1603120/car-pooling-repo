@@ -16,13 +16,13 @@
 .content-table thead tr{
   text-align: left;
   font-weight: bold;
-  background-color: yellow;
+  background-color: #ffd000;
 }
 .content-table tbody tr:nth-of-type(even){
   background-color: #f3f3f3;
 }
 .content-table tbody tr:last-of-type{
-  border-bottom: 4px solid yellow;
+  border-bottom: 4px solid #ffd000;
 }
 .content-table tbody tr:active{
   font-weight: bold;

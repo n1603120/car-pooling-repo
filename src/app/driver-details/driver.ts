@@ -4,6 +4,6 @@ export interface IDriver {
   noOfPassengers: number;
   preferredContact: string;
   smokingOption: boolean;
-  accessibility: string;
+  accessibility: boolean;
   preferredPickUp: string;
 }

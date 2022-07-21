@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {IDriver} from "./driver";
+import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
+
 
 @Component({
   selector: 'app-driver-details',
@@ -11,14 +11,14 @@ export class DriverDetailsComponent implements OnInit {
   title = 'ReactiveForms';
   driverForm: FormGroup;
   submitted = false;
-
+  private dataError: ValidationErrors | null | undefined;
 
   carMake = '';
   reg = '';
   noOfPassengers = 0;
   preferredContact = '';
   smokingOption = false;
-  accessibility = '';
+  accessibility = false;
   preferredPickUp = '';
 
 
@@ -55,4 +55,17 @@ export class DriverDetailsComponent implements OnInit {
     this.isPhone =! this.isPhone;
   }
 
+  errorPresent(driverData: string): boolean {
+    this.dataError = this.driverForm.get(driverData)?.errors
+    if(this.dataError){
+      // @ts-ignore
+      document.getElementById(driverData).style.border = '2pt solid red';
+      return true;
+    }
+    else{
+      // @ts-ignore
+      document.getElementById(driverData).style.border = '1pt solid black';
+      return false;
+    }
+  }
 }

@@ -10,7 +10,7 @@ body{
 }
 *{
   font-family: roboto, Arial, SansSerif, serif;
-  overflow: hidden;
+  overflow: auto;
 }
 html{
   height: 100%;
@@ -19,3 +19,5 @@ app-root{
   height:100%;
   width:100%;
 }
+
+
