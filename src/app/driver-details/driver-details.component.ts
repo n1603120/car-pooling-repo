@@ -18,7 +18,7 @@ export class DriverDetailsComponent implements OnInit {
   noOfPassengers = 0;
   preferredContact = '';
   smokingOption = false;
-  accessibility = '';
+  accessibility = false;
   preferredPickUp = '';
 
 

@@ -1,22 +1,24 @@
-<div class="container">
-  <div class ="inputContainer">
+<div id="pageCon" class="scroll-object" class="scroll-div">
+  <div class ="inputContainer" >
     <h1>Driver Details</h1>
     <form [formGroup] ="driverForm" (ngSubmit)="onSubmit()">
-      <fieldset>
-        <label class="driverForm" for = "driverCarMake">Car Make: </label>
+        <label class="driverForm" for = "driverCarMake">
+          Car Make:
         <select id = "driverCarMake" type = "dropdown">
-          <option value="driverCarMake"> Select Car Make</option>
+          <option value="driverCarMake" disabled selected> Select Car Make</option>
           <option value="ford"> ford </option>
           <option value="renault"> renault </option>
         </select>
+        </label>
 
-      </fieldset>
       <fieldset>
-        <label for = "driverReg">Registration: <input [minlength]="2" [maxLength]="7" type="text" id = "driverReg" formControlName="driverReg"></label>
+        <label for = "driverReg">Registration: <input [minlength]="2" [maxLength]="7" type="text" id = "driverReg" formControlName="driverReg">
         <span class="text-danger" *ngIf="(submitted || driverForm.get('driverReg')?.touched) && driverForm.get('driverReg')?.errors">
           The Registration is required
         </span>
+        </label>
       </fieldset>
+
       <fieldset>
         <label for = "driverNoOfPassengers">No of Passengers: <input type="number" min="1" id = "driverNoOfPassengers" formControlName="driverNoOfPassengers"></label>
         <span class="text-danger" *ngIf="(submitted || driverForm.get('driverNoOfPassengers')?.touched) && driverForm.get('driverNoOfPassengers')?.errors">
@@ -26,9 +28,11 @@
 
       <fieldset>
         <div>
-          <label>Preferred Method of Contact: </label>
-            <button class="btn btn-primary" (click)="isEmailCheck()">Email</button>
-            <button class="btn btn-primary" (click)="isPhoneCheck()">Phone</button>
+          <label>Preferred Method of Contact:</label>
+        </div>
+        <div>
+          <input type="interactiveButton" value="Email" (click)="isEmailCheck()">
+          <input type="interactiveButton" value="Phone" (click)="isPhoneCheck()">
         </div>
         <div *ngIf="isEmail">
           <label>Email Address: <input type="email"></label>
@@ -38,24 +42,30 @@
         </div>
       </fieldset>
 
-      <label class="driverForm" for = "driverSmokingOption">Smoking Option: </label>
+      <label class="driverForm" for = "driverSmokingOption">
+        Smoking Option:
       <select id = "driverSmokingOption">
-        <option value="driverSmokingOption"> Select Smoking Option</option>
+        <option value="driverSmokingOption" disabled selected> Select Smoking Option</option>
         <option value="yes"> Yes </option>
         <option value="no"> No </option>
       </select>
-
+      </label>
       <fieldset>
-        <label for="driverAccessibility">Accessibility: <input type="text" id="driverAccessibility" formControlName="driverAccessibility"></label>
-         <!---may need to change from text type--->
+        <label for="driverAccessibility" id="driverAccessibility" >Is your car accessible?
+          <select>
+            <option value="driverAccessibility" disabled selected>Yes/No</option>
+            <option value="yes"> Yes </option>
+            <option value="no"> No </option>
+          </select>
+        </label>
       </fieldset>
       <fieldset>
-        <label for = "driverPickUp">Preferred Pick Up Point: <input type="text" id = "driverPickUp" formControlName="driverPickUp" placeholder="Enter Your Preferred Point of Pick up"></label>
+        <label for = "driverPickUp">Preferred Pick Up Point: <input type="text" id = "driverPickUp" formControlName="driverPickUp" placeholder="Enter Your Preferred Point of Pick up">
         <span class="text-danger" *ngIf="(submitted || driverForm.get('driverPickUp')?.touched) && driverForm.get('driverPickUp')?.errors">
-          The Pick Up Place is required
+          The pick up place is required
         </span>
+        </label>
       </fieldset>
-
       <input type="submit" value="Register Car">
     </form>
   </div>
