@@ -1,29 +1,35 @@
-<html>
-<body>
-<h2>Create Account</h2>
-<form action="/action_page.php">
-  <label for="fname">First name:</label><br>
-  <input type="text" id="fname" name="fname" value=""><br>
-  <label for="lname">Last name:</label><br>
-  <input type="text" id="lname" name="lname" value=""><br><br>
-  <label for="lname">E-mail:</label><br>
-  <input type="text" id="Email" name="E-mail" value=""><br><br>
-  <label for="phone">Phone Number :</label><br>
-  <input type="text" id="phone" name="phone" value=""><br>
-  <label for="pname">Post code:</label><br>
-  <input type="tet" id="pname" name="pname" value=""><br><br>
-  <label for="password">Pasword:</label><br>
-  <input type="text" id="password" name="password" value=""><br><br>
-  <label for="cpassword">Confirm Pasword:</label><br>
-  <input type="text" id="cpassword" name="cpassword" value=""><br><br>
-</form>
-<p>Choose additional driving condition:</p>
-<form>
-  <input type="radio" id="html" name="fav_language" value="HTML">
-  <label for="html">Accessibility space</label><br>
-  <input type="radio" id="css" name="fav_language" value="CSS">
-  <label for="css">Smoking zone</label><br>
-</form>
-<input type="submit" value="Submit">
-</body>
-</html>
+<!--<div id="pageContainer">-->
+<!--  <div class ="inputContainer">-->
+<!--    <h1>Trip Details</h1>-->
+<!--    <form [formGroup] ="accountForm" (ngSubmit)="onSubmit()">-->
+<!--      <fieldset>-->
+<!--        <label for = "fname">Postcode: <input type="text" id = "fname" formControlName="fname"></label>-->
+<!--        <span class="text-danger" *ngIf="(submitted || accountForm.get('tripPostcode')?.touched) && errorPresent('tripPostcode')">-->
+<!--          ! Please enter a valid Postcode-->
+<!--        </span>-->
+<!--      </fieldset>-->
+<!--      <fieldset>-->
+<!--        <label for = "tripDestination">Destination:<select ngModel="Belfast Office" name = "tripDestination" id = "tripDestination" formControlName="tripDestination">-->
+<!--          <option value="Belfast Office" >Belfast Office</option>-->
+<!--          <option value="Dublin Office">Dublin Office</option>-->
+<!--        </select></label>-->
+<!--        <span class="text-danger" *ngIf="(submitted || accountForm.get('tripDestination')?.touched) && errorPresent('tripDestination')">-->
+<!--          ! Please select a Destination-->
+<!--        </span>-->
+<!--      </fieldset>-->
+<!--      <fieldset>-->
+<!--        <label for = "tripDate">Select Date:<input type="date" min = {{getCurrentDate()}} id = "tripDate" formControlName="tripDate"></label>-->
+<!--        <span class="text-danger" *ngIf="(submitted || accountForm.get('tripDate')?.touched) && errorPresent('tripDate')">-->
+<!--          ! Please select a Date-->
+<!--        </span>-->
+<!--      </fieldset>-->
+<!--      <fieldset>-->
+<!--        <label for = "tripDate">Select Time:<input type="time" id = "tripTime"  formControlName="tripTime"></label>-->
+<!--        <span class="text-danger" *ngIf="(submitted || accountForm.get('tripTime')?.touched) && accountForm.get('tripTime')?.errors">-->
+<!--          ! Please select a Time-->
+<!--        </span>-->
+<!--      </fieldset>-->
+<!--      <input type="submit" value="Submit">-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->
