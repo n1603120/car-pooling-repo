@@ -13,6 +13,7 @@ import {DriverDetailsComponent} from "./driver-details/driver-details.component"
 import {CreateAccountComponent} from "./create-account/create-account.component";
 
 import {PassengerSummaryComponent} from "./passenger-summary/passenger-summary.component";
+import {SignInComponent} from "./sign-in/sign-in.component";
 
 @NgModule({
   declarations: [
@@ -21,13 +22,11 @@ import {PassengerSummaryComponent} from "./passenger-summary/passenger-summary.c
     FooterComponent,
     HeaderComponent,
     MenuComponent,
-
     PassengerResultsComponent,
     DriverDetailsComponent,
     CreateAccountComponent,
-    PassengerSummaryComponent
-
-
+    PassengerSummaryComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,

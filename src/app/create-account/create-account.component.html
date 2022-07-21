@@ -35,7 +35,7 @@
       <fieldset>
         <label for = "password">Password: <input type="password" id = "password" formControlName="password"></label>
         <span class="text-danger" *ngIf="(submitted || accountForm.get('password')?.touched) && errorPresent('password')">
-          ! Must contain, minimum eight characters, at least one uppercase letter, one lowercase letter and one number
+          ! Must contain, minimum eight characters, at least one uppercase letter, at least one lowercase letter, at least one number and at least one special character
         </span>
       </fieldset>
       <fieldset>
@@ -44,7 +44,11 @@
           ! Passwords do not match
         </span>
       </fieldset>
-      <input type="submit" value="Submit">
+      <input type="submit" value="Create Account">
     </form>
+  </div>
+  <div id = "createContainer">
+    <h5>Already have an account?</h5>
+    <a routerLink="signIn" id = "loginBut">Back to Login</a>
   </div>
 </div>
