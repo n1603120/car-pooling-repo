@@ -1,5 +1,10 @@
 
   /* Style all input fields */
+.test1{
+  text-align: center;
+}
+
+
 input {
   width: 100%;
   padding: 12px;
@@ -12,31 +17,45 @@ input {
 
 /* Style the submit button */
 input[type=submit] {
-  background-color: #FFFF00;
-  color: black;
-  font-size: 30px;
-
+  width: 100%;
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.5em;
 }
+
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
 
 /* Style the container for inputs */
 .container {
-  background-color: #f1f1f1;
-  padding: 20px;
+  border: 1pt solid rgba(0,0,0,0.5);
+  padding: 1%;
+  width: 50%;
+  margin: 1% auto 0;
+  max-width: 600px;
+
 }
 
 /* The message box is shown when the user clicks on the password field */
-#message {
-  display:none;
-  background: #f1f1f1;
-  color: #000;
-  position: relative;
-  padding: 20px;
-  margin-top: 10px;
+.message {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color:#343741;
 }
 
 #message p {
-  padding: 10px 35px;
-  font-size: 18px;
+  width: 100%;
+  font-size: 1.3em;
 }
 
 /* Add a green text color and a checkmark when the requirements are right */
@@ -52,7 +71,8 @@ input[type=submit] {
 
 /* Add a red text color and an "x" when the requirements are wrong */
 .invalid {
-  color: red;
+  font-size: 1em;
+  font-weight: bold;
 }
 
 .invalid:before {
@@ -60,3 +80,65 @@ input[type=submit] {
   left: -35px;
   content: "✖";
 }
+
+
+
+/*Previous code below*/
+
+
+  /*!*!* Style the submit button *!*!*/
+  /*input[type=submit] {*/
+  /*  width: 100%;*/
+  /*  background-color: #04AA6D;*/
+  /*  color: white;*/
+  /*  padding: 14px 20px;*/
+  /*  margin: 8px 0;*/
+  /*  border: none;*/
+  /*  border-radius: 4px;*/
+  /*  cursor: pointer;*/
+  /*  font-weight: bold;*/
+  /*  font-size: 1.5em;*/
+  /*}*/
+  /*!* Add a background color to the submit button on mouse-over *!*/
+  /*input[type=submit]:hover {*/
+  /*  background-color: #45a049;*/
+  /*}*/
+
+  /*input{*/
+  /*  font-size: 1em;*/
+  /*  width: 100%;*/
+  /*  padding: 5px 10px;*/
+  /*  border: 1px solid black;*/
+  /*  border-radius: 4px;*/
+  /*  box-sizing: border-box;*/
+  /*  color:#343741;*/
+  /*}*/
+
+  /*#tripDestination{*/
+  /*  width: 100%;*/
+  /*  padding: 8px 10px;*/
+  /*  border: 1px solid black;*/
+  /*  border-radius: 4px;*/
+  /*  box-sizing: border-box;*/
+  /*  color:#343741;*/
+  /*}*/
+  /*form{*/
+  /*  width: 100%;*/
+  /*}*/
+  /*label{*/
+  /*  width: 100%;*/
+  /*  font-size: 1.3em;*/
+  /*  margin-bottom: 3%;*/
+  /*}*/
+  /*.inputContainer{*/
+  /*  border: 1pt solid rgba(0,0,0,0.5);*/
+  /*  padding: 2%;*/
+  /*  width: 50%;*/
+  /*  margin: 2% auto 0;*/
+  /*  max-width: 600px;*/
+  /*}*/
+
+  /*.text-danger{*/
+  /*  font-size: 1em;*/
+  /*  font-weight: bold;*/
+  /*}*/

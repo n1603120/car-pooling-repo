@@ -1,5 +1,14 @@
 .city {
-  background-color: yellow;
+  text-align: center;
+  border: 1pt solid rgba(0,0,0,0.5);
+  /*background-color: #ffd000;*/
   color: black;
   padding: 40px;
+  display: inline-block;
+  position: relative;
+  margin: 1%;
+  width: 23%;
+}
+.border{
+  text-align: center;
 }
