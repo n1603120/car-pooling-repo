@@ -1,6 +1,7 @@
 .content-table {
   border-collapse: collapse;
-  margin: 25px 200px;
+  /*margin: 100px 450px;*/
+  margin: 0 auto;
   font-size: 1.1em;
   min-width: 800px;
   border-radius: 5px 5px 0 0;
@@ -13,19 +14,29 @@
 }
 .content-table tbody tr{
   border-bottom: 1px solid #dddddd;
+  /*text-align: center;*/
 }
 .content-table thead tr{
-  text-align: left;
+  text-align: center;
   font-weight: bold;
-  background-color: yellow;
+  background-color: #ffd000;
 }
 .content-table tbody tr:nth-of-type(even){
   background-color: #f3f3f3;
 }
 .content-table tbody tr:last-of-type{
-  border-bottom: 4px solid yellow;
+  border-bottom: 4px solid #ffd000;
 }
 .content-table tbody tr:active{
   font-weight: bold;
   color: blue;
+
 }
+
+.test2 {
+  text-align: center;
+}
+
+
+
+

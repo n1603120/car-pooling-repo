@@ -11,6 +11,7 @@ import {DriverSummaryComponent} from "../driver-summary/driver-summary.component
 import {MyBookingsComponent} from "../my-bookings/my-bookings.component";
 import {PassengerResultsComponent} from "../passenger-results/passenger-results.component";
 import {PassengerSummaryComponent} from "../passenger-summary/passenger-summary.component";
+import {ConfirmationPageComponent} from "../confirmation-page/confirmation-page.component";
 
 export const routes: Routes = [
   {path: 'signIn', component: SignInComponent},
@@ -22,6 +23,7 @@ export const routes: Routes = [
   {path: 'pResults', component: PassengerResultsComponent},
   {path: 'pSummary', component: PassengerSummaryComponent},
   {path: 'tripDetails', component: TripDetailsComponent},
+  {path: 'confirmation', component: ConfirmationPageComponent},
   {path: '**', redirectTo: ''}
 ];
 @NgModule({

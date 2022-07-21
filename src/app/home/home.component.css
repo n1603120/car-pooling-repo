@@ -1,7 +1,7 @@
 .city {
   text-align: center;
   border: 1pt solid rgba(0,0,0,0.5);
-  /*background-color: #ffd000;*/
+  background-color: #ffd000;
   color: black;
   padding: 40px;
   display: inline-block;

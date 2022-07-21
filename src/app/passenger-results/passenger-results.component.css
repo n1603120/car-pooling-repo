@@ -1,6 +1,8 @@
 .content-table {
   border-collapse: collapse;
-  margin: 25px 200px;
+  text-align: center;
+  /*margin: 25px 200px;*/
+  margin: 0 auto;
   font-size: 1.1em;
   min-width: 800px;
   border-radius: 5px 5px 0 0;
@@ -16,13 +18,13 @@
 .content-table thead tr{
   text-align: left;
   font-weight: bold;
-  background-color: yellow;
+  background-color: #ffd000;
 }
 .content-table tbody tr:nth-of-type(even){
   background-color: #f3f3f3;
 }
 .content-table tbody tr:last-of-type{
-  border-bottom: 4px solid yellow;
+  border-bottom: 4px solid #ffd000;
 }
 .content-table tbody tr:active{
   font-weight: bold;
