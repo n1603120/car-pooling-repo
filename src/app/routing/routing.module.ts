@@ -14,17 +14,17 @@ import {PassengerSummaryComponent} from "../passenger-summary/passenger-summary.
 import {ConfirmationPageComponent} from "../confirmation-page/confirmation-page.component";
 
 export const routes: Routes = [
-  {path: 'signIn', component: SignInComponent},
+  {path: 'login', component: SignInComponent},
   {path: 'home', component: HomeComponent},
-  {path: 'account', component: CreateAccountComponent},
-  {path: 'driver', component: DriverDetailsComponent},
-  {path: 'dSummary', component: DriverSummaryComponent},
+  {path: 'create-account', component: CreateAccountComponent},
+  {path: 'register-driver', component: DriverDetailsComponent},
+  {path: 'driver-summary', component: DriverSummaryComponent},
   {path: 'bookings', component: MyBookingsComponent},
-  {path: 'pResults', component: PassengerResultsComponent},
-  {path: 'pSummary', component: PassengerSummaryComponent},
-  {path: 'tripDetails', component: TripDetailsComponent},
   {path: 'confirmation', component: ConfirmationPageComponent},
-  {path: '**', redirectTo: ''}
+  {path: 'passenger-results', component: PassengerResultsComponent},
+  {path: 'passenger-summary', component: PassengerSummaryComponent},
+  {path: 'find-trip', component: TripDetailsComponent},
+  {path: '**', redirectTo: 'login'}
 ];
 @NgModule({
   declarations: [],

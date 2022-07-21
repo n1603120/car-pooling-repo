@@ -15,6 +15,8 @@ import {CreateAccountComponent} from "./create-account/create-account.component"
 import {PassengerSummaryComponent} from "./passenger-summary/passenger-summary.component";
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 
+import {SignInComponent} from "./sign-in/sign-in.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,14 +24,12 @@ import { ConfirmationPageComponent } from './confirmation-page/confirmation-page
     FooterComponent,
     HeaderComponent,
     MenuComponent,
-
     PassengerResultsComponent,
     DriverDetailsComponent,
     CreateAccountComponent,
     PassengerSummaryComponent,
-    ConfirmationPageComponent
-
-
+    ConfirmationPageComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,

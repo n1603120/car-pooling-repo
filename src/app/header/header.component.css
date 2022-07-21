@@ -19,4 +19,27 @@ img{
   height: 80%;
   width: 100%;
 }
+/* unvisited link */
+a:link {
+  color: #343741;
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  color: #343741;
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  color: #343741;
+  text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+  color: #343741;
+  text-decoration: underline;
+}
 

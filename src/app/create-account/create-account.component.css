@@ -47,7 +47,7 @@ label{
   border: 1pt solid rgba(0,0,0,0.5);
   padding: 2%;
   width: 60%;
-  margin: 2% auto;
+  margin: 3% auto 0;
   max-width: 600px;
   height: 100%;
 }
@@ -55,4 +55,55 @@ label{
 .text-danger{
   font-size: 1em;
   font-weight: bold;
+}
+#createContainer{
+  text-align: center;
+  padding: 2%;
+  width: 60%;
+  margin: 0 auto ;
+  max-width: 600px;
+  height: 100%;
+}
+
+h5 {
+  line-height: 1;
+  font-size: 1em;
+  color: #767676;
+  font-weight: 400;
+  z-index: 2;
+  padding: 0 8px 0 7px;
+}
+
+#loginBut{
+  display: block;
+  width: 100%;
+  background: lightgrey;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: bold;
+  line-height: 25px;
+}
+/* unvisited link */
+a:link {
+  color: #343741;
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  color: #343741;
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  color: #343741;
+  text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+  color: #343741;
+  text-decoration: underline;
 }
