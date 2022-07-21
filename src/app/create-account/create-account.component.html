@@ -1,35 +1,50 @@
-<!--<div id="pageContainer">-->
-<!--  <div class ="inputContainer">-->
-<!--    <h1>Trip Details</h1>-->
-<!--    <form [formGroup] ="accountForm" (ngSubmit)="onSubmit()">-->
-<!--      <fieldset>-->
-<!--        <label for = "fname">Postcode: <input type="text" id = "fname" formControlName="fname"></label>-->
-<!--        <span class="text-danger" *ngIf="(submitted || accountForm.get('tripPostcode')?.touched) && errorPresent('tripPostcode')">-->
-<!--          ! Please enter a valid Postcode-->
-<!--        </span>-->
-<!--      </fieldset>-->
-<!--      <fieldset>-->
-<!--        <label for = "tripDestination">Destination:<select ngModel="Belfast Office" name = "tripDestination" id = "tripDestination" formControlName="tripDestination">-->
-<!--          <option value="Belfast Office" >Belfast Office</option>-->
-<!--          <option value="Dublin Office">Dublin Office</option>-->
-<!--        </select></label>-->
-<!--        <span class="text-danger" *ngIf="(submitted || accountForm.get('tripDestination')?.touched) && errorPresent('tripDestination')">-->
-<!--          ! Please select a Destination-->
-<!--        </span>-->
-<!--      </fieldset>-->
-<!--      <fieldset>-->
-<!--        <label for = "tripDate">Select Date:<input type="date" min = {{getCurrentDate()}} id = "tripDate" formControlName="tripDate"></label>-->
-<!--        <span class="text-danger" *ngIf="(submitted || accountForm.get('tripDate')?.touched) && errorPresent('tripDate')">-->
-<!--          ! Please select a Date-->
-<!--        </span>-->
-<!--      </fieldset>-->
-<!--      <fieldset>-->
-<!--        <label for = "tripDate">Select Time:<input type="time" id = "tripTime"  formControlName="tripTime"></label>-->
-<!--        <span class="text-danger" *ngIf="(submitted || accountForm.get('tripTime')?.touched) && accountForm.get('tripTime')?.errors">-->
-<!--          ! Please select a Time-->
-<!--        </span>-->
-<!--      </fieldset>-->
-<!--      <input type="submit" value="Submit">-->
-<!--    </form>-->
-<!--  </div>-->
-<!--</div>-->
+<div id="pageContainer">
+  <div class ="inputContainer">
+    <h1>Create Account</h1>
+    <form [formGroup] ="accountForm" (ngSubmit)="onSubmit()">
+      <fieldset>
+        <label for = "fname">First name: <input type="text" id = "fname" formControlName="fname"></label>
+        <span class="text-danger" *ngIf="(submitted || accountForm.get('fname')?.touched) && errorPresent('fname')">
+          ! Please enter a valid First Name
+        </span>
+      </fieldset>
+      <fieldset>
+        <label for = "lname">Last name: <input type="text" id = "lname" formControlName="lname"></label>
+        <span class="text-danger" *ngIf="(submitted || accountForm.get('lname')?.touched) && errorPresent('lname')">
+          ! Please enter a valid Last Name
+        </span>
+      </fieldset>
+      <fieldset>
+        <label for = "email">Email: <input type="email" id = "email" formControlName="email"></label>
+        <span class="text-danger" *ngIf="(submitted || accountForm.get('email')?.touched) && errorPresent('email')">
+          ! Please enter a valid Email
+        </span>
+      </fieldset>
+      <fieldset>
+        <label for = "phoneNum">Phone Number: <input type="text" id = "phoneNum" formControlName="phoneNum"></label>
+        <span class="text-danger" *ngIf="(submitted || accountForm.get('phoneNum')?.touched) && errorPresent('phoneNum')">
+          ! Please enter a valid Phone Number
+        </span>
+      </fieldset>
+      <fieldset>
+        <label for = "postcode">Postcode: <input type="text" id = "postcode" formControlName="postcode"></label>
+        <span class="text-danger" *ngIf="(submitted || accountForm.get('postcode')?.touched) && errorPresent('postcode')">
+          ! Please enter a valid Postcode
+        </span>
+      </fieldset>
+      <fieldset>
+        <label for = "password">Password: <input type="password" id = "password" formControlName="password"></label>
+        <span class="text-danger" *ngIf="(submitted || accountForm.get('password')?.touched) && errorPresent('password')">
+          ! Must contain, minimum eight characters, at least one uppercase letter, one lowercase letter and one number
+        </span>
+      </fieldset>
+      <fieldset>
+        <label for = "confirmPassword">Confirm Password: <input type="password" id = "confirmPassword" formControlName="confirmPassword"></label>
+        <span class="text-danger" *ngIf="(submitted || accountForm.get('confirmPassword')?.touched) && (errorPresent('confirmPassword') || !passwordsMatch())">
+          ! Passwords do not match
+        </span>
+      </fieldset>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</div>

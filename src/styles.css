@@ -10,7 +10,7 @@ body{
 }
 *{
   font-family: roboto, Arial, SansSerif, serif;
-  overflow: hidden;
+  overflow: auto;
 }
 html{
   height: 100%;
