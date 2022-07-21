@@ -1,13 +1,29 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
+import {SignInComponent} from "../sign-in/sign-in.component";
+import {HomeComponent} from "../home/home.component";
+import {TripDetailsComponent} from "../trip-details/trip-details.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {CreateAccountComponent} from "../create-account/create-account.component";
+import {DriverDetailsComponent} from "../driver-details/driver-details.component";
+import {DriverSummaryComponent} from "../driver-summary/driver-summary.component";
+import {MyBookingsComponent} from "../my-bookings/my-bookings.component";
+import {PassengerResultsComponent} from "../passenger-results/passenger-results.component";
+import {PassengerSummaryComponent} from "../passenger-summary/passenger-summary.component";
 
 export const routes: Routes = [
-  {path: 'signIn', loadChildren: () => import('../sign-in/sign-in.module').then(module => module.default)},
-  {path: '', loadChildren: () => import('../home/home.module').then(module => module.default)},
+  {path: 'signIn', component: SignInComponent},
+  {path: 'home', component: HomeComponent},
+  {path: 'account', component: CreateAccountComponent},
+  {path: 'driver', component: DriverDetailsComponent},
+  {path: 'dSummary', component: DriverSummaryComponent},
+  {path: 'bookings', component: MyBookingsComponent},
+  {path: 'pResults', component: PassengerResultsComponent},
+  {path: 'pSummary', component: PassengerSummaryComponent},
+  {path: 'tripDetails', component: TripDetailsComponent},
   {path: '**', redirectTo: ''}
 ];
-
 @NgModule({
   declarations: [],
   imports: [
@@ -15,8 +31,11 @@ export const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   exports: [
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class RoutingModule {
 }
+

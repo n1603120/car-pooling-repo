@@ -1,1 +1,24 @@
-<p>trip-details works!</p>
+<div class="container">
+  <div class ="inputContainer">
+    <h1>Trip Details</h1>
+    <form [formGroup] ="tripForm" (ngSubmit)="onSubmit()">
+      <fieldset>
+        <label for = "tripPostcode">Postcode: <input maxlength="8" type="text" id = "tripPostcode" formControlName="tripPostcode"></label>
+        <span class="text-danger" *ngIf="(submitted || tripForm.get('tripPostcode')?.touched) && tripForm.get('tripPostcode')?.errors">
+          The Postcode is required
+        </span>
+      </fieldset>
+      <fieldset>
+        <label for = "tripDestination">Destination: <input type="text" id = "tripDestination" formControlName="tripDestination"></label>
+        <span class="text-danger" *ngIf="(submitted || tripForm.get('tripDestination')?.touched) && tripForm.get('tripDestination')?.errors">
+          The Destination is required
+        </span>
+      </fieldset>
+      <label for="datePicker">Select date: </label>
+      <input type="date" id="datePicker" formControlName="tripDate">
+      <label for="timePicker">Select time: </label>
+      <input type="time" id="timePicker" formControlName="tripTime">
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</div>
