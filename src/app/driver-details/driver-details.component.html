@@ -31,14 +31,14 @@
           <label>Preferred Method of Contact:</label>
         </div>
         <div>
-          <input type="interactiveButton" value="Email" (click)="isEmailCheck()">
-          <input type="interactiveButton" value="Phone" (click)="isPhoneCheck()">
+          <input readonly type="interactiveButton" value="Email" (click)="isEmailCheck()">
+          <input readonly type="interactiveButton" value="Phone" (click)="isPhoneCheck()">
         </div>
         <div *ngIf="isEmail">
-          <label>Email Address: <input type="email"></label>
+
         </div>
         <div *ngIf="isPhone">
-          <label>Phone Number: <input type="number"></label>
+
         </div>
       </fieldset>
 
