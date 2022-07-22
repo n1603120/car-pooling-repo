@@ -1,0 +1,62 @@
+<div class='card'>
+  <div class='card-header' style="text-align:center">
+    <h2>All Registered Cars</h2>
+  </div>
+</div>
+<div class = "test2">
+  <div class='table-responsive'>
+    <table class='content-table' *ngIf="carArray.length">
+      <thead>
+      <tr class = "buttonRow">
+        <td>
+          <button id = "backBut" routerLink="/home"> Back </button>
+        </td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td colspan = "2">
+          <button id = "registerBut" routerLink="/register-driver">Register New Car</button>
+        </td>
+      </tr>
+      <tr class="tableHeader">
+        <th>Car Make</th>
+        <th>Registration</th>
+        <th>No Passengers</th>
+        <th>Preferred<br>Contact</th>
+        <th>Smoking<br>Option</th>
+        <th>Accessibility</th>
+        <th>Preferred<br>Pick Up</th>
+        <th>Selected<br>Car</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let car of carArray" >
+        <tr class= "active-row">
+          <td>
+            {{ car.make}}
+          </td>
+          <td>
+            {{ car.registration}}
+          </td>
+          <td>
+            {{ car.numOfSeats}}
+          </td>
+          <td>
+            {{ car.preferredContact}}
+          </td>
+          <td>
+            {{ car.smokingOption}}
+          </td>
+          <td>
+            {{ car.accessibility}}
+          </td>
+          <td>
+            {{ car.preferredPickUp}}
+          </td>
+          <td>
+            <input type = "radio" name="choice" checked = "{{car.activeCar}}" (click) = "changeActive(car)" >
+          </td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

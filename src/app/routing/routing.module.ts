@@ -12,10 +12,14 @@ import {MyBookingsComponent} from "../my-bookings/my-bookings.component";
 import {PassengerResultsComponent} from "../passenger-results/passenger-results.component";
 import {PassengerSummaryComponent} from "../passenger-summary/passenger-summary.component";
 import {ConfirmationPageComponent} from "../confirmation-page/confirmation-page.component";
+import {EditAccountComponent} from "../edit-account/edit-account.component";
+import {ViewCarsComponent} from "../view-cars/view-cars.component";
 
 export const routes: Routes = [
   {path: 'login', component: SignInComponent},
   {path: 'home', component: HomeComponent},
+  {path: 'edit-account', component: EditAccountComponent},
+  {path: 'view-cars', component: ViewCarsComponent},
   {path: 'create-account', component: CreateAccountComponent},
   {path: 'register-driver', component: DriverDetailsComponent},
   {path: 'driver-summary', component: DriverSummaryComponent},

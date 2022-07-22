@@ -1,6 +1,6 @@
 import {Person} from "./person";
 
-export interface Car {
+export class Car {
   ownerId: number;
   make: string;
   registration: string;
@@ -9,21 +9,31 @@ export interface Car {
   smokingOption: boolean;
   accessibility: string;
   preferredPickUp: string;
-  getDriver(): Person;
+  activeCar: boolean;
 
-  // might need
-  // password: string;
-}
-
-function getDriver():Person {
-  // find person from the owner id
-  const person: Person = {
-    id: 1,
-    firstName: "Mark",
-    lastName: "Mill",
-    email: "mark@gmail.com",
-    phoneNumber: '07711019490' as unknown as number,
-    postcode: "Bt51"
+  constructor(OwnerId: number, Make: string, Registration: string,  NumOfSeats: string, PreferredContact: string, SmokingOption: boolean, Accessibility: string, PreferredPickUp: string, ActiveCar: boolean ) {
+    this.ownerId = OwnerId;
+    this.make = Make;
+    this.registration = Registration;
+    this.numOfSeats = NumOfSeats;
+    this.preferredContact = PreferredContact;
+    this.smokingOption = SmokingOption;
+    this.accessibility = Accessibility;
+    this.preferredPickUp = PreferredPickUp;
+    this.activeCar = ActiveCar;
   }
-  return person;
+
+  getDriver():Person {
+    // find person from the owner id
+    const person: Person = {
+      id: 1,
+      firstName: "Mark",
+      lastName: "Mill",
+      email: "mark@gmail.com",
+      phoneNumber: '07711019490' as unknown as number,
+      postcode: "Bt51",
+      password: "Password1!"
+    }
+    return person;
+  }
 }

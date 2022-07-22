@@ -16,6 +16,8 @@ import {PassengerSummaryComponent} from "./passenger-summary/passenger-summary.c
 import {ConfirmationPageComponent} from "./confirmation-page/confirmation-page.component";
 import {SignInComponent} from "./sign-in/sign-in.component";
 import {MyBookingsComponent} from "./my-bookings/my-bookings.component";
+import {EditAccountComponent} from "./edit-account/edit-account.component";
+import { ViewCarsComponent } from './view-cars/view-cars.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import {MyBookingsComponent} from "./my-bookings/my-bookings.component";
     PassengerSummaryComponent,
     ConfirmationPageComponent,
     SignInComponent,
-    MyBookingsComponent
+    MyBookingsComponent,
+    EditAccountComponent,
+    ViewCarsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Trip} from "../model/trip";
-import {Person} from "../model/person";
 import {Car} from "../model/car";
+import {formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-my-bookings',
@@ -10,30 +10,37 @@ import {Car} from "../model/car";
 })
 export class MyBookingsComponent implements OnInit {
   pageTitle: string = "My Bookings";
+  showAllBookings: boolean | undefined;
+  currentlyActiveText: string = "Currently Active Bookings";
+  displayAllText: string = "All Bookings";
+  toggleTitle: string = this.currentlyActiveText;
+  changeDisplayAllText: string = "Change To Display All Bookings";
+  changeCurrentlyActiveText: string = "Change To Currently Active Bookings";
+  toggleText: string = this.changeDisplayAllText;
 
-  private carObj: Car = {
-    ownerId: 1,
-    make: "Ford",
-    registration: "MFZ 6342",
-    numOfSeats: "3",
-    preferredContact: "Email",
-    smokingOption: true,
-    accessibility: "Yes",
-    preferredPickUp: "Tesco",
-  }
+  carObj = new Car(1, "Ford",
+    "MFZ 6342",
+    "3",
+    "Email",
+    true,
+    "Yes",
+    "Tesco",
+    true
+  );
+
 
   allBookings: Trip[] = [
     {
       postcode: "bt51",
       destination: "belfast",
-      date: "23/08/2001" as unknown as Date,
-      time: "19:30",
+      date: "2020-07-22",
+      time: "18:30",
       car: this.carObj
     },
     {
       postcode: "bt54",
       destination: "dublin",
-      date: "23/11/2001" as unknown as Date,
+      date: "2044-08-23",
       time: "14:30",
       car: this.carObj
     }
@@ -46,5 +53,41 @@ export class MyBookingsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  getCurrentDate():string{
+    return (new Date()).toISOString().substring(0,10);
+  }
+  getCurrentTime():String{
+    return (new Date()).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+  }
 
+  checkBooking(booking: Trip): boolean {
+    if(!this.showAllBookings){
+      console.log(booking.date);
+      console.log(this.getCurrentDate())
+      if(booking.date > this.getCurrentDate()){
+        return true;
+      }
+      else if(booking.date === this.getCurrentDate()){
+        return booking.time >= this.getCurrentTime();
+      }
+      else{
+        return false;
+      }
+    }else{
+      return true;
+    }
+  }
+
+  toggleTable(): void{
+    console.log(this.showAllBookings);
+    if(this.showAllBookings) {
+      this.showAllBookings = false;
+      this.toggleText = this.changeDisplayAllText;
+      this.toggleTitle = this.currentlyActiveText
+    }else{
+      this.showAllBookings = true;
+      this.toggleText = this.changeCurrentlyActiveText;
+      this.toggleTitle = this.displayAllText;
+    }
+  }
 }
