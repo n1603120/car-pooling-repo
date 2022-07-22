@@ -2,8 +2,8 @@
   <div class ="inputContainer" >
     <h1>Driver Details</h1>
     <form [formGroup] ="driverForm" (ngSubmit)="onSubmit()">
-        <label class="driverForm" for = "driverCarMake">
-          Car Make:
+
+        <label class="driverForm" for = "driverCarMake">Car Make:
         <select id = "driverCarMake" type = "dropdown">
           <option value="driverCarMake" disabled selected> Select Car Make</option>
           <option value="ford"> ford </option>
@@ -28,43 +28,46 @@
 
       <fieldset>
         <div>
-          <label>Preferred Method of Contact:</label>
+          <label class="driverForm">Preferred Method of Contact:</label>
         </div>
-        <div>
-          <input type="interactiveButton" value="Email" (click)="isEmailCheck()">
-          <input type="interactiveButton" value="Phone" (click)="isPhoneCheck()">
+        <div class="radio-toolbar">
+          <input type="radio" id="email" name="preferredContact" value="Email" (click)="isEmailCheck()">
+          <label for="email">Email</label>
+          <input type="radio" id="phone" name="preferredContact" value="Phone" (click)="isPhoneCheck()">
+          <label for="phone">Phone</label>
         </div>
         <div *ngIf="isEmail">
-          <label>Email Address: <input type="email"></label>
+
         </div>
         <div *ngIf="isPhone">
-          <label>Phone Number: <input type="number"></label>
+
         </div>
       </fieldset>
 
-      <label class="driverForm" for = "driverSmokingOption">
-        Smoking Option:
-      <select id = "driverSmokingOption">
-        <option value="driverSmokingOption" disabled selected> Select Smoking Option</option>
-        <option value="yes"> Yes </option>
-        <option value="no"> No </option>
-      </select>
-      </label>
       <fieldset>
-        <label for="driverAccessibility" id="driverAccessibility" >Is your car accessible?
-          <select>
-            <option value="driverAccessibility" disabled selected>Yes/No</option>
-            <option value="yes"> Yes </option>
-            <option value="no"> No </option>
-          </select>
-        </label>
+        <label class="driverForm" id = "driverSmokingOption" for = "driverSmokingOption">Smoking Option: </label>
+        <div class="radio-toolbar">
+          <input type="radio" id="yes" name="driverSmokingOption" value="Yes" >
+          <label for="yes">Yes</label>
+          <input type="radio" id="no" name="driverSmokingOption" value="No">
+          <label for="no">No</label>
+        </div>
       </fieldset>
+
       <fieldset>
-        <label for = "driverPickUp">Preferred Pick Up Point: <input type="text" id = "driverPickUp" formControlName="driverPickUp" placeholder="Enter Your Preferred Point of Pick up">
-        <span class="text-danger" *ngIf="(submitted || driverForm.get('driverPickUp')?.touched) && driverForm.get('driverPickUp')?.errors">
-          The pick up place is required
-        </span>
-        </label>
+        <label class="driverForm" id = "driverAccessibility" for = "driverAccessibility">Smoking Option: </label>
+        <div class="radio-toolbar">
+          <input type="radio" id="yesAccess" name="driverAccessibility" value="Yes" >
+          <label for="yesAccess">Yes</label>
+          <input type="radio" id="noAccess" name="driverAccessibility" value="No">
+          <label for="noAccess">No</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <label id ="driverPickUp"for = "driverPickUp">Preferred Pick Up Point</label>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2311.594998313866!2d-5.930261383973583!3d54.593510088262846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486108f8e1ea0df7%3A0x2705bafb24abbe53!2sLiberty%20IT!5e0!3m2!1sen!2suk!4v1658489241721!5m2!1sen!2suk"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </fieldset>
       <input type="submit" value="Register Car">
     </form>

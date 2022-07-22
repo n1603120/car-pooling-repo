@@ -1,16 +1,15 @@
 .content-table {
   border-collapse: collapse;
   /*margin: 100px 450px;*/
-  margin: 0 auto;
-  font-size: 1.1em;
-  min-width: 800px;
+  margin: 5px auto;
+  font-size: 1.3em;
+  min-width: 600px;
   border-radius: 5px 5px 0 0;
   overflow:hidden;
   box-shadow: 0 0 20px rgba(0,0,0,0.15);
 }
 .content-table td{
   padding: 12px 15px;
-
 }
 .content-table tbody tr{
   border-bottom: 1px solid #dddddd;
@@ -35,6 +34,42 @@
 
 .test2 {
   text-align: center;
+}
+
+.button {
+  background: #04AA6D;
+  border: 1px solid #04AA6D;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 50px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.button:hover,
+.button:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #04AA6D;
+}
+
+.button:active {
+  opacity: .5;
 }
 
 
