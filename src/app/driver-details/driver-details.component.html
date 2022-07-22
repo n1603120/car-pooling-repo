@@ -3,18 +3,18 @@
     <h1>Driver Details</h1>
     <form [formGroup] ="driverForm" (ngSubmit)="onSubmit()">
 
-        <label class="driverForm" for = "driverCarMake">Car Make:
-        <select id = "driverCarMake" type = "dropdown">
-          <option value="driverCarMake" disabled selected> Select Car Make</option>
-          <option value="ford"> ford </option>
-          <option value="renault"> renault </option>
-        </select>
+      <fieldset>
+        <label for = "driverCarMake">Car Make: <input type="text" id = "driverCarMake" formControlName="driverCarMake">
+          <span class="text-danger" *ngIf="(submitted || driverForm.get('driverCarMake')?.touched) && errorPresent('driverCarMake')">
+          The Car Make is required
+        </span>
         </label>
+      </fieldset>
 
       <fieldset>
-        <label for = "driverReg">Registration: <input [minlength]="2" [maxLength]="7" type="text" id = "driverReg" formControlName="driverReg">
+        <label for = "driverReg">Registration: <input type="text" id = "driverReg" formControlName="driverReg">
         <span class="text-danger" *ngIf="(submitted || driverForm.get('driverReg')?.touched) && errorPresent('driverReg')">
-          The Registration is required
+          The Registration is required (No spaces)
         </span>
         </label>
       </fieldset>
@@ -27,46 +27,44 @@
       </fieldset>
 
       <fieldset>
-        <div>
-          <label class="driverForm">Preferred Method of Contact:</label>
-        </div>
-        <div class="radio-toolbar">
-          <input type="radio" id="email" name="preferredContact" value="Email" (click)="isEmailCheck()">
-          <label for="email">Email</label>
-          <input type="radio" id="phone" name="preferredContact" value="Phone" (click)="isPhoneCheck()">
-          <label for="phone">Phone</label>
-        </div>
-        <div *ngIf="isEmail">
-
-        </div>
-        <div *ngIf="isPhone">
-
-        </div>
+          <label class="driverForm" id = "driverPreferredContact">Preferred Method of Contact:<div class="radio-toolbar">
+            <input type="radio" id="email" formControlName="driverPreferredContact" value="Email" (click)="isEmailCheck()">
+            <label for="email">Email</label>
+            <input type="radio" id="phone" formControlName="driverPreferredContact" value="Phone" (click)="isPhoneCheck()">
+            <label for="phone">Phone</label>
+          </div>
+            <span class="text-danger" *ngIf="(submitted || driverForm.get('driverPreferredContact')?.touched) && errorPresent('driverPreferredContact')">
+          Preferred Contact Option is required
+        </span></label>
       </fieldset>
 
       <fieldset>
-        <label class="driverForm" id = "driverSmokingOption" for = "driverSmokingOption">Smoking Option: </label>
-        <div class="radio-toolbar">
-          <input type="radio" id="yes" name="driverSmokingOption" value="Yes" >
+        <label class="driverForm" id = "driverSmokingOption" for = "driverSmokingOption">Smoking Option: <div class="radio-toolbar">
+          <input type="radio" id="yes" formControlName="driverSmokingOption" value="Yes" >
           <label for="yes">Yes</label>
-          <input type="radio" id="no" name="driverSmokingOption" value="No">
+          <input type="radio" id="no" formControlName="driverSmokingOption" value="No">
           <label for="no">No</label>
-        </div>
+        </div></label>
+        <span class="text-danger" *ngIf="(submitted || driverForm.get('driverSmokingOption')?.touched) && errorPresent('driverSmokingOption')">
+          Smoking Option is required
+        </span>
       </fieldset>
 
       <fieldset>
-        <label class="driverForm" id = "driverAccessibility" for = "driverAccessibility">Smoking Option: </label>
-        <div class="radio-toolbar">
-          <input type="radio" id="yesAccess" name="driverAccessibility" value="Yes" >
+        <label class="driverForm" id = "driverAccessibility" for = "driverAccessibility">Accessibility:  <div class="radio-toolbar">
+          <input type="radio" id="yesAccess" formControlName="driverAccessibility" value="Yes" >
           <label for="yesAccess">Yes</label>
-          <input type="radio" id="noAccess" name="driverAccessibility" value="No">
+          <input type="radio" id="noAccess" formControlName="driverAccessibility" value="No">
           <label for="noAccess">No</label>
         </div>
+          <span class="text-danger" *ngIf="(submitted || driverForm.get('driverAccessibility')?.touched) && errorPresent('driverAccessibility')">
+          Accessibility Option is required
+        </span>
+        </label>
       </fieldset>
 
       <fieldset>
-        <label id ="driverPickUp"for = "driverPickUp">Preferred Pick Up Point</label>
-        <div class="col-12 table-responsive">
+        <label id ="driverPickUp" for = "driverPickUp">Preferred Pick Up Point<div class="col-12 table-responsive">
           <table class="table">
             <thead>
             <td>Address</td>
@@ -74,12 +72,14 @@
             </thead>
             <tbody>
             <tr *ngFor="let row of rows; let i = index">
-              <td><input [(ngModel)]="row.key" type="text" name="address" (keyup)="checkAndAddRow(i)"></td>
-              <td><input [(ngModel)]="row.value" type="text" name="postcode" (keyup)="checkAndAddRow(i)"></td>
+              <td><input formControlName="driverPickUp" [(ngModel)]="row.key" type="text" name="address" (keyup)="checkAndAddRow(i)"></td>
+              <td><input formControlName="driverPickUp" [(ngModel)]="row.value" type="text" name="postcode" (keyup)="checkAndAddRow(i)"></td>
             </tr>
             </tbody>
           </table>
-        </div>
+          <span class="text-danger" *ngIf="(submitted || driverForm.get('driverPickUp')?.touched) && errorPresent('driverPickUp')">
+          At least one pick up point is required
+        </span></div></label>
       </fieldset>
 
       <div>

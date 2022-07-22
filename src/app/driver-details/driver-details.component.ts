@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
+import {createRequiredRegexValidator} from "../utility/validators";
 
 
 @Component({
@@ -34,19 +35,20 @@ export class DriverDetailsComponent implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
+    console.log(this.driverForm);
     if(!this.driverForm.valid) {
       return;
     }
-    console.log(this.driverForm);
+    console.log("Valid");
   }
   constructor(private formBuilder: FormBuilder) {
     this.driverForm = formBuilder.group({
-      driverCarMake: [''],
-      driverReg: ['', Validators.required],
+      driverCarMake: ['', Validators.required],
+      driverReg: ['', createRequiredRegexValidator(/\b[a-z]{2}([1-9]|0[2-9]|6[0-9]|1[0-9])[a-z]{3}|[A-HJ-NP-Y]\d{1,3}[A-Z]{3}|[A-Z]{3}\d{1,3}[A-HJ-NP-Y]|(?:[A-Z]{1,2}\d{1,4}|[A-Z]{3}\d{1,3})|(?:\d{1,4}[A-Z]{1,2}|\d{1,3}[A-Z]{3})\b/i)],
       driverNoOfPassengers: ['1', Validators.required],
       driverPreferredContact: ['', Validators.required],
-      driverSmokingOption: [''],
-      driverAccessibility: [''],
+      driverSmokingOption: ['',Validators.required],
+      driverAccessibility: ['',Validators.required],
       driverPickUp: ['', Validators.required]
     });
   }
