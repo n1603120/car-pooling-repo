@@ -25,6 +25,12 @@ export class DriverDetailsComponent implements OnInit {
   isEmail: boolean = false;
   isPhone: boolean = false;
 
+  rows: any[] = [{
+    checked:false,
+    key:'',
+    value:''
+  }];
+
 
   onSubmit(): void {
     this.submitted = true;
@@ -67,5 +73,18 @@ export class DriverDetailsComponent implements OnInit {
       document.getElementById(driverData).style.border = '1pt solid black';
       return false;
     }
+  }
+
+
+  checkAndAddRow(i:number){
+    this.rows[i].checked = true;
+    if(this.rows.length - 1 == i){
+      this.rows.push({
+        checked:false,
+        key:'',
+        value:''
+      })
+    }
+
   }
 }
