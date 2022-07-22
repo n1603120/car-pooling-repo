@@ -30,9 +30,11 @@
         <div>
           <label>Preferred Method of Contact:</label>
         </div>
-        <div>
-          <input readonly type="interactiveButton" value="Email" (click)="isEmailCheck()">
-          <input readonly type="interactiveButton" value="Phone" (click)="isPhoneCheck()">
+        <div class="radio-toolbar">
+          <input type="radio" id="email" name="preferredContact" value="Email" (click)="isEmailCheck()">
+          <label for="email">Email</label>
+          <input type="radio" id="phone" name="preferredContact" value="Phone" (click)="isPhoneCheck()">
+          <label for="phone">Phone</label>
         </div>
         <div *ngIf="isEmail">
 
