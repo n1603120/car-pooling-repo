@@ -40,4 +40,4 @@ import {SignInComponent} from "./sign-in/sign-in.component";
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
