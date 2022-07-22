@@ -6,3 +6,31 @@
 <div class = test1>
   <p>Order details</p>
 </div>
+<div class = "test2">
+  <div class='table-responsive'>
+    <table class='content-table' *ngIf="summary2.length">
+      <thead>
+      <tr>
+        <th>Summary Details</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class= "active-row" *ngFor="let sum of summary2" >
+        <td>
+          {{ sum.name}}
+
+        </td>
+      </tr>
+      <td>
+        <button  routerLink="/register-driver" style="float: left;"> Edit Details </button>
+
+        <button  routerLink="/home" style="float: right;"> Home </button>
+      </td>
+
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
