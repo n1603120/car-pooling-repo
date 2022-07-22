@@ -19,7 +19,7 @@ export class PassengerSummaryComponent implements OnInit {
 
   summary1: any[] = [
     {"name": "Driver name: Bruce Wayne"},
-    {"name": "Driver Registration: lllllllll"},
+    {"name": "Driver Registration: YHAN764"},
     {"name": "Pick up point:   Nerwy"},
     {"name": "pick location: Nerwy"},
     {"name": "Pick up time:  10:00am"},
