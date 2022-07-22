@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {createRequiredRegexValidator} from "../utility/validators";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-account',
@@ -12,11 +13,7 @@ export class CreateAccountComponent implements OnInit {
   submitted: boolean = false;
   private dataError: ValidationErrors | null | undefined;
 
-  onSubmit(): void {
-    this.submitted = true;
-    console.log(this.accountForm);
-  }
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private readonly router: Router) {
     this.accountForm = formBuilder.group({
       fname: ['', createRequiredRegexValidator(/^[a-z ,.'-]+$/i)],
       lname: ['', createRequiredRegexValidator(/^[a-z ,.'-]+$/i)],
@@ -28,6 +25,14 @@ export class CreateAccountComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+  }
+
+  onSubmit(): void {
+    this.submitted = true;
+    console.log(this.accountForm);
+    if(this.accountForm.valid){
+      this.router.navigate(['/login']);
+    }
   }
 
   errorPresent(accountData: string): boolean {

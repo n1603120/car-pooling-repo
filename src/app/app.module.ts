@@ -13,9 +13,9 @@ import {DriverDetailsComponent} from "./driver-details/driver-details.component"
 import {CreateAccountComponent} from "./create-account/create-account.component";
 
 import {PassengerSummaryComponent} from "./passenger-summary/passenger-summary.component";
-import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
-
+import {ConfirmationPageComponent} from "./confirmation-page/confirmation-page.component";
 import {SignInComponent} from "./sign-in/sign-in.component";
+import {MyBookingsComponent} from "./my-bookings/my-bookings.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import {SignInComponent} from "./sign-in/sign-in.component";
     CreateAccountComponent,
     PassengerSummaryComponent,
     ConfirmationPageComponent,
-    SignInComponent
+    SignInComponent,
+    MyBookingsComponent
   ],
   imports: [
     BrowserModule,

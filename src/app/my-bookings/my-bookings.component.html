@@ -1,1 +1,39 @@
-<p>my-bookings works!</p>
+<div class='card'>
+  <div class='card-header' style="text-align:center">
+    <h2>{{pageTitle}}</h2>
+  </div>
+</div>
+<div class = "test2">
+  <div class='table-responsive'>
+    <table class='content-table' *ngIf="allBookings.length">
+      <thead>
+      <tr>
+        <th colspan="3">Booking Details</th>
+      </tr>
+      <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Destination</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class= "active-row" *ngFor="let booking of allBookings" >
+        <td>
+          {{ booking.car.}}
+        </td>
+        <td>
+          {{ booking.time}}
+        </td>
+        <td>
+          {{ booking.destination}}
+        </td>
+      </tr>
+      <td>
+        <button  routerLink="/passenger-results" style="float: left;"> Back </button>
+      </td>
+
+
+      </tbody>
+    </table>
+  </div>
+</div>
