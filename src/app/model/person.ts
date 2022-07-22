@@ -5,6 +5,5 @@ export interface Person {
   email: string;
   phoneNumber: number;
   postcode: string;
-  // might need
-  // password: string;
+  password: string;
 }
