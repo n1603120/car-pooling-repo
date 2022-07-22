@@ -66,9 +66,26 @@
 
       <fieldset>
         <label id ="driverPickUp"for = "driverPickUp">Preferred Pick Up Point</label>
+        <div class="col-12 table-responsive">
+          <table class="table">
+            <thead>
+            <td>Address</td>
+            <td>Postcode</td>
+            </thead>
+            <tbody>
+            <tr *ngFor="let row of rows; let i = index">
+              <td><input [(ngModel)]="row.key" type="text" name="address" (keyup)="checkAndAddRow(i)"></td>
+              <td><input [(ngModel)]="row.value" type="text" name="postcode" (keyup)="checkAndAddRow(i)"></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </fieldset>
+
+      <div>
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2311.594998313866!2d-5.930261383973583!3d54.593510088262846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486108f8e1ea0df7%3A0x2705bafb24abbe53!2sLiberty%20IT!5e0!3m2!1sen!2suk!4v1658489241721!5m2!1sen!2suk"
                 width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </fieldset>
+      </div>
       <input type="submit" value="Register Car">
     </form>
   </div>
