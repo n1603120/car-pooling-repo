@@ -3,7 +3,7 @@
     <h1>Create Account</h1>
     <form [formGroup] ="accountForm" (ngSubmit)="onSubmit()">
       <fieldset>
-        <label for = "fname">First name: <input type="text" id = "fname" formControlName="fname"></label>
+        <label for = "fname">First name: <input type="text" id = "fname" formControlName="fname" ></label>
         <span class="text-danger" *ngIf="(submitted || accountForm.get('fname')?.touched) && errorPresent('fname')">
           ! Please enter a valid First Name
         </span>
@@ -21,7 +21,7 @@
         </span>
       </fieldset>
       <fieldset>
-        <label for = "phoneNum">Phone Number: <input type="text" id = "phoneNum" formControlName="phoneNum"></label>
+        <label for = "phoneNum">Phone Number: <input type="number" id = "phoneNum" formControlName="phoneNum" placeholder="+44 7911 123456"></label>
         <span class="text-danger" *ngIf="(submitted || accountForm.get('phoneNum')?.touched) && errorPresent('phoneNum')">
           ! Please enter a valid Phone Number
         </span>

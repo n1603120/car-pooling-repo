@@ -12,7 +12,7 @@
         </label>
 
       <fieldset>
-        <label for = "driverReg">Registration: <input [minlength]="2" [maxLength]="7" type="text" id = "driverReg" formControlName="driverReg">
+        <label for = "driverReg">Vehicle Registration: <input [minlength]="2" [maxLength]="7" type="text" id = "driverReg" formControlName="driverReg">
         <span class="text-danger" *ngIf="(submitted || driverForm.get('driverReg')?.touched) && errorPresent('driverReg')">
           The Registration is required
         </span>

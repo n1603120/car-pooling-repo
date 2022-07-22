@@ -16,6 +16,7 @@ export class CreateAccountComponent implements OnInit {
     this.submitted = true;
     console.log(this.accountForm);
   }
+
   constructor(private formBuilder: FormBuilder) {
     this.accountForm = formBuilder.group({
       fname: ['', createRequiredRegexValidator(/^[a-z ,.'-]+$/i)],
@@ -27,22 +28,23 @@ export class CreateAccountComponent implements OnInit {
       confirmPassword: ['', Validators.required]
     });
   }
+
   ngOnInit(): void {
   }
 
   errorPresent(accountData: string): boolean {
     this.dataError = this.accountForm.get(accountData)?.errors
-    if(this.dataError){
+    if (this.dataError) {
       // @ts-ignore
       document.getElementById(accountData).style.border = '2pt solid red';
       return true;
-    }
-    else{
+    } else {
       // @ts-ignore
       document.getElementById(accountData).style.border = '1pt solid black';
       return false;
     }
   }
+
   passwordsMatch(): boolean {
     return this.accountForm.get('password')?.value === this.accountForm.get('confirmPassword')?.value;
   }

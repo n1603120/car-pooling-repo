@@ -18,13 +18,13 @@
         </span>
       </fieldset>
       <fieldset>
-        <label for = "tripDate">Select Date:<input type="date" min = {{getCurrentDate()}} id = "tripDate" (change) ="checkTimeValid()" formControlName="tripDate"></label>
+        <label for = "tripDate">Select Departure Date:<input type="date" min = {{getCurrentDate()}} id = "tripDate" (change) ="checkTimeValid()" formControlName="tripDate"></label>
         <span class="text-danger" *ngIf="(submitted || tripForm.get('tripDate')?.touched) && errorPresent('tripDate')">
           ! Please select a Date
         </span>
       </fieldset>
       <fieldset>
-        <label for = "tripDate">Select Time:<input type="time" id = "tripTime" (change) ="checkTimeValid()" formControlName="tripTime"></label>
+        <label for = "tripDate">Select Departure Time:<input type="time" id = "tripTime" (change) ="checkTimeValid()" formControlName="tripTime"></label>
         <span class="text-danger" *ngIf="(submitted || tripForm.get('tripTime')?.touched) && (tripForm.get('tripTime')?.errors || !timeValid)">
           ! Please select a Time
         </span>
