@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, ValidationErrors, Validators} from "@angular/for
 
 import {Router} from "@angular/router";
 import {createRequiredRegexValidator} from "../utility/validators";
+import {PeopleService} from "../services/person.service";
+import {Person} from "../model/person";
 
 
 @Component({
@@ -18,7 +20,10 @@ export class SignInComponent implements OnInit {
   submitted: boolean = false;
   private dataError: ValidationErrors | null | undefined;
 
-  constructor(private formBuilder: FormBuilder, private readonly router: Router) {
+  people: Person[] = [];
+  status = '';
+
+  constructor(private formBuilder: FormBuilder, private readonly router: Router, private peopleService: PeopleService) {
     this.loginForm = formBuilder.group({
       email: ['', createRequiredRegexValidator(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/)],
       password: ['', createRequiredRegexValidator(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]
@@ -26,6 +31,7 @@ export class SignInComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.fetchAllPeople();
   }
 
   checkUserAuth(): boolean {
@@ -43,5 +49,14 @@ export class SignInComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.checkUserAuth();
+  }
+
+  private fetchAllPeople() {
+    this.peopleService
+      .getAll()
+      .subscribe(
+        people => this.people = people,
+        () => this.status = 'Unable to fetch people'
+      );
   }
 }

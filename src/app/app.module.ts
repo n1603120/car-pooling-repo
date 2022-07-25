@@ -18,6 +18,7 @@ import {SignInComponent} from "./sign-in/sign-in.component";
 import {MyBookingsComponent} from "./my-bookings/my-bookings.component";
 import {EditAccountComponent} from "./edit-account/edit-account.component";
 import { ViewCarsComponent } from './view-cars/view-cars.component';
+import {PeopleService} from "./services/person.service";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,9 @@ import { ViewCarsComponent } from './view-cars/view-cars.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    PeopleService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
