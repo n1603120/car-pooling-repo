@@ -19,6 +19,8 @@ import {MyBookingsComponent} from "./my-bookings/my-bookings.component";
 import {EditAccountComponent} from "./edit-account/edit-account.component";
 import { ViewCarsComponent } from './view-cars/view-cars.component';
 import {PeopleService} from "./services/person.service";
+import {HttpClientModule} from "@angular/common/http";
+import {HomeComponent} from "./home/home.component";
 
 @NgModule({
   declarations: [
@@ -35,13 +37,15 @@ import {PeopleService} from "./services/person.service";
     SignInComponent,
     MyBookingsComponent,
     EditAccountComponent,
-    ViewCarsComponent
+    ViewCarsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     RoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     PeopleService
