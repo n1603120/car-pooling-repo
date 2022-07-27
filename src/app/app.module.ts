@@ -21,6 +21,8 @@ import { ViewCarsComponent } from './view-cars/view-cars.component';
 import {PeopleService} from "./services/person.service";
 import {HttpClientModule} from "@angular/common/http";
 import {HomeComponent} from "./home/home.component";
+import {CarService} from "./services/car.service";
+import {TripService} from "./services/trip.service";
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import {HomeComponent} from "./home/home.component";
     HttpClientModule
   ],
   providers: [
-    PeopleService
+    PeopleService,
+    CarService,
+    TripService
   ],
   bootstrap: [AppComponent]
 })

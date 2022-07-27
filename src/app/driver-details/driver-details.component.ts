@@ -1,6 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {createRequiredRegexValidator} from "../utility/validators";
+import {CarService} from "../services/car.service";
+import {Person} from "../model/person";
+import {Car} from "../model/car";
+import {PeopleService} from "../services/person.service";
 
 
 @Component({
@@ -13,6 +17,8 @@ export class DriverDetailsComponent implements OnInit {
   driverForm: FormGroup;
   submitted = false;
   private dataError: ValidationErrors | null | undefined;
+  allCars: Car[] = [];
+  currentPerson!: Person;
 
   carMake = '';
   reg = '';
@@ -41,7 +47,7 @@ export class DriverDetailsComponent implements OnInit {
     }
     console.log("Valid");
   }
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private carService: CarService, private peopleService: PeopleService ) {
     this.driverForm = formBuilder.group({
       driverCarMake: ['', Validators.required],
       driverReg: ['', createRequiredRegexValidator(/\b[a-z]{2}([1-9]|0[2-9]|6[0-9]|1[0-9])[a-z]{3}|[A-HJ-NP-Y]\d{1,3}[A-Z]{3}|[A-Z]{3}\d{1,3}[A-HJ-NP-Y]|(?:[A-Z]{1,2}\d{1,4}|[A-Z]{3}\d{1,3})|(?:\d{1,4}[A-Z]{1,2}|\d{1,3}[A-Z]{3})\b/i)],
@@ -53,6 +59,9 @@ export class DriverDetailsComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    this.fetchAllCars();
+    this.getCurrentPerson();
+    console.log(this.allCars);
   }
 
   isEmailCheck(): void{
@@ -77,7 +86,6 @@ export class DriverDetailsComponent implements OnInit {
     }
   }
 
-
   checkAndAddRow(i:number){
     this.rows[i].checked = true;
     if(this.rows.length - 1 == i){
@@ -87,6 +95,16 @@ export class DriverDetailsComponent implements OnInit {
         value:''
       })
     }
+  }
+  private fetchAllCars() {
+    this.carService
+      .getAllCars()
+      .subscribe(
+        cars => cars.forEach( car => this.allCars.push(car))
+      )
+  }
 
+  private getCurrentPerson(): void{
+    this.currentPerson = this.peopleService.currentPerson;
   }
 }

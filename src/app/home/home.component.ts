@@ -16,14 +16,18 @@ export class HomeComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.person = this.peopleService.currentPerson;
-    console.log(this.person);
+    this.getCurrentPerson();
     this.populateNameHeader();
   }
-  populateNameHeader(): void{
+  private populateNameHeader(): void{
     if(this.person){
       // @ts-ignore
       document.getElementById("nameBanner").innerText = "Welcome " + this.person.firstName + " " + this.person.lastName;
     }
   }
+
+  private getCurrentPerson(): void{
+    this.person = this.peopleService.currentPerson;
+  }
+
 }

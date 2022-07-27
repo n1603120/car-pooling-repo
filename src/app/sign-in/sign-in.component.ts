@@ -40,6 +40,7 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchAllPeople();
+    console.log(this.people);
     // Adding person for testing
     // let personObj = new Person(
     //   1,
@@ -51,7 +52,6 @@ export class SignInComponent implements OnInit {
     //   "Password1!"
     // );
     this.people.push(this.personObj);
-    console.log(this.personObj);
   }
 
   checkUserAuth(): void{
@@ -86,10 +86,10 @@ export class SignInComponent implements OnInit {
 
   private fetchAllPeople() {
     this.peopleService
-      .getAll()
+      .getAllPeople()
       .subscribe(
-        people => this.people = people,
-        () => this.status = 'Unable to fetch people'
-      );
+        people => people.forEach( p => this.people.push(p))
+      )
   }
+
 }

@@ -1,18 +1,26 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Injectable} from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {environment} from "../../environments/environment";
 import {Person} from "../model/person";
 
 // INTERESTING: Useful to break out communication to a service
 @Injectable()
-export class PeopleService {
+export class PeopleService{
   private readonly baseUrl: string;
   currentPerson!: Person;
+  people!: Person[] ;
 
   constructor(private http: HttpClient) {
     this.baseUrl = environment.baseServerUrl + '/people/';
+
   }
+  getAllPeople(): Observable<Person[]>{
+    return this.http.get<Person[]>(this.baseUrl);
+  }
+
+
+
 
   getAll(): Observable<Person[]> {
     return this.http
@@ -38,4 +46,5 @@ export class PeopleService {
   isLoggedIn(): boolean {
     return !!this.currentPerson;
   }
+
 }
