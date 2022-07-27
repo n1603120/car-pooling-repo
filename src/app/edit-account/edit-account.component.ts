@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, ValidationErrors, Validators} from "@angular/for
 import {createRequiredRegexValidator} from "../utility/validators";
 import {Router} from "@angular/router";
 import {Person} from "../model/person";
+import {PeopleService} from "../services/person.service";
 
 @Component({
   selector: 'app-edit-account',
@@ -13,10 +14,9 @@ export class EditAccountComponent implements OnInit {
   editForm: FormGroup;
   submitted: boolean = false;
   private dataError: ValidationErrors | null | undefined;
-  @Input() person!: Person;
-  @Output() updateComplete = new EventEmitter<Person>();
+  person!: Person;
 
-  constructor(private formBuilder: FormBuilder, private readonly router: Router) {
+  constructor(private formBuilder: FormBuilder, private readonly router: Router, private peopleService: PeopleService) {
     this.editForm = formBuilder.group({
       fname: ['', createRequiredRegexValidator(/^[a-z ,.'-]+$/i)],
       lname: ['', createRequiredRegexValidator(/^[a-z ,.'-]+$/i)],
@@ -28,6 +28,8 @@ export class EditAccountComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    // get current person logged in
+    this.person = this.peopleService.currentPerson;
     this.updateFromModel(this.person);
   }
   private updateToModel(): void {
@@ -36,8 +38,9 @@ export class EditAccountComponent implements OnInit {
     this.person.lastName = modelData.lname;
     this.person.email = modelData.email;
     this.person.phoneNumber = modelData.phoneNum;
+    this.person.postcode = modelData.postcode;
     this.person.password = modelData.password;
-    this.person.password = modelData.password;
+    this.peopleService.update(this.person);
   }
 
   private updateFromModel(person: Person): void {
@@ -47,7 +50,8 @@ export class EditAccountComponent implements OnInit {
       email: person.email,
       phoneNum: person.phoneNumber,
       postcode: person.postcode,
-      password: person.password,
+      password: "",
+      confirmPassword: ""
     });
   }
 
@@ -56,7 +60,6 @@ export class EditAccountComponent implements OnInit {
     console.log(this.editForm);
     if(this.editForm.valid){
       this.updateToModel();
-      this.updateComplete.emit(this.person);
       this.router.navigate(['/home']);
     }
   }

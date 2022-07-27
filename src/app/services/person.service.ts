@@ -28,6 +28,7 @@ export class PeopleService {
   }
 
   update(person: Person): Observable<string> {
+    this.currentPerson = person;
     return this.http.put(this.baseUrl + person.id, person, {
       headers: new HttpHeaders({'Content-Type': 'application/json'}),
       responseType: 'text'
