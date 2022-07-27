@@ -8,6 +8,7 @@ import {Person} from "../model/person";
 @Injectable()
 export class PeopleService {
   private readonly baseUrl: string;
+  currentPerson!: Person;
 
   constructor(private http: HttpClient) {
     this.baseUrl = environment.baseServerUrl + '/people/';
@@ -31,5 +32,9 @@ export class PeopleService {
       headers: new HttpHeaders({'Content-Type': 'application/json'}),
       responseType: 'text'
     });
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.currentPerson;
   }
 }

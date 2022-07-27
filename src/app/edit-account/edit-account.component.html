@@ -15,7 +15,7 @@
         </span>
       </fieldset>
       <fieldset>
-        <label for = "email">Email: <input type="email" id = "email" formControlName="email"></label>
+        <label for = "email">Email: <input type="email" id = "email" formControlName="email" placeholder="name@example.com"></label>
         <span class="text-danger" *ngIf="(submitted || editForm.get('email')?.touched) && errorPresent('email')">
           ! Please enter a valid Email
         </span>

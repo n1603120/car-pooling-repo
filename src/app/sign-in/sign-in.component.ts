@@ -31,7 +31,7 @@ export class SignInComponent implements OnInit {
     password: "Password1!"
   }
 
-  constructor(private formBuilder: FormBuilder, private readonly router: Router, private route: ActivatedRoute, private peopleService: PeopleService) {
+  constructor(private formBuilder: FormBuilder, private readonly router: Router, private peopleService: PeopleService) {
     this.loginForm = formBuilder.group({
       email: ['', createRequiredRegexValidator(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/)],
       password: ['', createRequiredRegexValidator(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]
@@ -63,7 +63,8 @@ export class SignInComponent implements OnInit {
     // @ts-ignore
     if (this.currentPerson) {
       console.log(this.currentPerson);
-      this.router.navigate(['/home', {currentPerson: JSON.stringify(this.currentPerson)}]);
+      this.peopleService.currentPerson = this.currentPerson;
+      this.router.navigate(['/home']);
     } else {
       this.displayErrorForm();
     }
