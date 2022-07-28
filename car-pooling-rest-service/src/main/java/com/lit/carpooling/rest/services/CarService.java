@@ -28,8 +28,12 @@ public class CarService {
       return ok(cars);
     }
   @GetMapping(value = "/byCarId/{id}", produces = "application/json")
-  public ResponseEntity<List<Car>> carsByCarId(@PathVariable int id) {
-    return filterCarsToResponse(car -> car.getId() == id);
+  public ResponseEntity<Car> carsByCarId(@PathVariable int id) {
+    return cars.stream()
+      .filter(car -> car.getId() == id)
+      .findFirst()
+      .map(ResponseEntity::ok)
+      .orElseGet(() -> notFound().build());
   }
   @GetMapping(value = "/byOwnerId/{id}", produces = "application/json")
   public ResponseEntity<List<Car>> carsByOwnerId(@PathVariable int id) {

@@ -31,16 +31,16 @@ class CarPoolingRestServiceApplicationTests {
     mockMvc.perform(get("/cars/byCarId/1").accept(JSON_CONTENT_TYPE))
       .andExpect(status().isOk())
       .andExpect(content().contentType(JSON_CONTENT_TYPE))
-      .andExpect(jsonPath("$.[id]").value(1))
-      .andExpect(jsonPath("$.[ownerId]").value(1))
-      .andExpect(jsonPath("$.[make]").value("Ford Fiesta"))
-      .andExpect(jsonPath("$.[registration]").value("MFZ6536"))
-      .andExpect(jsonPath("$.[numOfSeats]").value(4))
-      .andExpect(jsonPath("$.[preferredContact]").value("Email"))
-      .andExpect(jsonPath("$.[smokingOption]").value(true))
-      .andExpect(jsonPath("$.[accessibility]").value(true))
-      .andExpect(jsonPath("$.[preferredPickUp]").value("Ballymoney"))
-      .andExpect(jsonPath("$.[activeCar]").value(true));
+      .andExpect(jsonPath("$.id").value(1))
+      .andExpect(jsonPath("$.ownerId").value(1))
+      .andExpect(jsonPath("$.make").value("Ford Fiesta"))
+      .andExpect(jsonPath("$.registration").value("MFZ6536"))
+      .andExpect(jsonPath("$.numOfSeats").value(4))
+      .andExpect(jsonPath("$.preferredContact").value("Email"))
+      .andExpect(jsonPath("$.smokingOption").value(true))
+      .andExpect(jsonPath("$.accessibility").value(true))
+      .andExpect(jsonPath("$.preferredPickUp").value("Ballymoney"))
+      .andExpect(jsonPath("$.activeCar").value(true));
   }
   @Test
   public void allPeopleCanBeFound() throws Exception {
