@@ -1,18 +1,35 @@
 package com.lit.carpooling.rest.model;
 
 public class Trip {
+  private int id;
   private String postcode;
   private String destination;
   private String date;
   private String time;
-  private Car car;
+  private int carId;
 
-  public Trip(String postcode, String destination, String date, String time, Car car) {
+  public Trip(int id, String postcode, String destination, String date, String time, int carId) {
+    this.id = id;
     this.postcode = postcode;
     this.destination = destination;
     this.date = date;
     this.time = time;
-    this.car = car;
+    this.carId = carId;
+  }
+  public int getId() {
+    return id;
+  }
+
+  public int getCarId() {
+    return carId;
+  }
+
+  public void setCarId(int carId) {
+    this.carId = carId;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getPostcode() {
@@ -47,11 +64,4 @@ public class Trip {
     this.time = time;
   }
 
-  public Car getCar() {
-    return car;
-  }
-
-  public void setCar(Car car) {
-    this.car = car;
-  }
 }

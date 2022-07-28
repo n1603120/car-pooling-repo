@@ -1,6 +1,7 @@
 package com.lit.carpooling.rest.model;
 
 public class Car {
+    private int id;
     private int ownerId;
     private String make;
     private String registration;
@@ -11,7 +12,8 @@ public class Car {
     private String preferredPickUp;
     private boolean activeCar;
 
-    public Car(int ownerId, String make, String registration, int numOfSeats, String preferredContact, boolean smokingOption, boolean accessibility, String preferredPickUp, boolean activeCar) {
+    public Car(int id, int ownerId, String make, String registration, int numOfSeats, String preferredContact, boolean smokingOption, boolean accessibility, String preferredPickUp, boolean activeCar) {
+      this.id = id;
       this.ownerId = ownerId;
       this.make = make;
       this.registration = registration;
@@ -24,6 +26,13 @@ public class Car {
     }
     public Car(){
 
+    }
+    public int getId() {
+      return id;
+    }
+
+    public void setId(int id) {
+      this.id = id;
     }
     public int getOwnerId() {
       return ownerId;

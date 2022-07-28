@@ -2,12 +2,15 @@ package com.lit.carpooling.rest.services;
 
 import com.lit.carpooling.rest.model.Car;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.function.Predicate;
+
+import static java.util.stream.Collectors.toList;
+import static org.springframework.http.ResponseEntity.*;
+import static org.springframework.http.ResponseEntity.noContent;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -17,7 +20,42 @@ public class CarService {
     private List<Car> cars;
 
     @GetMapping(produces = "application/json")
-    public List<Car> allCars(){
-      return cars;
+    public ResponseEntity<List<Car>> allCars(){
+
+      if(cars.isEmpty()) {
+        return notFound().build();
+      }
+      return ok(cars);
     }
+  @GetMapping(value = "/byCarId/{id}", produces = "application/json")
+  public ResponseEntity<List<Car>> carsByCarId(@PathVariable int id) {
+    return filterCarsToResponse(car -> car.getId() == id);
+  }
+  @GetMapping(value = "/byOwnerId/{id}", produces = "application/json")
+  public ResponseEntity<List<Car>> carsByOwnerId(@PathVariable int id) {
+    return filterCarsToResponse(car -> car.getOwnerId() == id);
+  }
+
+  @PostMapping(consumes = "application/json")
+  public ResponseEntity<String> addCar(@RequestBody Car newCar) {
+    if(cars.stream().anyMatch(car -> car.getId() == newCar.getId())) {
+      return badRequest()
+        .body("Already a car with id: " + newCar.getId());
+    }
+    cars.add(newCar);
+    return noContent().build();
+  }
+
+  private ResponseEntity<List<Car>> filterCarsToResponse(Predicate<Car> predicate) {
+    var results = filterCarsToList(predicate);
+    if (results.isEmpty()) {
+      return notFound().build();
+    }
+    return ok(results);
+  }
+  private List<Car> filterCarsToList(Predicate<Car> predicate) {
+    return cars.stream()
+      .filter(predicate)
+      .collect(toList());
+  }
 }
