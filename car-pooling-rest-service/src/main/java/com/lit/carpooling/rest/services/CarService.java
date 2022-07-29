@@ -1,12 +1,15 @@
 package com.lit.carpooling.rest.services;
 
 import com.lit.carpooling.rest.model.Car;
+import com.lit.carpooling.rest.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 import static org.springframework.http.ResponseEntity.*;
@@ -42,12 +45,13 @@ public class CarService {
 
   @PostMapping(consumes = "application/json")
   public ResponseEntity<String> addCar(@RequestBody Car newCar) {
-    if(cars.stream().anyMatch(car -> car.getId() == newCar.getId())) {
+    if(cars.stream().anyMatch(person -> person.getId() == newCar.getId())) {
       return badRequest()
         .body("Already a car with id: " + newCar.getId());
     }
     cars.add(newCar);
-    return noContent().build();
+    // return noContent().build();
+    return new ResponseEntity<String>("POST Car Response Ok", HttpStatus.OK);
   }
 
   private ResponseEntity<List<Car>> filterCarsToResponse(Predicate<Car> predicate) {
