@@ -5,10 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -47,6 +49,26 @@ class CarPoolingRestServiceApplicationTests {
     mockMvc.perform(get("/people").accept(JSON_CONTENT_TYPE))
       .andExpect(jsonPath("$").isArray())
       .andExpect(jsonPath("$", hasSize(4)));
+  }
+  @Test
+  @DirtiesContext
+  public void personCanBeAdded() throws Exception {
+    String content =
+      "{\"id\": \"5\",\"firstName\": \"Wayne\", \"lastName\": \"Rooney\", \"email\": \"Rooney@hotmail.com\", \"phoneNumber\": \"07723459470\",\"postcode\": \"BT76HDS\",\"password\": \"Password1!\"}";
+    mockMvc.perform(post("/people/5").contentType(JSON_CONTENT_TYPE).content(content))
+      .andExpect(status().isOk());
+    mockMvc.perform(get("/people").accept(JSON_CONTENT_TYPE))
+      .andExpect(jsonPath("$").isArray())
+      .andExpect(jsonPath("$", hasSize(5)))
+      .andExpect(jsonPath("$[?(@.email == 'Rooney@hotmail.com')]", hasSize(1)));
+    mockMvc.perform(get("/user/byId/").accept(JSON_CONTENT_TYPE))
+      .andExpect(status().isOk())
+      .andExpect(content().contentType(JSON_CONTENT_TYPE))
+      .andExpect(jsonPath("$.fname").value("James"))
+      .andExpect(jsonPath("$.lname").value("Barns"))
+      .andExpect(jsonPath("$.email").value("james12@hotmail.com"))
+      .andExpect(jsonPath("$.mobileNumber").value("0777774"))
+      .andExpect(jsonPath("$.password").value("Password1!"));
   }
   @Test
   public void allTripsCanBeFound() throws Exception {

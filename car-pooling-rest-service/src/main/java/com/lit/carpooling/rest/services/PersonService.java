@@ -1,5 +1,6 @@
 package com.lit.carpooling.rest.services;
 
+import com.lit.carpooling.rest.model.Car;
 import com.lit.carpooling.rest.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,10 @@ public class PersonService {
       }
       return ok(people);
     }
+  @GetMapping(value = "/byId/{id}", produces = "application/json")
+  public ResponseEntity<List<Car>> peopleByCarId(@PathVariable int id) {
+    return filterCarsToResponse(car -> car.getId() == id);
+  }
 
   @PostMapping(consumes = "application/json")
   public ResponseEntity<String> addPerson(@RequestBody Person newPerson) {
