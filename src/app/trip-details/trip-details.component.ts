@@ -13,7 +13,7 @@ export class TripDetailsComponent implements OnInit {
   submitted: boolean = false;
   timeValid: boolean = false;
   private dataError: ValidationErrors | null | undefined;
-  towns: string[] = ["Belfast", "Carryduff", "Saintfield"];
+  towns = ["Belfast", "Carryduff", "Saintfield"];
 
   onSubmit(): void {
     this.submitted = true;

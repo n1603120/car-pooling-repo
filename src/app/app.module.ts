@@ -21,6 +21,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {HomeComponent} from "./home/home.component";
 import {CarService} from "./services/car.service";
 import {TripService} from "./services/trip.service";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 
 
@@ -47,7 +48,8 @@ import {TripService} from "./services/trip.service";
     RoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgSelectModule
   ],
   providers: [
     PeopleService,
