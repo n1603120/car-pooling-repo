@@ -9,9 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import {PassengerResultsComponent} from "./passenger-results/passenger-results.component";
 import {DriverDetailsComponent} from "./driver-details/driver-details.component";
-
 import {CreateAccountComponent} from "./create-account/create-account.component";
-
 import {PassengerSummaryComponent} from "./passenger-summary/passenger-summary.component";
 import {ConfirmationPageComponent} from "./confirmation-page/confirmation-page.component";
 import {SignInComponent} from "./sign-in/sign-in.component";
@@ -23,6 +21,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {HomeComponent} from "./home/home.component";
 import {CarService} from "./services/car.service";
 import {TripService} from "./services/trip.service";
+
+
 
 @NgModule({
   declarations: [

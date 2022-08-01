@@ -14,24 +14,13 @@ export class PassengerResultsComponent implements OnInit {
   allTrips: Trip[] = [];
   drivers: any[] = [
 
-    {"name": "Bruce Wayne"},
+    {"name": "Bruce Wayne", "town": "Saintfield"},
+    {"name": "Bruce Wayne", "town": "Saintfield"},
+    {"name": "Alfred Hitchcock", "town": "Newcastle"},
+    {"name": "Darth Vader", "town": "Bangor"},
+    {"name": "Peter Pan", "town": "Carryduff"}
+  ]
 
-  ]
-  drivers1: any[] = [
-
-    {"name": "Bruce Wayne"},
-  ]
-  drivers2: any[] = [
-    {"name": "Alfred Hitchcock"},
-
-  ]
-  drivers3: any[] = [
-    {"name": "Darth Vader"},
-
-  ]
-  drivers4: any[] = [
-    {"name": "Peter Pan"}
-  ]
   constructor(private tripService: TripService) {
 
   }
