@@ -1,0 +1,7 @@
+pluginManagement {
+  repositories {
+    maven { url 'https://repo.forge.lmig.com/java' }
+    maven{ url 'https://repo.forge.lmig.com/gradleplugins/' }
+  }
+}
+rootProject.name = 'car-pooling-database'
