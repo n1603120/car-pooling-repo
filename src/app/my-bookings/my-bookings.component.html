@@ -1,1 +1,56 @@
-<p>my-bookings works!</p>
+<div class='card'>
+  <div class='card-header' style="text-align:center">
+    <h2>{{toggleTitle}}</h2>
+  </div>
+</div>
+<div class = "test2">
+  <div class='table-responsive'>
+    <table class='content-table' *ngIf="allBookings.length">
+      <thead>
+      <tr class = "buttonRow">
+        <td>
+          <button id = "backBut" routerLink="/passenger-results"> Back </button>
+        </td>
+        <td></td><td></td><td></td>
+        <td colspan = "2">
+          <button id = "toggleBut" (click) = "toggleTable()">{{toggleText}}</button>
+        </td>
+      </tr>
+      <tr class="tableHeader">
+        <th>Date</th>
+        <th>Driver<br>Name</th>
+        <th>Preferred<br>Contact</th>
+        <th>Email</th>
+        <th>Number</th>
+        <th>Destination</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let booking of allBookings" >
+        <tr class= "active-row" *ngIf="checkBooking(booking)">
+            <td>
+              {{ booking.date.substring(8,10) +"-"+ booking.date.substring(5,7) +"-"+ booking.date.substring(0,4)}}
+              {{ booking.time}}
+            </td>
+            <td>
+              {{ booking.car.getDriver().firstName}}
+              {{ booking.car.getDriver().lastName}}
+            </td>
+            <td>
+              {{ booking.car.preferredContact}}
+            </td>
+            <td>
+              {{ booking.car.getDriver().email}}
+            </td>
+            <td>
+              {{ booking.car.getDriver().phoneNumber}}
+            </td>
+            <td>
+              {{ booking.destination}}
+            </td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

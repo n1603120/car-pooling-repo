@@ -1,25 +1,16 @@
-/* Style inputs */
 
-input[type=text], select {
- height: 80%;
+
+input{
+  font-size: 1em;
   width: 100%;
-  padding: 12px 40px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border: 1px solid black;
   border-radius: 4px;
   box-sizing: border-box;
+  color:#343741;
 }
 
-input[type=dropdown], select {
-  width: 100%;
-  padding: 12px 40px;
-  margin: 8px 0px;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
+
 /*!* Style the submit button *!*/
 input[type=submit] {
   width: 100%;

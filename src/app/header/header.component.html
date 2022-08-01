@@ -4,6 +4,8 @@
   <div class="navbar">
     <a routerLink="/home">Home</a>
     <a routerLink="/login">Login</a>
+    <a *ngIf="isLoggedIn()" routerLink="/edit-account">Edit Account</a>
+    <a routerLink="/view-cars">Manage Cars</a>
     <a routerLink="/create-account">Create Account</a>
     <a routerLink="/passenger-summary">Passenger Summary</a>
     <a routerLink="/register-driver">Driver Details</a>

@@ -1,0 +1,108 @@
+/*!* Style the submit button *!*/
+input[type=submit] {
+  width: 100%;
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+/* Add a background color to the submit button on mouse-over */
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+input{
+  font-size: 1em;
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color:#343741;
+}
+
+#tripDestination{
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color:#343741;
+}
+form{
+  width: 100%;
+}
+label{
+  width: 100%;
+  font-size: 1.3em;
+  margin-bottom: 3%;
+}
+.inputContainer{
+  border: 1pt solid rgba(0,0,0,0.5);
+  padding: 2%;
+  width: 60%;
+  margin: 3% auto 0;
+  max-width: 600px;
+  height: 100%;
+}
+
+.text-danger{
+  font-size: 1em;
+  font-weight: bold;
+}
+#createContainer{
+  text-align: center;
+  padding: 2%;
+  width: 60%;
+  margin: 0 auto ;
+  max-width: 600px;
+  height: 100%;
+}
+
+h5 {
+  line-height: 1;
+  font-size: 1em;
+  color: #767676;
+  font-weight: 400;
+  z-index: 2;
+  padding: 0 8px 0 7px;
+}
+
+#homeBut{
+  display: block;
+  width: 100%;
+  background: lightgrey;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: bold;
+  line-height: 25px;
+}
+/* unvisited link */
+a:link {
+  color: #343741;
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  color: #343741;
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  color: #343741;
+  text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+  color: #343741;
+  text-decoration: underline;
+}

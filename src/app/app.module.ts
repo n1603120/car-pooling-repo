@@ -9,13 +9,21 @@ import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import {PassengerResultsComponent} from "./passenger-results/passenger-results.component";
 import {DriverDetailsComponent} from "./driver-details/driver-details.component";
-
 import {CreateAccountComponent} from "./create-account/create-account.component";
-
 import {PassengerSummaryComponent} from "./passenger-summary/passenger-summary.component";
-import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
-
+import {ConfirmationPageComponent} from "./confirmation-page/confirmation-page.component";
 import {SignInComponent} from "./sign-in/sign-in.component";
+import {MyBookingsComponent} from "./my-bookings/my-bookings.component";
+import {EditAccountComponent} from "./edit-account/edit-account.component";
+import { ViewCarsComponent } from './view-cars/view-cars.component';
+import {PeopleService} from "./services/person.service";
+import {HttpClientModule} from "@angular/common/http";
+import {HomeComponent} from "./home/home.component";
+import {CarService} from "./services/car.service";
+import {TripService} from "./services/trip.service";
+import {NgSelectModule} from "@ng-select/ng-select";
+
+
 
 @NgModule({
   declarations: [
@@ -29,15 +37,25 @@ import {SignInComponent} from "./sign-in/sign-in.component";
     CreateAccountComponent,
     PassengerSummaryComponent,
     ConfirmationPageComponent,
-    SignInComponent
+    SignInComponent,
+    MyBookingsComponent,
+    EditAccountComponent,
+    ViewCarsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     RoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgSelectModule
   ],
-  providers: [],
+  providers: [
+    PeopleService,
+    CarService,
+    TripService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

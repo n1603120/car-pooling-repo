@@ -8,6 +8,14 @@
           ! Please enter a valid Postcode
         </span>
       </fieldset>
+
+      <fieldset>
+        <label for = "tripTown">Starting Town:
+          <ng-select [items]="towns" appendTo="body" formControlName="tripTown" id = "tripTown" placeholder="Select Town">
+          </ng-select>
+        </label>
+      </fieldset>
+
       <fieldset>
         <label for = "tripDestination">Destination:<select ngModel="Belfast Office" name = "tripDestination" id = "tripDestination" formControlName="tripDestination">
           <option value="Belfast Office" >Belfast Office</option>

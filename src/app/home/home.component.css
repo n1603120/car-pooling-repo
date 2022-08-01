@@ -3,13 +3,65 @@
   border: 1pt solid rgba(0,0,0,0.5);
   background-color: #ffd000;
   color: black;
-  padding: 40px;
   display: inline-block;
   position: relative;
-  margin: 1%;
-  width: 23%;
+  margin-right: 3%;
+  width: 20%;
+  padding: 1%;
 }
 .border{
   text-align: center;
   height: 100%;
+}
+.headerDiv{
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+img{
+  height: 100%;
+  width: 100%;
+}
+
+@media only screen and (max-width: 800px) {
+  .city {
+    text-align: center;
+    border: 1pt solid rgba(0, 0, 0, 0.5);
+    background-color: #ffd000;
+    color: black;
+    display: block;
+    position: relative;
+    width: 35%;
+    margin: 0 auto 2%;
+  }
+
+}/* unvisited link */
+a:link {
+  color: #343741;
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  color: #343741;
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  color: limegreen;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+city:hover{
+  color: limegreen;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+/* selected link */
+a:active {
+  color: #343741;
+  text-decoration: underline;
 }
