@@ -1,6 +1,15 @@
-package com.lit.carpooling.rest.model;
+package com.lit.spring.sql.entities;
 
-public class Trip {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+@Entity
+@Table(name = "trips")
+public class Trip implements Serializable {
   private int id;
   private String postcode;
   private String town;
@@ -9,38 +18,17 @@ public class Trip {
   private String time;
   private int carId;
 
-  public Trip(int id, String postcode, String town, String destination, String date, String time, int carId) {
-    this.id = id;
-    this.postcode = postcode;
-    this.town = town;
-    this.destination = destination;
-    this.date = date;
-    this.time = time;
-    this.carId = carId;
-  }
+  @Id
+  @Column(name = "tripid")
   public int getId() {
     return id;
-  }
-
-  public int getCarId() {
-    return carId;
-  }
-
-  public void setCarId(int carId) {
-    this.carId = carId;
-  }
-  public String getTown() {
-    return town;
-  }
-
-  public void setTown(String town) {
-    this.town = town;
   }
 
   public void setId(int id) {
     this.id = id;
   }
 
+  @Column(name = "postcode")
   public String getPostcode() {
     return postcode;
   }
@@ -49,6 +37,16 @@ public class Trip {
     this.postcode = postcode;
   }
 
+  @Column(name = "town")
+  public String getTown() {
+    return town;
+  }
+
+  public void setTown(String town) {
+    this.town = town;
+  }
+
+  @Column(name = "destination")
   public String getDestination() {
     return destination;
   }
@@ -57,6 +55,7 @@ public class Trip {
     this.destination = destination;
   }
 
+  @Column(name = "tripdate")
   public String getDate() {
     return date;
   }
@@ -65,6 +64,7 @@ public class Trip {
     this.date = date;
   }
 
+  @Column(name = "triptime")
   public String getTime() {
     return time;
   }
@@ -73,4 +73,12 @@ public class Trip {
     this.time = time;
   }
 
+  @Column(name = "carid")
+  public int getCarId() {
+    return carId;
+  }
+
+  public void setCarId(int carId) {
+    this.carId = carId;
+  }
 }

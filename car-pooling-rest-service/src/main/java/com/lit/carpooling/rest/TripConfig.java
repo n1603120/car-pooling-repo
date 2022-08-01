@@ -13,10 +13,10 @@ public class TripConfig {
   @Bean
   public List<Trip> buildTrips(){
     var trips = List.of(
-      new Trip(1,"BT514DS", "Belfast Office", "23/08/2022", "18:30",1),
-      new Trip(2,"BT94DSS", "Belfast Office", "27/10/2022", "18:30",2),
-      new Trip(3,"BT516JD", "Dublin Office", "14/11/2022", "18:30",3),
-      new Trip(4,"BT516JD", "Dublin Office", "14/11/2022", "18:30",4)
+      new Trip(1,"BT514DS", "Ballymoney", "Belfast Office", "23/08/2022", "18:30",1),
+      new Trip(2,"BT94DSS", "Coleraine","Belfast Office", "27/10/2022", "18:30",2),
+      new Trip(3,"BT516JD", "Castlerock","Dublin Office", "14/11/2022", "18:30",3),
+      new Trip(4,"BT516JD", "Portrush","Dublin Office", "14/11/2022", "18:30",4)
     );
     return new ArrayList<>(trips);
   }
