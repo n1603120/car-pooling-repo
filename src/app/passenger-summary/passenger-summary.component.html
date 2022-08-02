@@ -6,18 +6,27 @@
 </div>
 <div class = "test2">
   <div class='table-responsive'>
-    <table class='content-table' *ngIf="summary1.length">
-      <thead>
+    <table class='content-table' *ngIf="trips.length">
       <tr>
-        <th>Summary Details</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr class= "active-row" *ngFor="let sum of summary1" >
-        <td>
-          {{ sum.name}}
 
-        </td>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>E-mail</th>
+        <th>Phone Number</th>
+        <th>Post Code</th>
+
+
+      </tr>
+
+      <tbody>
+
+      <tr *ngFor="let trip of trips">
+        <td>{{trip.firstName}}</td>
+        <td>{{trip.lastName}}</td>
+        <td>{{trip.email}}</td>
+        <td>{{trip.phoneNumber}}</td>
+        <td>{{trip.postcode}}</td>
+
       </tr>
       <td>
        <button  routerLink="/passenger-results" style="float: left;"> Back </button>
