@@ -64,6 +64,17 @@ public class CarService {
     return new ResponseEntity<String>("POST Car Response Ok", HttpStatus.OK);
   }
 
+  @DeleteMapping(value = "/{id}")
+  public ResponseEntity<String> deleteCar(@PathVariable("id") int id) {
+    if(cars.stream().noneMatch(car -> car.getId() == id)) {
+      return badRequest()
+        .body("Update stopped, No Car has the ID: " + id);
+    }
+    carRepository.deleteById(id);
+    cars.clear();
+    return new ResponseEntity<String>("DELETE Car Response Ok", HttpStatus.OK);
+  }
+
   private ResponseEntity<List<Car>> filterCarsToResponse(Predicate<Car> predicate) {
     var results = filterCarsToList(predicate);
     if (results.isEmpty()) {

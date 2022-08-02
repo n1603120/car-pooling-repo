@@ -65,11 +65,18 @@ public class PersonService {
       return badRequest()
         .body("Update stopped, No person has the ID: " + newPerson.getId());
     }
-    Person currentPerson = people.stream()
-      .filter(person -> person.getId() == newPerson.getId()).findFirst().get();
-    personRepository.save(currentPerson);
+    personRepository.save(newPerson);
     people.clear();
     return new ResponseEntity<String>("PUT Person Response Ok", HttpStatus.OK);
   }
-
+  @DeleteMapping(value = "/{id}")
+  public ResponseEntity<String> deletePerson(@PathVariable("id") int id) {
+    if(people.stream().noneMatch(person -> person.getId() == id)) {
+      return badRequest()
+        .body("Update stopped, No person has the ID: " + id);
+    }
+    personRepository.deleteById(id);
+    people.clear();
+    return new ResponseEntity<String>("DELETE Person Response Ok", HttpStatus.OK);
+  }
 }

@@ -51,4 +51,15 @@ public class TripService {
     tripRepository.save(newTrip);
     return new ResponseEntity<String>("POST Trip Response Ok", HttpStatus.OK);
   }
+
+  @DeleteMapping(value = "/{id}")
+  public ResponseEntity<String> deleteTrip(@PathVariable("id") int id) {
+    if(trips.stream().noneMatch(trip -> trip.getId() == id)) {
+      return badRequest()
+        .body("Update stopped, No Trip has the ID: " + id);
+    }
+    tripRepository.deleteById(id);
+    trips.clear();
+    return new ResponseEntity<String>("DELETE Trip Response Ok", HttpStatus.OK);
+  }
 }
