@@ -3,6 +3,7 @@ import {Person} from "../model/person";
 import {Trip} from "../model/trip";
 import {PeopleService} from "../services/person.service";
 import {TripService} from "../services/trip.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-passenger-results',
@@ -11,23 +12,28 @@ import {TripService} from "../services/trip.service";
 })
 export class PassengerResultsComponent implements OnInit {
   pageTitle: string = "Driver Availability";
+  people:any;
   allTrips: Trip[] = [];
-  drivers: any[] = [
+  // drivers: any[] = [
+  //
+  //   {"name": "Bruce Wayne", "town": "Saintfield"},
+  //   {"name": "Bruce Wayne", "town": "Saintfield"},
+  //   {"name": "Alfred Hitchcock", "town": "Newcastle"},
+  //   {"name": "Darth Vader", "town": "Bangor"},
+  //   {"name": "Peter Pan", "town": "Carryduff"}
+  // ]
 
-    {"name": "Bruce Wayne", "town": "Saintfield"},
-    {"name": "Bruce Wayne", "town": "Saintfield"},
-    {"name": "Alfred Hitchcock", "town": "Newcastle"},
-    {"name": "Darth Vader", "town": "Bangor"},
-    {"name": "Peter Pan", "town": "Carryduff"}
-  ]
-
-  constructor(private tripService: TripService) {
+  constructor(private tripService: TripService,private http:HttpClient) {
 
   }
 
   ngOnInit(): void {
     this.fetchAllTrips();
     console.log(this.allTrips);
+
+    let response = this.http.get("http://localhost:8080/trips")
+    response.subscribe((data)=>this.people=data);
+
   }
   private fetchAllTrips() {
     this.tripService

@@ -80,7 +80,7 @@ label{
 .inputContainer{
   border: 1pt solid rgba(0,0,0,0.5);
   padding: 2%;
-  width: 50%;
+  width: min(100% - 2rem);
   margin: 2% auto 0;
   max-width: 600px;
 }

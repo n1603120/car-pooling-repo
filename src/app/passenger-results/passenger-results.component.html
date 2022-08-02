@@ -4,20 +4,36 @@
     {{pageTitle}}    <p>Request a Driver to car share with:</p>
   </div>
   <div class='table-responsive'>
-    <table class='content-table' *ngIf="drivers.length">
+    <table class='content-table' *ngIf="people.length">
       <thead>
       <tr>
-        <th>Driver Name</th>
-        <th>Town</th>
+
+
+
+        <th>Driver Destination</th>
+        <th>Pick up Date</th>
+        <th>Pick up Date</th>
+        <th>Your Location</th>
+        <th style="text-align:center">Request</th>
+
+
       </tr>
       </thead>
       <tbody>
-      <tr class= "active-row" *ngFor="let driver of drivers" >
+      <tr class= "active-row" *ngFor="let driver of people" >
         <td>
-          {{driver.name}}
+          {{driver.destination}}
+        </td>
+        <td>
+          {{driver.date}}
+        </td>
+        <td>
+          {{driver.time}}
         </td>
         <td>
           {{driver.town}}
+        </td>
+        <td>
           <button class="button" routerLink="/passenger-summary" style="float: right;"> Request Driver</button>
         </td>
       </tr>
@@ -35,10 +51,13 @@
       <tr>
         <th>Driver Name</th>
         <th>Town</th>
+        <th style="text-align:center">Request</th>
       </tr>
       </thead>
       <tbody>
       <tr class= "active-row"  >
+        <td></td>
+        <td></td>
         <td>
           <button class="button" routerLink="/passenger-summary" style="float: right;"> Request Driver</button>
         </td>
