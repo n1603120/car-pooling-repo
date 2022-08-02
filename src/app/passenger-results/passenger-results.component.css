@@ -7,11 +7,10 @@
   border-collapse: collapse;
   text-align: left;
   /*margin: 25px 200px;*/
-  margin: 0 500px;
+  margin-inline: auto;
   font-size: 1.3em;
-  min-width: 800px;
+  width: min(95% - 2rem, 600px);
   border-radius: 5px 5px 0 0;
-  overflow:hidden;
   box-shadow: 0 0 20px rgba(0,0,0,0.15);
 }
 .content-table td{
