@@ -1,6 +1,7 @@
 import {Person} from "./person";
 
 export class Car {
+  carId: number;
   ownerId: number;
   make: string;
   registration: string;
@@ -11,7 +12,8 @@ export class Car {
   preferredPickUp: string;
   activeCar: boolean;
 
-  constructor(OwnerId: number, Make: string, Registration: string,  NumOfSeats: string, PreferredContact: string, SmokingOption: boolean, Accessibility: string, PreferredPickUp: string, ActiveCar: boolean ) {
+  constructor(CarId: number, OwnerId: number, Make: string, Registration: string,  NumOfSeats: string, PreferredContact: string, SmokingOption: boolean, Accessibility: string, PreferredPickUp: string, ActiveCar: boolean ) {
+    this.carId = CarId;
     this.ownerId = OwnerId;
     this.make = Make;
     this.registration = Registration;
@@ -23,17 +25,17 @@ export class Car {
     this.activeCar = ActiveCar;
   }
 
-  getDriver():Person {
-    // find person from the owner id
-    const person: Person = {
-      id: 1,
-      firstName: "Mark",
-      lastName: "Mill",
-      email: "mark@gmail.com",
-      phoneNumber: '07711019490' as unknown as number,
-      postcode: "Bt51",
-      password: "Password1!"
-    }
-    return person;
-  }
+  // getDriver():Person {
+  //   // find person from the owner id
+  //   const person: Person = {
+  //     id: 1,
+  //     firstName: "Mark",
+  //     lastName: "Mill",
+  //     email: "mark@gmail.com",
+  //     phoneNumber: '07711019490' as unknown as number,
+  //     postcode: "Bt51",
+  //     personPassword: "Password1!"
+  //   }
+  //   return person;
+  // }
 }

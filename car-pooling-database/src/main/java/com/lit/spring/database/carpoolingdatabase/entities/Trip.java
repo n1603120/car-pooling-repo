@@ -11,6 +11,7 @@ import java.io.Serializable;
 @Table(name = "trips")
 public class Trip implements Serializable {
   private int id;
+  private int personId;
   private String postcode;
   private String town;
   private String destination;
@@ -27,7 +28,6 @@ public class Trip implements Serializable {
   public void setId(int id) {
     this.id = id;
   }
-
   @Column(name = "postcode")
   public String getPostcode() {
     return postcode;
@@ -81,4 +81,12 @@ public class Trip implements Serializable {
   public void setCarId(int carId) {
     this.carId = carId;
   }
+  @Column(name = "personid")
+  public int getPersonId() {
+    return personId;
+  }
+  public void setPersonId(int personId) {
+    this.personId = personId;
+  }
+
 }

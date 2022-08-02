@@ -5,7 +5,6 @@ import {environment} from "../../environments/environment";
 import {Person} from "../model/person";
 import {Trip} from "../model/trip";
 
-// INTERESTING: Useful to break out communication to a service
 @Injectable()
 export class TripService{
   private readonly baseUrl: string;
@@ -23,11 +22,11 @@ export class TripService{
       .get<Trip[]>(this.baseUrl);
   }
 
-  get(id: string): Observable<Trip> {
-    return this.http.get<Trip>(this.baseUrl + id);
+  getTripById(id: number): Observable<Trip> {
+    return this.http.get<Trip>(this.baseUrl + 'byId/'+ id);
   }
 
-  remove(id: string): Observable<string> {
+  remove(id: number): Observable<string> {
     return this.http.delete(this.baseUrl + id, {responseType: 'text'});
   }
 

@@ -21,16 +21,6 @@ export class SignInComponent implements OnInit {
   currentPerson!: Person;
   status = '';
 
-  personObj: Person = {
-    id: 1,
-    firstName: "Mark",
-    lastName: "Mill",
-    email: "mark@gmail.com",
-    phoneNumber: '07711019490' as unknown as number,
-    postcode: "Bt51",
-    password: "Password1!"
-  }
-
   constructor(private formBuilder: FormBuilder, private readonly router: Router, private peopleService: PeopleService) {
     this.loginForm = formBuilder.group({
       email: ['', createRequiredRegexValidator(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/)],
@@ -41,25 +31,13 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
     this.fetchAllPeople();
     console.log(this.people);
-    // Adding person for testing
-    // let personObj = new Person(
-    //   1,
-    //   "Mark",
-    //   "Mill",
-    //   "mark@gmail.com",
-    //   '07711019490' as unknown as number,
-    //   "Bt51",
-    //   "Password1!"
-    // );
-    this.people.push(this.personObj);
   }
 
   checkUserAuth(): void{
     // @ts-ignore
     this.currentPerson = this.people.find((person: Person) => {
-      return person.email === this.loginForm.value.email && person.password === this.loginForm.value.password ;
+      return person.email === this.loginForm.value.email && person.personPassword === this.loginForm.value.password ;
     });
-
     // @ts-ignore
     if (this.currentPerson) {
       console.log(this.currentPerson);

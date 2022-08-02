@@ -5,7 +5,7 @@
 </div>
 <div class = "test2">
   <div class='table-responsive'>
-    <table class='content-table' *ngIf="carArray.length">
+    <table class='content-table' *ngIf="ownedCarArray.length">
       <thead>
       <tr class = "buttonRow">
         <td>
@@ -28,7 +28,7 @@
       </tr>
       </thead>
       <tbody>
-      <ng-container *ngFor="let car of carArray" >
+      <ng-container *ngFor="let car of ownedCarArray" >
         <tr class= "active-row">
           <td>
             {{ car.make}}

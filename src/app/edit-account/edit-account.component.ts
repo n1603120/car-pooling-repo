@@ -39,7 +39,7 @@ export class EditAccountComponent implements OnInit {
     this.person.email = modelData.email;
     this.person.phoneNumber = modelData.phoneNum;
     this.person.postcode = modelData.postcode;
-    this.person.password = modelData.password;
+    this.person.personPassword = modelData.password;
     this.peopleService.update(this.person);
   }
 

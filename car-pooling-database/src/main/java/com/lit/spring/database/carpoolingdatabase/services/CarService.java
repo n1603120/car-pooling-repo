@@ -49,6 +49,19 @@ public class CarService {
     return filterCarsToResponse(car -> car.getOwnerId() == id);
   }
 
+  @GetMapping(value = "/byOwnerId/ActiveCar/{id}", produces = "application/json")
+  public ResponseEntity<Car> carByActiveTrue(@PathVariable int id) {
+    if(cars.isEmpty()){
+      carRepository.findAll().forEach(cars :: add);
+    }
+    return cars.stream()
+      .filter(car -> car.getOwnerId() == id && car.isActiveCar())
+      .findFirst()
+      .map(ResponseEntity::ok)
+      .orElseGet(() -> notFound().build());
+    //return filterCarsToResponse(car -> car.getOwnerId() == id && car.isActiveCar());
+  }
+
   @PostMapping(consumes = "application/json")
   public ResponseEntity<String> addCar(@RequestBody Car newCar) {
     if(cars.isEmpty()){
@@ -60,8 +73,21 @@ public class CarService {
     }
     cars.add(newCar);
     carRepository.save(newCar);
-    // return noContent().build();
     return new ResponseEntity<String>("POST Car Response Ok", HttpStatus.OK);
+  }
+
+  @PutMapping(consumes = "application/json")
+  public ResponseEntity<String> updateCar(@RequestBody Car newCar) {
+    if(cars.isEmpty()){
+      carRepository.findAll().forEach(cars :: add);
+    }
+    if(cars.stream().noneMatch(person -> person.getId() == newCar.getId())) {
+      return badRequest()
+        .body("Update stopped, No car has the ID: " + newCar.getId());
+    }
+    carRepository.save(newCar);
+    cars.clear();
+    return new ResponseEntity<String>("PUT Car Response Ok", HttpStatus.OK);
   }
 
   @DeleteMapping(value = "/{id}")

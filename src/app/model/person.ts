@@ -24,5 +24,5 @@ export interface Person{
   email: string;
   phoneNumber: number;
   postcode: string;
-  password: string;
+  personPassword: string;
 }
