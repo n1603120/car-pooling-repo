@@ -32,6 +32,7 @@ export class MyBookingsComponent implements OnInit {
   allBookings: Trip[] = [
     {
       postcode: "bt51",
+      town: "Carryduff",
       destination: "belfast",
       date: "2020-07-22",
       time: "18:30",
@@ -39,6 +40,7 @@ export class MyBookingsComponent implements OnInit {
     },
     {
       postcode: "bt54",
+      town: "Belfast",
       destination: "dublin",
       date: "2044-08-23",
       time: "14:30",
