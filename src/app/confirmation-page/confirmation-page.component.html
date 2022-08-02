@@ -8,24 +8,38 @@
 </div>
 <div class = "test2">
   <div class='table-responsive'>
-    <table class='content-table' *ngIf="summary2.length">
+    <table class='content-table' *ngIf="results.length">
       <thead>
       <tr>
         <th>Summary Details</th>
       </tr>
       </thead>
       <tbody>
-      <tr class= "active-row" *ngFor="let sum of summary2" >
-        <td>
-          {{ sum.name}}
+      <tr class= "active-row" *ngFor="let result of results" >
 
-        </td>
+      <tr>
+
+        <th>Car Make</th>
+        <th>Registration</th>
+        <th>No. Seats</th>
+        <th>Preferred Contact</th>
+        <th>Accessibility</th>
+        <th>Preferred PickUp</th>
+
+
       </tr>
-      <td>
-        <button  routerLink="/register-driver" style="float: left;"> Edit Details </button>
 
-        <button  routerLink="/home" style="float: right;"> Home </button>
-      </td>
+      <tbody>
+
+      <tr *ngFor="let result of results">
+        <td>{{result.make}}</td>
+        <td>{{result.registration}}</td>
+        <td>{{result.numOfSeats}}</td>
+        <td>{{result.preferredContact}}</td>
+        <td>{{result.accessibility}}</td>
+        <td>{{result.preferredPickUp}}</td>
+
+
 
 
       </tbody>
