@@ -1,12 +1,14 @@
 package com.lit.spring.database.carpoolingdatabase.services;
 
 import com.lit.spring.database.carpoolingdatabase.TripRepository;
+import com.lit.spring.database.carpoolingdatabase.entities.Person;
 import com.lit.spring.database.carpoolingdatabase.entities.Trip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.http.ResponseEntity.*;
@@ -18,7 +20,7 @@ public class TripService {
   @Autowired
   private TripRepository tripRepository;
 
-  private List<Trip> trips;
+  private List<Trip> trips = new ArrayList<Trip>();
   @GetMapping(produces = "application/json")
   public ResponseEntity<List<Trip>> allTrips(){
     if(trips.isEmpty()){

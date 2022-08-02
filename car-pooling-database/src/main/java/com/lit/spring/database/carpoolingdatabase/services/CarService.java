@@ -2,11 +2,13 @@ package com.lit.spring.database.carpoolingdatabase.services;
 
 import com.lit.spring.database.carpoolingdatabase.CarRepository;
 import com.lit.spring.database.carpoolingdatabase.entities.Car;
+import com.lit.spring.database.carpoolingdatabase.entities.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -21,7 +23,7 @@ public class CarService {
     @Autowired
     private CarRepository carRepository;
 
-    private List<Car> cars;
+    private List<Car> cars = new ArrayList<Car>();
 
 
     @GetMapping(produces = "application/json")

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -22,12 +23,12 @@ public class PersonService {
     @Autowired
     private PersonRepository personRepository;
 
-    private List<Person> people;
+    private List<Person> people = new ArrayList<Person>();
 
     @GetMapping(produces = "application/json")
     public ResponseEntity<List<Person>> allPeople(){
       if(people.isEmpty()){
-        personRepository.findAll().forEach(people :: add);
+          personRepository.findAll().forEach(people :: add);
       }
       if(people.isEmpty()) {
         return notFound().build();
