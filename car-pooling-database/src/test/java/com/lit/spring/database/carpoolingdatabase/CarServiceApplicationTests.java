@@ -24,7 +24,7 @@ public class CarServiceApplicationTests {
   public void allCarsCanBeFound() throws Exception {
     mockMvc.perform(get("/cars").accept(JSON_CONTENT_TYPE))
       .andExpect(jsonPath("$").isArray())
-      .andExpect(jsonPath("$", hasSize(4)));
+      .andExpect(status().isOk());
   }
   @Test
   public void carsCanBeFoundByCarID() throws Exception {
@@ -44,7 +44,23 @@ public class CarServiceApplicationTests {
   }
   @Test
   public void carsCanBeFoundByOwnerID() throws Exception {
-    mockMvc.perform(get("/cars/byCarId/2").accept(JSON_CONTENT_TYPE))
+    mockMvc.perform(get("/cars/byOwnerId/2").accept(JSON_CONTENT_TYPE))
+      .andExpect(status().isOk())
+      .andExpect(content().contentType(JSON_CONTENT_TYPE))
+      .andExpect(jsonPath("$.[0].id").value(2))
+      .andExpect(jsonPath("$.[0].ownerId").value(2))
+      .andExpect(jsonPath("$.[0].make").value("BMW"))
+      .andExpect(jsonPath("$.[0].registration").value("GHU6536"))
+      .andExpect(jsonPath("$.[0].numOfSeats").value(4))
+      .andExpect(jsonPath("$.[0].preferredContact").value("Phone"))
+      .andExpect(jsonPath("$.[0].smokingOption").value(false))
+      .andExpect(jsonPath("$.[0].accessibility").value(true))
+      .andExpect(jsonPath("$.[0].preferredPickUp").value("Coleraine, Ballymena"))
+      .andExpect(jsonPath("$.[0].activeCar").value(true));
+  }
+  @Test
+  public void carsCanBeFoundByActiveTrue() throws Exception {
+    mockMvc.perform(get("/cars/byOwnerId/ActiveCar/2").accept(JSON_CONTENT_TYPE))
       .andExpect(status().isOk())
       .andExpect(content().contentType(JSON_CONTENT_TYPE))
       .andExpect(jsonPath("$.id").value(2))
@@ -58,17 +74,15 @@ public class CarServiceApplicationTests {
       .andExpect(jsonPath("$.preferredPickUp").value("Coleraine, Ballymena"))
       .andExpect(jsonPath("$.activeCar").value(true));
   }
-
   @Test
   @DirtiesContext
-  public void carCanBeAdded() throws Exception {
+  public void carCanBeAddedAndRemoved() throws Exception {
     String content =
       "{\"id\": \"100\",\"ownerId\": \"2\", \"make\": \"BMW\", \"registration\": \"KZZ6536\", \"numOfSeats\": \"4\",\"preferredContact\": \"Email\",\"smokingOption\": \"false\",\"accessibility\": \"false\",\"preferredPickUp\": \"Coleraine, Ballymena\",\"activeCar\": \"false\"}";
     mockMvc.perform(post("/cars").contentType(JSON_CONTENT_TYPE).content(content))
       .andExpect(status().isOk());
     mockMvc.perform(get("/cars").accept(JSON_CONTENT_TYPE))
       .andExpect(jsonPath("$").isArray())
-      .andExpect(jsonPath("$", hasSize(5)))
       .andExpect(jsonPath("$[?(@.id == '100')]", hasSize(1)));
     mockMvc.perform(get("/cars/byCarId/100").accept(JSON_CONTENT_TYPE))
       .andExpect(status().isOk())
@@ -83,6 +97,11 @@ public class CarServiceApplicationTests {
       .andExpect(jsonPath("$.accessibility").value(false))
       .andExpect(jsonPath("$.preferredPickUp").value("Coleraine, Ballymena"))
       .andExpect(jsonPath("$.activeCar").value(false));
+    mockMvc.perform(delete("/cars/100"))
+      .andExpect(status().isOk());
+    mockMvc.perform(get("/cars").accept(JSON_CONTENT_TYPE))
+      .andExpect(jsonPath("$").isArray())
+      .andExpect(jsonPath("$[?(@.id == '100')]", hasSize(0)));
   }
   @Test
   @DirtiesContext
@@ -93,15 +112,41 @@ public class CarServiceApplicationTests {
       .andExpect(status().isOk());
     mockMvc.perform(get("/cars").accept(JSON_CONTENT_TYPE))
       .andExpect(jsonPath("$").isArray())
-      .andExpect(jsonPath("$", hasSize(5)))
       .andExpect(jsonPath("$[?(@.id == '100')]", hasSize(1)));
     mockMvc.perform(post("/cars").contentType(JSON_CONTENT_TYPE).content(content))
       .andExpect(status().isBadRequest());
+    mockMvc.perform(delete("/cars/100"))
+      .andExpect(status().isOk());
   }
   @Test
   @DirtiesContext
   public void carIdNotPresentCantBeRemoved() throws Exception {
     mockMvc.perform(delete("/cars/100"))
       .andExpect(status().isBadRequest());
+  }
+  @Test
+  @DirtiesContext
+  public void carCanBeUpdated() throws Exception {
+    String content =
+      "{\"id\": \"100\",\"ownerId\": \"2\", \"make\": \"BMW\", \"registration\": \"KZZ6536\", \"numOfSeats\": \"4\",\"preferredContact\": \"Email\",\"smokingOption\": \"false\",\"accessibility\": \"false\",\"preferredPickUp\": \"Coleraine, Ballymena\",\"activeCar\": \"false\"}";
+    mockMvc.perform(post("/cars").contentType(JSON_CONTENT_TYPE).content(content))
+      .andExpect(status().isOk());
+    mockMvc.perform(get("/cars").accept(JSON_CONTENT_TYPE))
+      .andExpect(jsonPath("$").isArray())
+      .andExpect(jsonPath("$[?(@.id == '100')]", hasSize(1)));
+    String updatedContent =
+      "{\"id\": \"100\",\"ownerId\": \"2\", \"make\": \"BMW\", \"registration\": \"KZZ6536\", \"numOfSeats\": \"4\",\"preferredContact\": \"Email\",\"smokingOption\": \"false\",\"accessibility\": \"false\",\"preferredPickUp\": \"Coleraine, Ballymena\",\"activeCar\": \"true\"}";
+    mockMvc.perform(put("/cars").contentType(JSON_CONTENT_TYPE).content(updatedContent))
+      .andExpect(status().isOk());
+    mockMvc.perform(get("/cars").accept(JSON_CONTENT_TYPE))
+      .andExpect(jsonPath("$").isArray())
+      .andExpect(jsonPath("$[?(@.id == '100')]", hasSize(1)));
+    mockMvc.perform(get("/cars/byCarId/100").accept(JSON_CONTENT_TYPE))
+      .andExpect(status().isOk())
+      .andExpect(content().contentType(JSON_CONTENT_TYPE))
+      .andExpect(jsonPath("$.id").value(100))
+      .andExpect(jsonPath("$.activeCar").value(true));
+    mockMvc.perform(delete("/cars/100"))
+      .andExpect(status().isOk());
   }
 }

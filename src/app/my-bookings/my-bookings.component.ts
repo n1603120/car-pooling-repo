@@ -18,7 +18,7 @@ export class MyBookingsComponent implements OnInit {
   changeCurrentlyActiveText: string = "Change To Currently Active Bookings";
   toggleText: string = this.changeDisplayAllText;
 
-  carObj = new Car(1, "Ford",
+  carObj = new Car(1, 1,"Ford",
     "MFZ 6342",
     "3",
     "Email",

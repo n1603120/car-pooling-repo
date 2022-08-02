@@ -137,7 +137,7 @@ export class DriverDetailsComponent implements OnInit {
       this.address = input6.value;
     }
 
-    const currentDriver = new Car(0, carMake,registration, noOfPassengers ,this.preferredContact, this.smokingOption, this.accessibility, this.address, true)
+    const currentDriver = new Car(0,0, carMake,registration, noOfPassengers ,this.preferredContact, this.smokingOption, this.accessibility, this.address, true)
     console.log(currentDriver);
     this.carService.addCar(currentDriver);
   }

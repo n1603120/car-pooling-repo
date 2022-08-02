@@ -13,31 +13,23 @@ export class PeopleService{
 
   constructor(private http: HttpClient) {
     this.baseUrl = environment.baseServerUrl + '/people/';
-
   }
+
   getAllPeople(): Observable<Person[]>{
     return this.http.get<Person[]>(this.baseUrl);
   }
 
-
-
-
-  getAll(): Observable<Person[]> {
-    return this.http
-      .get<Person[]>(this.baseUrl);
+  getPersonById(id: number): Observable<Person> {
+    return this.http.get<Person>(this.baseUrl + 'byId/'+ id);
   }
 
-  get(id: string): Observable<Person> {
-    return this.http.get<Person>(this.baseUrl + id);
-  }
-
-  remove(id: string): Observable<string> {
+  remove(id: number): Observable<string> {
     return this.http.delete(this.baseUrl + id, {responseType: 'text'});
   }
 
   update(person: Person): Observable<string> {
     this.currentPerson = person;
-    return this.http.put(this.baseUrl + person.id, person, {
+    return this.http.put(this.baseUrl, person, {
       headers: new HttpHeaders({'Content-Type': 'application/json'}),
       responseType: 'text'
     });

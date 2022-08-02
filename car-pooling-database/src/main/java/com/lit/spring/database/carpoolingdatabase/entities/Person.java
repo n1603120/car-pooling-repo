@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "people")
 public class Person implements Serializable{
-  private Integer id;
+  private int id;
   private String fname;
   private String lname;
   private String email;

@@ -20,11 +20,24 @@ export class CarService{
     return this.http.get<Car[]>(this.baseUrl);
   }
 
-  get(id: string): Observable<Car> {
-    return this.http.get<Car>(this.baseUrl + id);
+  getCarsByOwnerId(id: number): Observable<Car[]>{
+    return this.http.get<Car[]>(this.baseUrl + 'byOwnerId/' + id);
   }
 
-  remove(id: string): Observable<string> {
+  getCarById(id: number): Observable<Car> {
+    return this.http.get<Car>(this.baseUrl + 'byCarId/'+ id);
+  }
+  getActiveCar(ownerId: number): Observable<Car> {
+    return this.http.get<Car>(this.baseUrl + 'byOwnerId/ActiveCar/'+ ownerId);
+  }
+
+  update(car: Car): Observable<string> {
+    return this.http.put(this.baseUrl, car, {
+      headers: new HttpHeaders({'Content-Type': 'application/json'}),
+      responseType: 'text'
+    });
+  }
+  remove(id: number): Observable<string> {
     return this.http.delete(this.baseUrl + id, {responseType: 'text'});
   }
 

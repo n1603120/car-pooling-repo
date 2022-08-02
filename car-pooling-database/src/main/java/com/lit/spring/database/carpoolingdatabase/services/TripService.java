@@ -1,6 +1,7 @@
 package com.lit.spring.database.carpoolingdatabase.services;
 
 import com.lit.spring.database.carpoolingdatabase.TripRepository;
+import com.lit.spring.database.carpoolingdatabase.entities.Car;
 import com.lit.spring.database.carpoolingdatabase.entities.Person;
 import com.lit.spring.database.carpoolingdatabase.entities.Trip;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
+import static java.util.stream.Collectors.toList;
 import static org.springframework.http.ResponseEntity.*;
 
 @RestController
@@ -38,6 +41,10 @@ public class TripService {
       .map(ResponseEntity::ok)
       .orElseGet(() -> notFound().build());
   }
+  @GetMapping(value = "/byPersonId/{id}", produces = "application/json")
+  public ResponseEntity<List<Trip>> tripsByPersonId(@PathVariable int id) {
+    return filterTripsToResponse(trip -> trip.getPersonId() == id);
+  }
   @PostMapping(consumes = "application/json")
   public ResponseEntity<String> addTrip(@RequestBody Trip newTrip) {
     if(trips.isEmpty()){
@@ -61,5 +68,18 @@ public class TripService {
     tripRepository.deleteById(id);
     trips.clear();
     return new ResponseEntity<String>("DELETE Trip Response Ok", HttpStatus.OK);
+  }
+  private ResponseEntity<List<Trip>> filterTripsToResponse(Predicate<Trip> predicate) {
+    var results = filterTripsToList(predicate);
+    if (results.isEmpty()) {
+      return notFound().build();
+    }
+    return ok(results);
+  }
+  private List<Trip> filterTripsToList(Predicate<Trip> predicate) {
+    if(trips.isEmpty()){
+      tripRepository.findAll().forEach(trips :: add);
+    }
+    return trips.stream().filter(predicate).collect(toList());
   }
 }
