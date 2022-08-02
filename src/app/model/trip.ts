@@ -1,9 +1,19 @@
 import {Car} from "./car";
 
-export interface Trip {
-  postcode: string;
-  destination: string;
-  date: string;
-  time: string;
-  car: Car;
+export class Trip {
+  postcode: string = "";
+  town: string = "";
+  destination: string ="";
+  date: string = "";
+  time: string = "";
+  car: Car = new Car(0, "", "", "","", false, "","",false);
+
+constructor(postcode: string, town:string, destination: string,date: string,time: string ) {
+  this.postcode = postcode;
+  this.town = town;
+  this.destination = destination;
+  this.date = date;
+  this.time = time;
+}
+
 }

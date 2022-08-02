@@ -1,4 +1,4 @@
-<div id="pageContainer">
+<div id="pageContainer" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
   <div class ="inputContainer">
     <h1>Trip Details</h1>
     <form [formGroup] ="tripForm" (ngSubmit)="onSubmit()">
@@ -10,8 +10,9 @@
       </fieldset>
 
       <fieldset>
-        <label for = "tripTown">Starting Town:
-          <ng-select [items]="towns" appendTo="body" formControlName="tripTown" id = "tripTown">
+        <label for = "tripTown" id="tripTown">Starting Town:
+          <ng-select [(ngModel)]="town" [items]="towns" appendTo="body" formControlName="tripTown" placeholder="Select Town">
+
           </ng-select>
         </label>
       </fieldset>
@@ -25,19 +26,22 @@
           ! Please select a Destination
         </span>
       </fieldset>
+
       <fieldset>
         <label for = "tripDate">Select Departure Date:<input type="date" min = {{getCurrentDate()}} id = "tripDate" (change) ="checkTimeValid()" formControlName="tripDate"></label>
         <span class="text-danger" *ngIf="(submitted || tripForm.get('tripDate')?.touched) && errorPresent('tripDate')">
           ! Please select a Date
         </span>
       </fieldset>
+
       <fieldset>
         <label for = "tripDate">Select Departure Time:<input type="time" id = "tripTime" (change) ="checkTimeValid()" formControlName="tripTime"></label>
         <span class="text-danger" *ngIf="(submitted || tripForm.get('tripTime')?.touched) && (tripForm.get('tripTime')?.errors || !timeValid)">
           ! Please select a Time
         </span>
       </fieldset>
-      <input type="submit" value="Submit">
+
+      <input type="submit" value="Submit" (click)="submitTrip()">
     </form>
   </div>
 </div>

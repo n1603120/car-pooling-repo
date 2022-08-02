@@ -31,5 +31,12 @@ export class TripService{
     return this.http.delete(this.baseUrl + id, {responseType: 'text'});
   }
 
+  addTrip(trip: Trip): Observable<string> {
+    return this.http.post(this.baseUrl , trip,{
+      headers: new HttpHeaders({'Content-Type': 'application/json'}),
+      responseType: 'text'
+    });
+  }
+
 
 }

@@ -13,6 +13,7 @@ import {HttpClient} from "@angular/common/http";
 export class PassengerResultsComponent implements OnInit {
   pageTitle: string = "Driver Availability";
   people:any;
+  personName:any;
   allTrips: Trip[] = [];
   // drivers: any[] = [
   //
@@ -23,7 +24,7 @@ export class PassengerResultsComponent implements OnInit {
   //   {"name": "Peter Pan", "town": "Carryduff"}
   // ]
 
-  constructor(private tripService: TripService,private http:HttpClient) {
+  constructor(private tripService: TripService,private peopleService: PeopleService,private http:HttpClient) {
 
   }
 
@@ -31,8 +32,11 @@ export class PassengerResultsComponent implements OnInit {
     this.fetchAllTrips();
     console.log(this.allTrips);
 
-    let response = this.http.get("http://localhost:8080/trips")
-    response.subscribe((data)=>this.people=data);
+    let response1 = this.http.get("http://localhost:8080/trips")
+    response1.subscribe((data)=>this.people=data);
+
+    let response = this.http.get("http://localhost:8080/people")
+    response.subscribe((data)=>this.personName=data);
 
   }
   private fetchAllTrips() {

@@ -34,7 +34,7 @@ export class PassengerSummaryComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let response = this.http.get("http://localhost:8080/people/")
+    let response = this.http.get("http://localhost:8080/people")
     response.subscribe((data)=>this.trips=data);
 
 
