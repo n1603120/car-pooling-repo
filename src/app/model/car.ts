@@ -6,12 +6,12 @@ export class Car {
   registration: string;
   numOfSeats: string;
   preferredContact: string;
-  smokingOption: boolean;
+  smokingOption: string;
   accessibility: string;
   preferredPickUp: string;
   activeCar: boolean;
 
-  constructor(OwnerId: number, Make: string, Registration: string,  NumOfSeats: string, PreferredContact: string, SmokingOption: boolean, Accessibility: string, PreferredPickUp: string, ActiveCar: boolean ) {
+  constructor(OwnerId: number, Make: string, Registration: string,  NumOfSeats: string, PreferredContact: string, SmokingOption: string, Accessibility: string, PreferredPickUp: string, ActiveCar: boolean ) {
     this.ownerId = OwnerId;
     this.make = Make;
     this.registration = Registration;

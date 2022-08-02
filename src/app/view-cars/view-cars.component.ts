@@ -19,7 +19,7 @@ export class ViewCarsComponent implements OnInit {
       "MFZ 6342",
       "3",
       "Email",
-      true,
+      "Yes",
       "Yes",
       "Tesco",
       true
@@ -28,7 +28,7 @@ export class ViewCarsComponent implements OnInit {
       "MDZ 6342",
       "1",
       "Phone",
-      true,
+      "Yes",
       "Yes",
       "Tesco",
       false

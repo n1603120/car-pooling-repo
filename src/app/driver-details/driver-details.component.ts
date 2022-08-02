@@ -7,6 +7,7 @@ import {Car} from "../model/car";
 import {PeopleService} from "../services/person.service";
 
 
+
 @Component({
   selector: 'app-driver-details',
   templateUrl: './driver-details.component.html',
@@ -20,12 +21,14 @@ export class DriverDetailsComponent implements OnInit {
   allCars: Car[] = [];
   currentPerson!: Person;
 
+  address: string = '';
+
   carMake = '';
   reg = '';
   noOfPassengers = 0;
   preferredContact = '';
-  smokingOption = false;
-  accessibility = false;
+  smokingOption = '';
+  accessibility = '';
   preferredPickUp = '';
 
 
@@ -53,7 +56,7 @@ export class DriverDetailsComponent implements OnInit {
       driverReg: ['', createRequiredRegexValidator(/\b[a-z]{2}([1-9]|0[2-9]|6[0-9]|1[0-9])[a-z]{3}|[A-HJ-NP-Y]\d{1,3}[A-Z]{3}|[A-Z]{3}\d{1,3}[A-HJ-NP-Y]|(?:[A-Z]{1,2}\d{1,4}|[A-Z]{3}\d{1,3})|(?:\d{1,4}[A-Z]{1,2}|\d{1,3}[A-Z]{3})\b/i)],
       driverNoOfPassengers: ['1', Validators.required],
       driverPreferredContact: ['', Validators.required],
-      driverSmokingOption: ['',Validators.required],
+      driverSmokingOption: ['' ,Validators.required],
       driverAccessibility: ['',Validators.required],
       driverPickUp: ['', Validators.required]
     });
@@ -107,4 +110,36 @@ export class DriverDetailsComponent implements OnInit {
   private getCurrentPerson(): void{
     this.currentPerson = this.peopleService.currentPerson;
   }
+
+
+  submitDriver() : any {
+    let carMake: string = "";
+    let registration = "";
+    let noOfPassengers = "";
+
+    const input = document.getElementById('driverCarMake') as HTMLInputElement | null;
+    if(input?.value){
+      carMake = input.value;
+    }
+
+    const input1 = document.getElementById('driverReg') as HTMLInputElement | null;
+    if(input1?.value){
+      registration = input1.value;
+    }
+
+    const input2 = document.getElementById('driverNoOfPassengers') as HTMLInputElement | null;
+    if(input2?.value){
+      noOfPassengers = input2.value;
+    }
+
+    const input6 = document.getElementById('pickupAddress') as HTMLInputElement | null;
+    if(input6?.value) {
+      this.address = input6.value;
+    }
+
+    const currentDriver = new Car(0, carMake,registration, noOfPassengers ,this.preferredContact, this.smokingOption, this.accessibility, this.address, true)
+    console.log(currentDriver);
+    this.carService.addCar(currentDriver);
+  }
+
 }

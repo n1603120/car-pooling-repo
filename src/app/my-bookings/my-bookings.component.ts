@@ -22,7 +22,7 @@ export class MyBookingsComponent implements OnInit {
     "MFZ 6342",
     "3",
     "Email",
-    true,
+    "yes",
     "Yes",
     "Tesco",
     true
