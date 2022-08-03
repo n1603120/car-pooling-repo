@@ -18,18 +18,15 @@ export class ViewCarsComponent implements OnInit {
   currentlyActiveCar!: Car;
 
   constructor(private readonly router: Router, private peopleService: PeopleService, private carService: CarService) {
-
   };
 
   ngOnInit(): void {
-    this.fetchAllOwnedCars();
     this.fetchActiveCar();
-    console.log(this.ownedCarArray);
-    this.fillRadioButton();
+    this.fetchAllOwnedCars();
+   // this.fillRadioAtStart();
   }
 
   private fetchAllOwnedCars() {
-    console.log(5);
     if(this.ownedCarArray.length != 0){
       this.ownedCarArray.forEach(car => this.ownedCarArray.pop());
     }
@@ -41,24 +38,35 @@ export class ViewCarsComponent implements OnInit {
   }
 
   makeActive(currentCar: Car): void {
-    console.log(currentCar);
-    console.log(this.currentlyActiveCar);
     if(!currentCar.activeCar){
       console.log(1);
       this.removeCurrentlyActiveCar();
       currentCar.activeCar = true;
+      this.currentlyActiveCar = currentCar;
       this.updateCar(currentCar);
     }
     console.log(currentCar);
     console.log(this.currentlyActiveCar);
+    console.log(this.ownedCarArray);
   }
 
   removeCurrentlyActiveCar(){
-    this.carService.getActiveCar(this.peopleService.currentPerson.id)
-      .subscribe(car => this.currentlyActiveCar = car);
     this.currentlyActiveCar.activeCar = false;
+    this.setCarToNotActive(this.currentlyActiveCar);
     this.updateCar(this.currentlyActiveCar);
   }
+
+  setCarToNotActive(currentCar: Car) {
+    console.log(currentCar);
+    //const foundIndex = this.ownedCarArray.findIndex(car => currentCar.carId == car.carId);
+    console.log(currentCar.id);
+    const foundIndex = this.ownedCarArray.map(car => car.id).indexOf(currentCar.id);
+    console.log(foundIndex);
+    this.ownedCarArray[foundIndex] = currentCar;
+    console.log(this.ownedCarArray);
+  }
+
+
 
   fetchActiveCar(){
     this.carService.getActiveCar(this.peopleService.currentPerson.id)
@@ -72,7 +80,33 @@ export class ViewCarsComponent implements OnInit {
   }
 
   // set active to not active and update new car and old car
-  private fillRadioButton() {
+  fillRadioButton(currentCar: Car) {
+    // @ts-ignore
+    document.getElementById(currentCar.id).checked = currentCar === this.currentlyActiveCar;
+    console.log(2);
+  }
 
+  fillRadioAtStart(){
+    console.log(this.ownedCarArray);
+    console.log(this.ownedCarArray.length);
+    //this.ownedCarArray.forEach(car => car.activeCar )
+    for(let car of this.ownedCarArray){
+      console.log(8);
+      if(car.activeCar){
+        console.log(car.id);
+        // @ts-ignore
+        document.getElementById(car.id).checked = true;
+        // @ts-ignore
+        console.log(document.getElementById(car.id).innerText);
+        return;
+      }
+    }
+    // // @ts-ignore
+    // const foundIndex = this.ownedCarArray.map(car => car.id).indexOf(this.currentlyActiveCar.id);
+    // console.log(foundIndex);
+    // //this.ownedCarArray[foundIndex] = currentCar;
+    // // @ts-ignore
+    // document.getElementById(idOfActiveCar.id).checked = true;
+    // console.log(1);
   }
 }

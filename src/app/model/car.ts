@@ -1,7 +1,7 @@
 import {Person} from "./person";
 
 export class Car {
-  carId: number;
+  id: number;
   ownerId: number;
   make: string;
   registration: string;
@@ -12,8 +12,8 @@ export class Car {
   preferredPickUp: string;
   activeCar: boolean;
 
-  constructor(CarId: number, OwnerId: number, Make: string, Registration: string,  NumOfSeats: string, PreferredContact: string, SmokingOption: string, Accessibility: string, PreferredPickUp: string, ActiveCar: boolean ) {
-    this.carId = CarId;
+  constructor(Id: number, OwnerId: number, Make: string, Registration: string,  NumOfSeats: string, PreferredContact: string, SmokingOption: string, Accessibility: string, PreferredPickUp: string, ActiveCar: boolean ) {
+    this.id = Id;
     this.ownerId = OwnerId;
     this.make = Make;
     this.registration = Registration;
