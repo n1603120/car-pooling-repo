@@ -11,7 +11,7 @@
         <td>
           <button id = "backBut" routerLink="/home"> Back </button>
         </td>
-        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td>
         <td colspan = "2">
           <button id = "registerBut" routerLink="/register-driver">Register New Car</button>
         </td>
@@ -25,6 +25,7 @@
         <th>Accessibility</th>
         <th>Preferred<br>Pick Up</th>
         <th>Selected<br>Car</th>
+        <th>Make<br>Selected</th>
       </tr>
       </thead>
       <tbody>
@@ -52,7 +53,10 @@
             {{ car.preferredPickUp}}
           </td>
           <td>
-            <input type = "radio" name="choice" checked = "{{car.activeCar}}" (click) = "makeActive(car)" >
+            {{ car.activeCar}}
+          </td>
+          <td>
+            <input [id]="car.id" type = "radio" name="choice" (load)="fillRadioButton(car)" (click) = "makeActive(car)" >
           </td>
         </tr>
       </ng-container>

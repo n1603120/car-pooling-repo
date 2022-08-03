@@ -67,7 +67,7 @@ public class CarService {
     if(cars.isEmpty()){
       carRepository.findAll().forEach(cars :: add);
     }
-    if(cars.stream().anyMatch(person -> person.getId() == newCar.getId())) {
+    if(cars.stream().anyMatch(car -> car.getId() == newCar.getId())) {
       return badRequest()
         .body("Already a car with id: " + newCar.getId());
     }
@@ -81,7 +81,7 @@ public class CarService {
     if(cars.isEmpty()){
       carRepository.findAll().forEach(cars :: add);
     }
-    if(cars.stream().noneMatch(person -> person.getId() == newCar.getId())) {
+    if(cars.stream().noneMatch(car -> car.getId() == newCar.getId())) {
       return badRequest()
         .body("Update stopped, No car has the ID: " + newCar.getId());
     }
