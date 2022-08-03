@@ -15,7 +15,7 @@ import {Observable, take} from "rxjs";
 })
 export class ViewCarsComponent implements OnInit {
   ownedCarArray: Car[] = [];
-  carToBeUpdated!: Car;
+  currentlyActiveCar!: Car;
 
   constructor(private readonly router: Router, private peopleService: PeopleService, private carService: CarService) {
 
@@ -25,9 +25,14 @@ export class ViewCarsComponent implements OnInit {
     this.fetchAllOwnedCars();
     this.fetchActiveCar();
     console.log(this.ownedCarArray);
+    this.fillRadioButton();
   }
 
   private fetchAllOwnedCars() {
+    console.log(5);
+    if(this.ownedCarArray.length != 0){
+      this.ownedCarArray.forEach(car => this.ownedCarArray.pop());
+    }
     this.carService
       .getCarsByOwnerId(this.peopleService.currentPerson.id)
       .subscribe(
@@ -35,37 +40,39 @@ export class ViewCarsComponent implements OnInit {
       )
   }
 
-  changeActive(currentCar: Car): void {
+  makeActive(currentCar: Car): void {
+    console.log(currentCar);
+    console.log(this.currentlyActiveCar);
     if(!currentCar.activeCar){
-      //this.updateCar(currentCar);
-      this.removeActiveCar(currentCar);
-      //currentCar.activeCar = true;
+      console.log(1);
+      this.removeCurrentlyActiveCar();
+      currentCar.activeCar = true;
+      this.updateCar(currentCar);
     }
+    console.log(currentCar);
+    console.log(this.currentlyActiveCar);
   }
 
-  removeActiveCar(currentCar: Car){
-    console.log(this.peopleService.currentPerson.id);
-    console.log(this.carToBeUpdated);
+  removeCurrentlyActiveCar(){
     this.carService.getActiveCar(this.peopleService.currentPerson.id)
-      .subscribe(car => this.carToBeUpdated = car);
-     // .subscribe( cars => cars.forEach(car => this.carToBeUpdated.push(car)));
-    console.log(this.carToBeUpdated.activeCar);
-    this.updateCar(currentCar);
+      .subscribe(car => this.currentlyActiveCar = car);
+    this.currentlyActiveCar.activeCar = false;
+    this.updateCar(this.currentlyActiveCar);
   }
 
   fetchActiveCar(){
     this.carService.getActiveCar(this.peopleService.currentPerson.id)
-      .subscribe(car => this.carToBeUpdated = car);
+      .subscribe(car => this.currentlyActiveCar = car);
   }
 
-  updateCar(currentCar: Car) {
+  updateCar(carToBeUpdated: Car) {
     this.carService
-      .update(this.carToBeUpdated)
-      .subscribe(id => {
-        this.fetchAllOwnedCars();
-      }
-    );
+      .update(carToBeUpdated)
+      .subscribe();
   }
 
   // set active to not active and update new car and old car
+  private fillRadioButton() {
+
+  }
 }
