@@ -21,7 +21,7 @@
         </span>
       </fieldset>
       <fieldset>
-        <label for = "phoneNum">Phone Number: <input type="number" id = "phoneNum" formControlName="phoneNum" placeholder="+44 7911 123456"></label>
+        <label for = "phoneNum">Phone Number: <input type="string" id = "phoneNum" formControlName="phoneNum" placeholder="+44 7911 123456"></label>
         <span class="text-danger" *ngIf="(submitted || accountForm.get('phoneNum')?.touched) && errorPresent('phoneNum')">
           ! Please enter a valid Phone Number
         </span>
@@ -44,11 +44,11 @@
           ! Passwords do not match
         </span>
       </fieldset>
-      <input type="submit" value="Create Account">
+      <input type="submit" value="Create Account" (click)="submitAccount()">
     </form>
   </div>
   <div id = "createContainer">
     <h5>Already have an account?</h5>
-    <a routerLink="signIn" id = "loginBut">Back to Login</a>
+    <a routerLink="signIn" id = "loginBut">Back to Login </a>
   </div>
 </div>
