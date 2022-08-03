@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {createRequiredRegexValidator} from "../utility/validators";
 import {Router} from "@angular/router";
+import {Car} from "../model/car";
+import {Person} from "../model/person";
+import {PeopleService} from "../services/person.service";
 
 @Component({
   selector: 'app-create-account',
@@ -13,7 +16,7 @@ export class CreateAccountComponent implements OnInit {
   submitted: boolean = false;
   private dataError: ValidationErrors | null | undefined;
 
-  constructor(private formBuilder: FormBuilder, private readonly router: Router) {
+  constructor(private formBuilder: FormBuilder, private peopleService: PeopleService,private readonly router: Router) {
     this.accountForm = formBuilder.group({
       fname: ['', createRequiredRegexValidator(/^[a-z ,.'-]+$/i)],
       lname: ['', createRequiredRegexValidator(/^[a-z ,.'-]+$/i)],
@@ -51,4 +54,48 @@ export class CreateAccountComponent implements OnInit {
   passwordsMatch(): boolean {
     return this.accountForm.get('password')?.value === this.accountForm.get('confirmPassword')?.value;
   }
+
+  submitAccount() : any {
+    let firstName: string = "";
+    let lastName = "";
+    let email = "";
+    let phoneNo = "";
+    let postcode = "";
+    let password = "";
+
+    const input = document.getElementById('fname') as HTMLInputElement | null;
+    if(input?.value){
+      firstName = input.value;
+    }
+
+    const input1 = document.getElementById('lname') as HTMLInputElement | null;
+    if(input1?.value){
+      lastName = input1.value;
+    }
+
+    const input2 = document.getElementById('email') as HTMLInputElement | null;
+    if(input2?.value){
+      email = input2.value;
+    }
+
+    const input3 = document.getElementById('phoneNum') as HTMLInputElement | null;
+    if(input3?.value) {
+      phoneNo = input3.value;
+    }
+
+    const input4 = document.getElementById('postcode') as HTMLInputElement | null;
+    if(input4?.value) {
+      postcode = input4.value;
+    }
+
+    const input5 = document.getElementById('password') as HTMLInputElement | null;
+    if(input5?.value) {
+      password = input5.value;
+    }
+
+    const account = new Person(0, firstName, lastName, email, phoneNo, postcode, password);
+    console.log(account);
+    this.peopleService.addPerson(account);
+  }
+
 }

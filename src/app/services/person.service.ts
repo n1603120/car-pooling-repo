@@ -3,6 +3,7 @@ import {Injectable, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {environment} from "../../environments/environment";
 import {Person} from "../model/person";
+import {Car} from "../model/car";
 
 // INTERESTING: Useful to break out communication to a service
 @Injectable()
@@ -37,6 +38,13 @@ export class PeopleService{
 
   isLoggedIn(): boolean {
     return !!this.currentPerson;
+  }
+
+  addPerson(person: Person): Observable<string> {
+    return this.http.post(this.baseUrl , person,{
+      headers: new HttpHeaders({'Content-Type': 'application/json'}),
+      responseType: 'text'
+    });
   }
 
 }
