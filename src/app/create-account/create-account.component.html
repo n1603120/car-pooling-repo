@@ -16,8 +16,8 @@
       </fieldset>
       <fieldset>
         <label for = "email">Email: <input type="email" id = "email" formControlName="email" placeholder="name@example.com"></label>
-        <span class="text-danger" *ngIf="(submitted || accountForm.get('email')?.touched) && errorPresent('email')">
-          ! Please enter a valid Email
+        <span class="text-danger" *ngIf="(submitted || accountForm.get('email')?.touched) && errorPresent('email') || isEmailTaken()">
+          ! Please enter a valid Email which is not already used
         </span>
       </fieldset>
       <fieldset>

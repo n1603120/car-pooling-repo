@@ -12,6 +12,7 @@ import {PeopleService} from "../services/person.service";
   styleUrls: ['./create-account.component.css']
 })
 export class CreateAccountComponent implements OnInit {
+  private people: Person[] = [];
   accountForm: FormGroup;
   submitted: boolean = false;
   private dataError: ValidationErrors | null | undefined;
@@ -28,6 +29,7 @@ export class CreateAccountComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    this.fetchAllPeople();
   }
 
   onSubmit(): void {
@@ -56,24 +58,43 @@ export class CreateAccountComponent implements OnInit {
     return this.accountForm.get('password')?.value === this.accountForm.get('confirmPassword')?.value;
   }
 
-  submitAccount() : any {
-    let firstName: string = "";
-    let lastName = "";
-    let email = "";
-    let phoneNo = "";
-    let postcode = "";
-    let password = "";
+  isEmailTaken(): boolean{
+    if(this.submitted || this.accountForm.get('email')?.touched){
+      const personFound = this.people.find((p: Person) => p.email === this.accountForm.get('email')?.value);
+      if(personFound === undefined){
+        // @ts-ignore
+        document.getElementById('email').style.border = '1pt solid black';
+        return false;
+      }else {
+        // @ts-ignore
+        document.getElementById('email').style.border = '2pt solid red';
+        return true;
+      }
+    }
+    return false;
+  }
 
-    firstName = this.accountForm.get('fname')?.value;
-    lastName = this.accountForm.get('lname')?.value;
-    email = this.accountForm.get('email')?.value;
-    phoneNo = this.accountForm.get('phoneNum')?.value;
-    postcode = this.accountForm.get('postcode')?.value;
-    password = this.accountForm.get('password')?.value;
+  submitAccount(){
+    const firstName = this.accountForm.get('fname')?.value;
+    const lastName = this.accountForm.get('lname')?.value;
+    const email = this.accountForm.get('email')?.value;
+    const phoneNo = this.accountForm.get('phoneNum')?.value;
+    const postcode = this.accountForm.get('postcode')?.value;
+    const password = this.accountForm.get('password')?.value;
 
     const account = new Person(firstName, lastName, email, phoneNo, postcode, password);
     console.log(account);
-    this.peopleService.addPerson(account);
+    this.peopleService.addPerson(account).subscribe((data) => {});
   }
-
+  private async fetchAllPeople() {
+    await this.delay(1000);
+    this.peopleService
+      .getAllPeople()
+      .subscribe(
+        people => people.forEach(p => this.people.push(p))
+      )
+  }
+  private delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
 }

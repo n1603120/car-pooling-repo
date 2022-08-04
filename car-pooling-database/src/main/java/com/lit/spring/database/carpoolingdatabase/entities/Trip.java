@@ -1,9 +1,6 @@
 package com.lit.spring.database.carpoolingdatabase.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
@@ -21,6 +18,7 @@ public class Trip implements Serializable {
 
   @Id
   @Column(name = "tripid")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   public int getId() {
     return id;
   }

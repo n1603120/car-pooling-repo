@@ -4,6 +4,7 @@ import {createRequiredRegexValidator} from "../utility/validators";
 import {Router} from "@angular/router";
 import {Person} from "../model/person";
 import {PeopleService} from "../services/person.service";
+import {Car} from "../model/car";
 
 @Component({
   selector: 'app-edit-account',
@@ -15,6 +16,7 @@ export class EditAccountComponent implements OnInit {
   submitted: boolean = false;
   private dataError: ValidationErrors | null | undefined;
   person!: Person;
+  private people: Person[] = [];
 
   constructor(private formBuilder: FormBuilder, private readonly router: Router, private peopleService: PeopleService) {
     this.editForm = formBuilder.group({
@@ -28,19 +30,20 @@ export class EditAccountComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    this.fetchAllPeople();
     // get current person logged in
     this.person = this.peopleService.currentPerson;
     this.updateFromModel(this.person);
   }
   private updateToModel(): void {
     const modelData = this.editForm.value;
-    this.person.firstName = modelData.firstName;
+    this.person.firstName = modelData.fname;
     this.person.lastName = modelData.lname;
     this.person.email = modelData.email;
     this.person.phoneNumber = modelData.phoneNum;
     this.person.postcode = modelData.postcode;
     this.person.personPassword = modelData.password;
-    this.peopleService.update(this.person);
+    this.updatePerson(this.person);
   }
 
   private updateFromModel(person: Person): void {
@@ -79,5 +82,39 @@ export class EditAccountComponent implements OnInit {
   }
   passwordsMatch(): boolean {
     return this.editForm.get('password')?.value === this.editForm.get('confirmPassword')?.value;
+  }
+  isEmailTaken(): boolean{
+    if(this.submitted || this.editForm.get('email')?.touched){
+      const personFound = this.people.find((p: Person) => p.email === this.editForm.get('email')?.value);
+      if(personFound === undefined || personFound.email === this.person.email){
+        // @ts-ignore
+        document.getElementById('email').style.border = '1pt solid black';
+        return false;
+      }else {
+        // @ts-ignore
+        document.getElementById('email').style.border = '2pt solid red';
+        return true;
+      }
+    }
+    return false;
+  }
+  private async fetchAllPeople() {
+    await this.delay(1000);
+    this.peopleService
+      .getAllPeople()
+      .subscribe(
+        people => people.forEach(p => this.people.push(p) && console.log(p))
+      )
+  }
+  private delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
+
+  updatePerson(personToBeUpdated: Person) {
+    this.peopleService
+      .update(personToBeUpdated)
+      .subscribe((data) => {
+        }
+      );
   }
 }

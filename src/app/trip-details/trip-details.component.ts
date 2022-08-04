@@ -3,6 +3,8 @@ import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from 
 import {createRequiredRegexValidator} from "../utility/validators";
 import {TripService} from "../services/trip.service";
 import {Trip} from "../model/trip";
+import {PeopleService} from "../services/person.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -19,15 +21,16 @@ export class TripDetailsComponent implements OnInit {
   private dataError: ValidationErrors | null | undefined;
 
 
-  onSubmit(): boolean {
+  onSubmit(){
     this.submitted = true;
     this.checkTimeValid();
-    if(!this.tripForm.valid || this.timeValid) {
-      return false;
+    if(!this.tripForm.valid || !this.timeValid){
+      return;
     }
-    return true;
+    this.submitTrip();
+    this.moveToCorrectPage();
   }
-  constructor(private formBuilder: FormBuilder, private tripService: TripService) {
+  constructor(private formBuilder: FormBuilder, private readonly router: Router, private tripService: TripService, private peopleService: PeopleService) {
     this.tripForm = formBuilder.group({
       tripPostcode: ['', createRequiredRegexValidator(/[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? ?[0-9][ABD-HJLNP-UW-Zabd-hjlnp-uw-z]{2}/)],
       tripTown:[],
@@ -37,6 +40,7 @@ export class TripDetailsComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    console.log(this.peopleService.driverStatus);
   }
   getCurrentDate():string{
     return (new Date()).toISOString().substring(0,10);
@@ -78,44 +82,27 @@ export class TripDetailsComponent implements OnInit {
     }
   }
 
-  submitTrip() : any {
-    let postcode: string = "";
-    let destination = "";
-    let date = "";
-    let time = "";
+  private submitTrip(){
+    const postcode = this.tripForm.get('tripPostcode')?.value;
+    const town = this.tripForm.get('tripTown')?.value;
+    const destination = this.tripForm.get('tripDestination')?.value;
+    const date = this.tripForm.get('tripDate')?.value;
+    const time = this.tripForm.get('tripTime')?.value;
 
+    const currentTrip = new Trip(1,postcode,town, destination, date, time,1)
+    console.log(currentTrip);
+    this.tripService.addTrip(currentTrip).subscribe((data) => {});
+  }
 
-
-    const input = document.getElementById('tripPostcode') as HTMLInputElement | null;
-    if(input?.value){
-      postcode = input.value;
+  private moveToCorrectPage() {
+    if(this.peopleService.driverStatus){
+      // driver
+      this.router.navigate(['/driver-summary']);
+    }else{
+      // passenger
+      this.router.navigate(['/passenger-summary']);
     }
-
-    const input1 = document.getElementById('tripTown') as HTMLInputElement | null;
-    if(input1?.value){
-      this.town = input1.value;
-    }
-
-    const input2 = document.getElementById('tripDestination') as HTMLInputElement | null;
-    if(input2?.value){
-      destination = input2.value;
-    }
-
-    const input3 = document.getElementById('tripDate') as HTMLInputElement | null;
-    if(input3?.value){
-      date = input3.value;
-    }
-
-    const input4 = document.getElementById('tripTime') as HTMLInputElement | null;
-    if(input4?.value){
-      time = input4.value;
-    }
-
-    //const currentTrip = new Trip(postcode,this.town, destination, date, time)
-    //console.log(currentTrip);
-    //this.tripService.addTrip(currentTrip);
-}
-
+  }
 
   towns: string[] = ["Acton",
     " Aghacommon",
@@ -614,4 +601,5 @@ export class TripDetailsComponent implements OnInit {
     " Whiterock",
     " Whitehouse",
     " Whitehouse",];
+
 }
