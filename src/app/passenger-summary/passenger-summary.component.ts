@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {TripService} from "../services/trip.service";
 
 @Component({
   selector: 'app-passenger-summary',
@@ -29,16 +30,26 @@ export class PassengerSummaryComponent implements OnInit {
   onClick() {
     // console.log(this.drivers)
   }
-  constructor(private http:HttpClient) { }
+  // constructor(private http:HttpClient) { }
+  //
+  //
+  // ngOnInit(): void {
+  //
+  //   let response = this.http.get("http://localhost:8080/people")
+  //   response.subscribe((data)=>this.trips=data);
+  //
+  //
+  //
+  // }
+  constructor(private http:HttpClient, public tripService: TripService) { }
 
 
   ngOnInit(): void {
 
     let response = this.http.get("http://localhost:8080/people")
     response.subscribe((data)=>this.trips=data);
-
-
-
+    console.log(this.tripService.currentTrip)
+    // this.tripService.currentTrip
   }
 
 }
