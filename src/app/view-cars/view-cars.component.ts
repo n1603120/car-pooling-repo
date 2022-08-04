@@ -27,9 +27,12 @@ export class ViewCarsComponent implements OnInit {
   }
 
   private fetchAllOwnedCars() {
-    if(this.ownedCarArray.length != 0){
-      this.ownedCarArray.forEach(car => this.ownedCarArray.pop());
-    }
+    console.log(this.ownedCarArray);
+    console.log(this.ownedCarArray.length);
+    //if(this.ownedCarArray.length != 0){
+     // this.ownedCarArray.forEach(car => this.ownedCarArray.pop());
+      this.ownedCarArray.splice(0,this.ownedCarArray.length)
+   // }
     this.carService
       .getCarsByOwnerId(this.peopleService.currentPerson.id)
       .subscribe(
@@ -76,7 +79,10 @@ export class ViewCarsComponent implements OnInit {
   updateCar(carToBeUpdated: Car) {
     this.carService
       .update(carToBeUpdated)
-      .subscribe();
+      .subscribe((data) => {
+          //this.fetchAllOwnedCars();
+        }
+      );
   }
 
   // set active to not active and update new car and old car

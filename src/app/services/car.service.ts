@@ -32,7 +32,9 @@ export class CarService{
   }
 
   update(car: Car): Observable<string> {
-    return this.http.put(this.baseUrl, car, {
+    console.log("UPDATE");
+    console.log(car);
+    return this.http.put(this.baseUrl + car.id, car, {
       headers: new HttpHeaders({'Content-Type': 'application/json'}),
       responseType: 'text'
     });

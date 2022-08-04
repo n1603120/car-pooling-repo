@@ -48,6 +48,7 @@ export class DriverDetailsComponent implements OnInit {
     if(!this.driverForm.valid) {
       return;
     }
+    this.submitDriver();
     console.log("Valid");
   }
   constructor(private formBuilder: FormBuilder, private carService: CarService, private peopleService: PeopleService ) {

@@ -3,6 +3,7 @@ package com.lit.spring.database.carpoolingdatabase.services;
 import com.lit.spring.database.carpoolingdatabase.CarRepository;
 import com.lit.spring.database.carpoolingdatabase.entities.Car;
 import com.lit.spring.database.carpoolingdatabase.entities.Person;
+import com.lit.spring.database.carpoolingdatabase.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -76,18 +77,25 @@ public class CarService {
     return new ResponseEntity<String>("POST Car Response Ok", HttpStatus.OK);
   }
 
-  @PutMapping(consumes = "application/json")
-  public ResponseEntity<String> updateCar(@RequestBody Car newCar) {
-    if(cars.isEmpty()){
-      carRepository.findAll().forEach(cars :: add);
-    }
-    if(cars.stream().noneMatch(car -> car.getId() == newCar.getId())) {
-      return badRequest()
-        .body("Update stopped, No car has the ID: " + newCar.getId());
-    }
-    carRepository.save(newCar);
+  @PutMapping(value = "/{id}", consumes = "application/json")
+  public ResponseEntity<String> updateCar(@PathVariable int id, @RequestBody Car newCar) {
+    Car updateCar = carRepository.findById(id)
+      .orElseThrow(() -> new ResourceNotFoundException("Car does not exist with id: " + id));
+    updateCar.setActiveCar(newCar.isActiveCar());
+
+    carRepository.save(updateCar);
     cars.clear();
     return new ResponseEntity<String>("PUT Car Response Ok", HttpStatus.OK);
+//    if(cars.isEmpty()){
+//      carRepository.findAll().forEach(cars :: add);
+//    }
+//    if(cars.stream().noneMatch(car -> car.getId() == newCar.getId())) {
+//      return badRequest()
+//        .body("Update stopped, No car has the ID: " + newCar.getId());
+//    }
+//    carRepository.save(newCar);
+//    cars.clear();
+//    return new ResponseEntity<String>("PUT Car Response Ok", HttpStatus.OK);
   }
 
   @DeleteMapping(value = "/{id}")
