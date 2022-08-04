@@ -71,6 +71,53 @@
 .button:active {
   opacity: .5;
 }
+.button1 {
+  background: #ff0000;
+  border: 1px solid #04AA6D;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 50px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.button:hover,
+.button:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #04AA6D;
+}
+
+.button1:active {
+  opacity: .5;
+}
+.button1:hover,
+.button1:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #04AA6D;
+}
+
+.button1:active {
+  opacity: .5;
+}
+
+
 
 
 

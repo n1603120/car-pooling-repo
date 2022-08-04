@@ -8,6 +8,7 @@ import {Trip} from "../model/trip";
 @Injectable()
 export class TripService{
   private readonly baseUrl: string;
+  currentTrip: any;
 
   constructor(private http: HttpClient) {
     this.baseUrl = environment.baseServerUrl + '/trips/';
