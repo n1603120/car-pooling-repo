@@ -50,12 +50,8 @@ public class TripService {
     if(trips.isEmpty()){
       tripRepository.findAll().forEach(trips :: add);
     }
-    if(trips.stream().anyMatch(trip -> trip.getId() == newTrip.getId())) {
-      return badRequest()
-        .body("Already a trip with id: " + newTrip.getId());
-    }
-    trips.add(newTrip);
     tripRepository.save(newTrip);
+    trips.add(newTrip);
     return new ResponseEntity<String>("POST Trip Response Ok", HttpStatus.OK);
   }
 

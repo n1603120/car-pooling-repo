@@ -9,6 +9,9 @@ import {Trip} from "../model/trip";
 export class TripService{
   private readonly baseUrl: string;
   currentTrip: any;
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json'
+  });
 
   constructor(private http: HttpClient) {
     this.baseUrl = environment.baseServerUrl + '/trips/';
@@ -31,11 +34,8 @@ export class TripService{
     return this.http.delete(this.baseUrl + id, {responseType: 'text'});
   }
 
-  addTrip(trip: Trip): Observable<string> {
-    return this.http.post(this.baseUrl , trip,{
-      headers: new HttpHeaders({'Content-Type': 'application/json'}),
-      responseType: 'text'
-    });
+  addTrip(trip: Trip): Observable<any> {
+    return this.http.post(this.baseUrl, JSON.stringify(trip),{'headers':this.headers})
   }
 
 

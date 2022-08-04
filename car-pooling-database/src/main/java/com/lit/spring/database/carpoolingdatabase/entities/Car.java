@@ -3,10 +3,7 @@ package com.lit.spring.database.carpoolingdatabase.entities;
 import com.lit.spring.database.carpoolingdatabase.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
@@ -26,6 +23,7 @@ public class Car implements Serializable {
 
   @Id
   @Column(name = "carid")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   public int getId() {
     return id;
   }

@@ -1,7 +1,9 @@
 package com.lit.spring.database.carpoolingdatabase.services;
 
 import com.lit.spring.database.carpoolingdatabase.PersonRepository;
+import com.lit.spring.database.carpoolingdatabase.entities.Car;
 import com.lit.spring.database.carpoolingdatabase.entities.Person;
+import com.lit.spring.database.carpoolingdatabase.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -47,25 +50,27 @@ public class PersonService {
     if(people.isEmpty()){
       personRepository.findAll().forEach(people :: add);
     }
-    if(people.stream().anyMatch(person -> person.getId() == newPerson.getId())) {
-      return badRequest()
-        .body("Already a person with id: " + newPerson.getId());
-    }
-    people.add(newPerson);
+//    if(people.stream().anyMatch(person -> Objects.equals(person.getEmail(), newPerson.getEmail()))) {
+//      return badRequest()
+//        .body("Already a person with email: " + newPerson.getEmail());
+//    }
     personRepository.save(newPerson);
+    people.add(newPerson);
     return new ResponseEntity<String>("POST Person Response Ok", HttpStatus.OK);
   }
 
-  @PutMapping(consumes = "application/json")
-  public ResponseEntity<String> updatePerson(@RequestBody Person newPerson) {
-    if(people.isEmpty()){
-      personRepository.findAll().forEach(people :: add);
-    }
-    if(people.stream().noneMatch(person -> person.getId() == newPerson.getId())) {
-      return badRequest()
-        .body("Update stopped, No person has the ID: " + newPerson.getId());
-    }
-    personRepository.save(newPerson);
+  @PutMapping(value = "/{id}", consumes = "application/json")
+  public ResponseEntity<String> updatePerson(@PathVariable int id, @RequestBody Person updatedPerson) {
+    Person personFound = personRepository.findById(id)
+      .orElseThrow(() -> new ResourceNotFoundException("Person does not exist with id: " + id));
+    personFound.setFirstName(updatedPerson.getFirstName());
+    personFound.setLastName(updatedPerson.getLastName());
+    personFound.setEmail(updatedPerson.getEmail());
+    personFound.setPhoneNumber(updatedPerson.getPhoneNumber());
+    personFound.setPostcode(updatedPerson.getPostcode());
+    personFound.setPersonPassword(updatedPerson.getPersonPassword());
+
+    personRepository.save(personFound);
     people.clear();
     return new ResponseEntity<String>("PUT Person Response Ok", HttpStatus.OK);
   }

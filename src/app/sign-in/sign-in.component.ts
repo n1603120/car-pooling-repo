@@ -6,7 +6,7 @@ import {createRequiredRegexValidator} from "../utility/validators";
 import {PeopleService} from "../services/person.service";
 import {Person} from "../model/person";
 import {Car} from "../model/car";
-
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-sign-in',
@@ -64,12 +64,17 @@ export class SignInComponent implements OnInit {
     this.checkUserAuth();
   }
 
-  private fetchAllPeople() {
+  private async fetchAllPeople() {
+    await this.delay(1000);
     this.peopleService
       .getAllPeople()
       .subscribe(
-        people => people.forEach( p => this.people.push(p))
+        people => people.forEach(p => this.people.push(p) && console.log(p))
       )
   }
+  private delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
+
 
 }

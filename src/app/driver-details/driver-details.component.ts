@@ -114,31 +114,15 @@ export class DriverDetailsComponent implements OnInit {
 
 
   submitDriver() : any {
-    let carMake: string = "";
-    let registration = "";
-    let noOfPassengers = "";
+    const carMake = this.driverForm.get('driverCarMake')?.value;
+    const registration = this.driverForm.get('driverReg')?.value;
+    const noOfPassengers = this.driverForm.get('driverNoOfPassengers')?.value;
+    const preferredOption = this.driverForm.get('driverPreferredOption')?.value;
+    const smokingOption = this.driverForm.get('driverSmokingOption')?.value;
+    const accessibility = this.driverForm.get('driverAccessibility')?.value;
+    const pickUpAddress = this.driverForm.get('driverPickUp')?.value;
 
-    const input = document.getElementById('driverCarMake') as HTMLInputElement | null;
-    if(input?.value){
-      carMake = input.value;
-    }
-
-    const input1 = document.getElementById('driverReg') as HTMLInputElement | null;
-    if(input1?.value){
-      registration = input1.value;
-    }
-
-    const input2 = document.getElementById('driverNoOfPassengers') as HTMLInputElement | null;
-    if(input2?.value){
-      noOfPassengers = input2.value;
-    }
-
-    const input6 = document.getElementById('pickupAddress') as HTMLInputElement | null;
-    if(input6?.value) {
-      this.address = input6.value;
-    }
-
-    const currentDriver = new Car(0, carMake,registration, noOfPassengers ,this.preferredContact, this.smokingOption, this.accessibility, this.address, true)
+    const currentDriver = new Car(0, carMake,registration, noOfPassengers, preferredOption, smokingOption, accessibility, pickUpAddress, true)
     console.log(currentDriver);
     this.carService.addCar(currentDriver);
   }

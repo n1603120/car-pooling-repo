@@ -10,7 +10,12 @@ import {Car} from "../model/car";
 export class PeopleService{
   private readonly baseUrl: string;
   currentPerson!: Person;
+  driverStatus!: Boolean;
   people!: Person[] ;
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json'
+  });
+
 
   constructor(private http: HttpClient) {
     this.baseUrl = environment.baseServerUrl + '/people/';
@@ -29,8 +34,9 @@ export class PeopleService{
   }
 
   update(person: Person): Observable<string> {
-    this.currentPerson = person;
-    return this.http.put(this.baseUrl, person, {
+    console.log("UPDATE");
+    console.log(person);
+    return this.http.put(this.baseUrl + person.id, person, {
       headers: new HttpHeaders({'Content-Type': 'application/json'}),
       responseType: 'text'
     });
@@ -40,12 +46,8 @@ export class PeopleService{
     return !!this.currentPerson;
   }
 
-  addPerson(person: Person): Observable<string> {
-    console.log(person);
-    return this.http.post(this.baseUrl , person,{
-      headers: new HttpHeaders({'Content-Type': 'application/json'}),
-      responseType: 'text'
-    });
+  addPerson(person: Person): Observable<any> {
+    return this.http.post(this.baseUrl, JSON.stringify(person),{'headers':this.headers})
   }
 
 }

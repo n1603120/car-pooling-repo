@@ -30,4 +30,7 @@ export class HomeComponent implements OnInit{
     this.person = this.peopleService.currentPerson;
   }
 
+  setDriverStatus(option: string) {
+    this.peopleService.driverStatus = option === "Driver";
+  }
 }

@@ -72,6 +72,7 @@ export class ViewCarsComponent implements OnInit {
 
 
   fetchActiveCar(){
+    console.log(10);
     this.carService.getActiveCar(this.peopleService.currentPerson.id)
       .subscribe(car => this.currentlyActiveCar = car);
   }
