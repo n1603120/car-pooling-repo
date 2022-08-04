@@ -1,19 +1,30 @@
 import {Car} from "./car";
 
 export class Trip {
-  postcode: string = "";
-  town: string = "";
-  destination: string ="";
-  date: string = "";
-  time: string = "";
-  car: Car = new Car(0,0, "", "", "","", "", "","",false);
+  // postcode: string = "";
+  // town: string = "";
+  // destination: string ="";
+  // date: string = "";
+  // time: string = "";
+  // car: Car = new Car(0, "", "", "","", "", "","",false);
+  id: number;
+  personId: number;
+  postcode: string;
+  town: string;
+  destination: string;
+  date: string;
+  time: string;
+  carId: number;
 
-constructor(postcode: string, town:string, destination: string,date: string,time: string ) {
+constructor(personId: number, postcode: string, town:string, destination: string,date: string,time: string, carId: number ) {
+  this.id = 0;
+  this.personId = personId;
   this.postcode = postcode;
   this.town = town;
   this.destination = destination;
   this.date = date;
   this.time = time;
+  this.carId = carId;
 }
 
 }

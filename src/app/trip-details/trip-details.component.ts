@@ -111,9 +111,9 @@ export class TripDetailsComponent implements OnInit {
       time = input4.value;
     }
 
-    const currentTrip = new Trip(postcode,this.town, destination, date, time)
-    console.log(currentTrip);
-    this.tripService.addTrip(currentTrip);
+    //const currentTrip = new Trip(postcode,this.town, destination, date, time)
+    //console.log(currentTrip);
+    //this.tripService.addTrip(currentTrip);
 }
 
 

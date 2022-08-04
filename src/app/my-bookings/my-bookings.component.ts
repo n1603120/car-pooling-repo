@@ -18,7 +18,7 @@ export class MyBookingsComponent implements OnInit {
   changeCurrentlyActiveText: string = "Change To Currently Active Bookings";
   toggleText: string = this.changeDisplayAllText;
 
-  carObj = new Car(1, 1,"Ford",
+  carObj = new Car( 1,"Ford",
     "MFZ 6342",
     "3",
     "Email",
@@ -31,20 +31,24 @@ export class MyBookingsComponent implements OnInit {
 
   allBookings: Trip[] = [
     {
+      id: 1,
+      personId: 1,
       postcode: "bt51",
       town: "Carryduff",
       destination: "belfast",
       date: "2020-07-22",
       time: "18:30",
-      car: this.carObj
+      carId: 1
     },
     {
-      postcode: "bt54",
-      town: "Belfast",
-      destination: "dublin",
-      date: "2044-08-23",
-      time: "14:30",
-      car: this.carObj
+      id: 2,
+      personId: 2,
+      postcode: "bt51",
+      town: "Carryduff",
+      destination: "Dublin",
+      date: "2020-07-22",
+      time: "18:30",
+      carId: 2
     }
   ]
 

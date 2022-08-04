@@ -41,6 +41,7 @@ export class PeopleService{
   }
 
   addPerson(person: Person): Observable<string> {
+    console.log(person);
     return this.http.post(this.baseUrl , person,{
       headers: new HttpHeaders({'Content-Type': 'application/json'}),
       responseType: 'text'

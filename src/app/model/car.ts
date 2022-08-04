@@ -12,8 +12,8 @@ export class Car {
   preferredPickUp: string;
   activeCar: boolean;
 
-  constructor(Id: number, OwnerId: number, Make: string, Registration: string,  NumOfSeats: string, PreferredContact: string, SmokingOption: string, Accessibility: string, PreferredPickUp: string, ActiveCar: boolean ) {
-    this.id = Id;
+  constructor(OwnerId: number, Make: string, Registration: string,  NumOfSeats: string, PreferredContact: string, SmokingOption: string, Accessibility: string, PreferredPickUp: string, ActiveCar: boolean ) {
+    this.id = 0;
     this.ownerId = OwnerId;
     this.make = Make;
     this.registration = Registration;

@@ -64,36 +64,6 @@ export class CreateAccountComponent implements OnInit {
     let postcode = "";
     let password = "";
 
-    // const input = document.getElementById('fname') as HTMLInputElement | null;
-    // if(input?.value){
-    //   firstName = input.value;
-    // }
-    //
-    // const input1 = document.getElementById('lname') as HTMLInputElement | null;
-    // if(input1?.value){
-    //   lastName = input1.value;
-    // }
-    //
-    // const input2 = document.getElementById('email') as HTMLInputElement | null;
-    // if(input2?.value){
-    //   email = input2.value;
-    // }
-    //
-    // const input3 = document.getElementById('phoneNum') as HTMLInputElement | null;
-    // if(input3?.value) {
-    //   phoneNo = input3.value;
-    // }
-    //
-    // const input4 = document.getElementById('postcode') as HTMLInputElement | null;
-    // if(input4?.value) {
-    //   postcode = input4.value;
-    // }
-    //
-    // const input5 = document.getElementById('password') as HTMLInputElement | null;
-    // if(input5?.value) {
-    //   password = input5.value;
-    // }
-
     firstName = this.accountForm.get('fname')?.value;
     lastName = this.accountForm.get('lname')?.value;
     email = this.accountForm.get('email')?.value;
@@ -101,7 +71,7 @@ export class CreateAccountComponent implements OnInit {
     postcode = this.accountForm.get('postcode')?.value;
     password = this.accountForm.get('password')?.value;
 
-    const account = new Person(6, firstName, lastName, email, phoneNo, postcode, password);
+    const account = new Person(firstName, lastName, email, phoneNo, postcode, password);
     console.log(account);
     this.peopleService.addPerson(account);
   }

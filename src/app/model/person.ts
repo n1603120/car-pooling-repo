@@ -26,8 +26,8 @@ export class Person{
   postcode: string;
   personPassword: string;
 
-  constructor(Id: number, FirstName: string, LastName: string,  Email: string, PhoneNumber: string, Postcode: string, PersonPassword: string) {
-    this.id = Id;
+  constructor(FirstName: string, LastName: string,  Email: string, PhoneNumber: string, Postcode: string, PersonPassword: string) {
+    this.id = 0;
     this.firstName = FirstName;
     this.lastName = LastName;
     this.email = Email;
