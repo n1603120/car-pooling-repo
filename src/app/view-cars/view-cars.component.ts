@@ -30,10 +30,8 @@ export class ViewCarsComponent implements OnInit {
   private fetchAllOwnedCars() {
     console.log(this.ownedCarArray);
     console.log(this.ownedCarArray.length);
-    //if(this.ownedCarArray.length != 0){
-     // this.ownedCarArray.forEach(car => this.ownedCarArray.pop());
-      this.ownedCarArray.splice(0,this.ownedCarArray.length);
-   // }
+    this.ownedCarArray.splice(0,this.ownedCarArray.length);
+
     this.carService
       .getCarsByOwnerId(this.peopleService.currentPerson.id)
       .subscribe(

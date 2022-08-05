@@ -20,6 +20,7 @@ export class TripDetailsComponent implements OnInit {
   submitted: boolean = false;
   timeValid: boolean = false;
   town: string = "";
+  driverStatus: boolean = false;
   private dataError: ValidationErrors | null | undefined;
   currentlyActiveCar!: Car;
 
@@ -30,7 +31,8 @@ export class TripDetailsComponent implements OnInit {
       return;
     }
     this.submitTrip();
-    this.moveToCorrectPage();
+    this.router.navigate(['/passenger-summary']);
+    //this.moveToCorrectPage();
   }
   constructor(private formBuilder: FormBuilder, private readonly router: Router, private tripService: TripService, private peopleService: PeopleService, private carService: CarService) {
     this.tripForm = formBuilder.group({
@@ -43,6 +45,7 @@ export class TripDetailsComponent implements OnInit {
   }
   ngOnInit(): void {
     this.fetchActiveCar();
+    this.fetchDriverStatus();
   }
   getCurrentDate():string{
     return (new Date()).toISOString().substring(0,10);
@@ -90,12 +93,14 @@ export class TripDetailsComponent implements OnInit {
     const destination = this.tripForm.get('tripDestination')?.value;
     const date = this.tripForm.get('tripDate')?.value;
     const time = this.tripForm.get('tripTime')?.value;
-    if(this.peopleService.driverStatus){
+    if(this.driverStatus){
       const currentTrip = new Trip(this.peopleService.currentPerson.id,postcode,town, destination, date, time,this.currentlyActiveCar.id);
       this.tripService.addTrip(currentTrip).subscribe((data) => {});
+      this.tripService.currentTrip = currentTrip;
     }else{
       const currentTrip = new Trip(this.peopleService.currentPerson.id,postcode,town, destination, date, time,0);
       this.tripService.addTrip(currentTrip).subscribe((data) => {});
+      this.tripService.currentTrip = currentTrip;
     }
   }
 
@@ -103,7 +108,7 @@ export class TripDetailsComponent implements OnInit {
     console.log(1);
     if(this.peopleService.driverStatus){
       // driver
-      this.router.navigate(['/driver-summary']);
+      this.router.navigate(['/passenger-summary']);
     }else{
       // passenger
       this.router.navigate(['/passenger-summary']);
@@ -113,6 +118,10 @@ export class TripDetailsComponent implements OnInit {
   private fetchActiveCar(){
     this.carService.getActiveCar(this.peopleService.currentPerson.id)
       .subscribe(car => this.currentlyActiveCar = car);
+  }
+
+  private fetchDriverStatus() {
+    this.driverStatus = this.peopleService.driverStatus;
   }
 
   towns: string[] = ["Acton",
