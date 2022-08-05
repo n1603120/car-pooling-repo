@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {TripService} from "../services/trip.service";
+import {Car} from "../model/car";
 
 @Component({
   selector: 'app-passenger-summary',
@@ -9,7 +10,6 @@ import {TripService} from "../services/trip.service";
 })
 export class PassengerSummaryComponent implements OnInit {
   pageTitle: string = "Summary Screen";
-
 
   trips:any;
   // drivers: any[] = [

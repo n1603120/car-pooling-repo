@@ -5,13 +5,13 @@
 </div>
 <div class = "test2">
   <div class='table-responsive'>
-    <table class='content-table' *ngIf="allBookings.length">
+    <table class='content-table' *ngIf="allUserTrips.length">
       <thead>
       <tr class = "buttonRow">
         <td>
           <button id = "backBut" routerLink="/passenger-results"> Back </button>
         </td>
-        <td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td>
         <td colspan = "2">
           <button id = "toggleBut" (click) = "toggleTable()">{{toggleText}}</button>
         </td>
@@ -26,7 +26,7 @@
       </tr>
       </thead>
       <tbody>
-      <ng-container *ngFor="let booking of allBookings" >
+      <ng-container *ngFor="let booking of allUserTrips" >
         <tr class= "active-row" *ngIf="checkBooking(booking)">
             <td>
               {{ booking.date.substring(8,10) +"-"+ booking.date.substring(5,7) +"-"+ booking.date.substring(0,4)}}

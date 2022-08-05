@@ -10,7 +10,7 @@ import {Car} from "../model/car";
 export class PeopleService{
   private readonly baseUrl: string;
   currentPerson!: Person;
-  driverStatus!: Boolean;
+  driverStatus!: boolean;
   people!: Person[] ;
   headers = new HttpHeaders({
     'Content-Type': 'application/json'

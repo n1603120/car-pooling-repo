@@ -4,11 +4,12 @@ import {Observable} from 'rxjs';
 import {environment} from "../../environments/environment";
 import {Person} from "../model/person";
 import {Trip} from "../model/trip";
+import {Car} from "../model/car";
 
 @Injectable()
 export class TripService{
   private readonly baseUrl: string;
-  currentTrip: any;
+  currentTrip!: Trip;
   headers = new HttpHeaders({
     'Content-Type': 'application/json'
   });
@@ -38,5 +39,7 @@ export class TripService{
     return this.http.post(this.baseUrl, JSON.stringify(trip),{'headers':this.headers})
   }
 
-
+  getTripsByOwnerId(id: number): Observable<Trip[]>{
+    return this.http.get<Trip[]>(this.baseUrl + 'byPersonId/' + id);
+  }
 }

@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Trip} from "../model/trip";
 import {Car} from "../model/car";
 import {formatDate} from "@angular/common";
+import {TripService} from "../services/trip.service";
+import {PeopleService} from "../services/person.service";
 
 @Component({
   selector: 'app-my-bookings',
@@ -10,54 +12,20 @@ import {formatDate} from "@angular/common";
 })
 export class MyBookingsComponent implements OnInit {
   pageTitle: string = "My Bookings";
-  showAllBookings: boolean | undefined;
   currentlyActiveText: string = "Currently Active Bookings";
   displayAllText: string = "All Bookings";
   toggleTitle: string = this.currentlyActiveText;
   changeDisplayAllText: string = "Change To Display All Bookings";
   changeCurrentlyActiveText: string = "Change To Currently Active Bookings";
   toggleText: string = this.changeDisplayAllText;
+  showAllBookings: boolean | undefined;
+  allUserTrips: Trip[] = [];
 
-  carObj = new Car( 1,"Ford",
-    "MFZ 6342",
-    "3",
-    "Email",
-    "yes",
-    "Yes",
-    "Tesco",
-    true
-  );
-
-
-  allBookings: Trip[] = [
-    {
-      id: 1,
-      personId: 1,
-      postcode: "bt51",
-      town: "Carryduff",
-      destination: "belfast",
-      date: "2020-07-22",
-      time: "18:30",
-      carId: 1
-    },
-    {
-      id: 2,
-      personId: 2,
-      postcode: "bt51",
-      town: "Carryduff",
-      destination: "Dublin",
-      date: "2020-07-22",
-      time: "18:30",
-      carId: 2
-    }
-  ]
-
-  onClick() {
-    console.log(this.allBookings)
-  }
-  constructor() { }
+  constructor(private tripService: TripService, private peopleService: PeopleService) { }
 
   ngOnInit(): void {
+    this.fetchAllTrips();
+    console.log(this.allUserTrips);
   }
   getCurrentDate():string{
     return (new Date()).toISOString().substring(0,10);
@@ -95,5 +63,13 @@ export class MyBookingsComponent implements OnInit {
       this.toggleText = this.changeCurrentlyActiveText;
       this.toggleTitle = this.displayAllText;
     }
+  }
+
+  private fetchAllTrips() {
+    this.tripService
+      .getTripsByOwnerId(this.peopleService.currentPerson.id)
+      .subscribe(
+        trips => trips.forEach(trip => this.allUserTrips.push(trip))
+      )
   }
 }
