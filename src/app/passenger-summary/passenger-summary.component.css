@@ -36,7 +36,7 @@
   text-align: center;
 }
 
-.button {
+.confirmBut {
   background: #04AA6D;
   border: 1px solid #04AA6D;
   border-radius: 10px;
@@ -61,17 +61,17 @@
   vertical-align: middle;
 }
 
-.button:hover,
-.button:active {
+.confirmBut:hover,
+.confirmBut:active {
   background-color: initial;
   background-position: 0 0;
   color: #04AA6D;
 }
 
-.button:active {
+.confirmBut:active {
   opacity: .5;
 }
-.button1 {
+.backBut {
   background: #ff0000;
   border: 1px solid #04AA6D;
   border-radius: 10px;
@@ -96,24 +96,23 @@
   vertical-align: middle;
 }
 
-.button:hover,
-.button:active {
+.confirmBut:hover,
+.confirmBut:active {
   background-color: initial;
   background-position: 0 0;
   color: #04AA6D;
 }
 
-.button1:active {
+.backBut:active {
   opacity: .5;
 }
-.button1:hover,
-.button1:active {
-  background-color: initial;
-  background-position: 0 0;
-  color: #04AA6D;
+.backBut:hover,
+.backBut:active {
+  background: #a80404;
+  color: #FFFFFF;
 }
 
-.button1:active {
+.backBut:active {
   opacity: .5;
 }
 

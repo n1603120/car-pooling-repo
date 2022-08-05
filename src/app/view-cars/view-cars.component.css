@@ -46,41 +46,41 @@
   margin-top: 2%;
   margin-bottom: 2%;
 }
-button{
-  backface-visibility: hidden;
-  background-color: #405cf5;
-  border-radius: 6px;
-  border-width: 0;
-  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
-  font-size: 100%;
-  height: 44px;
-  line-height: 1.15;
-  margin: 12px 0 0;
-  outline: none;
-  overflow: hidden;
-  padding: 0 25px;
-  position: relative;
-  text-align: center;
-  text-transform: none;
-  transform: translateZ(0);
-  transition: all .2s,box-shadow .08s ease-in;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  width: 100%;
-}
+/*button{*/
+/*  backface-visibility: hidden;*/
+/*  background-color: #405cf5;*/
+/*  border-radius: 6px;*/
+/*  border-width: 0;*/
+/*  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;*/
+/*  box-sizing: border-box;*/
+/*  color: #fff;*/
+/*  cursor: pointer;*/
+/*  font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;*/
+/*  font-size: 100%;*/
+/*  height: 44px;*/
+/*  line-height: 1.15;*/
+/*  margin: 12px 0 0;*/
+/*  outline: none;*/
+/*  overflow: hidden;*/
+/*  padding: 0 25px;*/
+/*  position: relative;*/
+/*  text-align: center;*/
+/*  text-transform: none;*/
+/*  transform: translateZ(0);*/
+/*  transition: all .2s,box-shadow .08s ease-in;*/
+/*  user-select: none;*/
+/*  -webkit-user-select: none;*/
+/*  touch-action: manipulation;*/
+/*  width: 100%;*/
+/*}*/
 
-.button-9:disabled {
-  cursor: default;
-}
+/*.button-9:disabled {*/
+/*  cursor: default;*/
+/*}*/
 
-.button-9:focus {
-  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
-}
+/*.button-9:focus {*/
+/*  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;*/
+/*}*/
 
 input[type="radio"] {
   /* ...existing styles */
@@ -93,4 +93,82 @@ input[type="radio"]::before {
   height: 2em;
   border-radius: 50%;
   transition: 120ms transform ease-in-out;
+}
+#registerBut {
+  background: #04AA6D;
+  border: 1px solid #04AA6D;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 50px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+#registerBut:hover,
+#registerBut:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #04AA6D;
+}
+
+#registerBut:active {
+  opacity: .5;
+}
+#registerBut:hover,
+#registerBut:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #04AA6D;
+}
+#backBut {
+  background: #ff0000;
+  border: 1px solid #04AA6D;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 50px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+#backBut:active {
+  opacity: .5;
+}
+#backBut:hover,
+#backBut:active {
+  background: #a80404;
+  color: #FFFFFF;
+}
+
+#backBut:active {
+  opacity: .5;
 }

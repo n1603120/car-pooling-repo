@@ -5,6 +5,7 @@ import {CarService} from "../services/car.service";
 import {Person} from "../model/person";
 import {Car} from "../model/car";
 import {PeopleService} from "../services/person.service";
+import {Router} from "@angular/router";
 
 
 
@@ -20,12 +21,9 @@ export class DriverDetailsComponent implements OnInit {
   private dataError: ValidationErrors | null | undefined;
   allCars: Car[] = [];
   currentPerson!: Person;
+  private currentlyActiveCar!: Car;
 
   address: string = '';
-
-  carMake = '';
-  reg = '';
-  noOfPassengers = 0;
   preferredContact = '';
   smokingOption = '';
   accessibility = '';
@@ -41,17 +39,7 @@ export class DriverDetailsComponent implements OnInit {
     value:''
   }];
 
-
-  onSubmit(): void {
-    this.submitted = true;
-    console.log(this.driverForm);
-    if(!this.driverForm.valid) {
-      return;
-    }
-    this.submitDriver();
-    console.log("Valid");
-  }
-  constructor(private formBuilder: FormBuilder, private carService: CarService, private peopleService: PeopleService ) {
+  constructor(private formBuilder: FormBuilder,private readonly router: Router, private carService: CarService, private peopleService: PeopleService ) {
     this.driverForm = formBuilder.group({
       driverCarMake: ['', Validators.required],
       driverReg: ['', createRequiredRegexValidator(/\b[a-z]{2}([1-9]|0[2-9]|6[0-9]|1[0-9])[a-z]{3}|[A-HJ-NP-Y]\d{1,3}[A-Z]{3}|[A-Z]{3}\d{1,3}[A-HJ-NP-Y]|(?:[A-Z]{1,2}\d{1,4}|[A-Z]{3}\d{1,3})|(?:\d{1,4}[A-Z]{1,2}|\d{1,3}[A-Z]{3})\b/i)],
@@ -65,9 +53,18 @@ export class DriverDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.fetchAllCars();
     this.getCurrentPerson();
+    this.fetchActiveCar();
     console.log(this.allCars);
   }
 
+  onSubmit(): void {
+    this.submitted = true;
+    if(!this.driverForm.valid) {
+      return;
+    }
+    this.submitDriver();
+    this.router.navigate(['/trip-details']);
+  }
   isEmailCheck(): void{
     this.isEmail =! this.isEmail;
   }
@@ -85,7 +82,7 @@ export class DriverDetailsComponent implements OnInit {
     }
     else{
       // @ts-ignore
-      document.getElementById(driverData).style.border = '1pt solid black';
+      document.getElementById(driverData).style.border = '0pt';
       return false;
     }
   }
@@ -113,18 +110,32 @@ export class DriverDetailsComponent implements OnInit {
   }
 
 
-  submitDriver() : any {
+  private submitDriver() : any {
     const carMake = this.driverForm.get('driverCarMake')?.value;
     const registration = this.driverForm.get('driverReg')?.value;
     const noOfPassengers = this.driverForm.get('driverNoOfPassengers')?.value;
-    const preferredOption = this.driverForm.get('driverPreferredOption')?.value;
+    const preferredContact = this.driverForm.get('driverPreferredContact')?.value;
     const smokingOption = this.driverForm.get('driverSmokingOption')?.value;
     const accessibility = this.driverForm.get('driverAccessibility')?.value;
     const pickUpAddress = this.driverForm.get('driverPickUp')?.value;
-
-    const currentDriver = new Car(0, carMake,registration, noOfPassengers, preferredOption, smokingOption, accessibility, pickUpAddress, true)
-    console.log(currentDriver);
-    this.carService.addCar(currentDriver);
+    if(this.currentlyActiveCar){
+      this.currentlyActiveCar.activeCar = false;
+      this.removeCurrentlyActiveCar();
+    }
+    const currentDriver = new Car(this.peopleService.currentPerson.id, carMake,registration, noOfPassengers, preferredContact, smokingOption, accessibility, pickUpAddress, true)
+    this.carService.addCar(currentDriver).subscribe((data) => {});
   }
 
+  private fetchActiveCar(){
+    this.carService.getActiveCar(this.peopleService.currentPerson.id)
+      .subscribe(car => this.currentlyActiveCar = car);
+  }
+
+  private removeCurrentlyActiveCar() {
+    this.carService
+      .update(this.currentlyActiveCar)
+      .subscribe((data) => {
+        }
+      );
+  }
 }

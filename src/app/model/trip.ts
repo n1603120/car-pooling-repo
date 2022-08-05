@@ -1,12 +1,6 @@
 import {Car} from "./car";
 
 export class Trip {
-  // postcode: string = "";
-  // town: string = "";
-  // destination: string ="";
-  // date: string = "";
-  // time: string = "";
-  // car: Car = new Car(0, "", "", "","", "", "","",false);
   id: number;
   personId: number;
   postcode: string;

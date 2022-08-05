@@ -40,21 +40,22 @@
 
       <fieldset>
         <label class="driverForm" id = "driverSmokingOption" for = "driverSmokingOption">Smoking Option: <div class="radio-toolbar">
-          <input type="radio" id="yes" formControlName="driverSmokingOption" value="Yes" [(ngModel)]="smokingOption">
+          <input type="radio" id="yes" formControlName="driverSmokingOption" value="true" [(ngModel)]="smokingOption">
           <label for="yes">Yes</label>
-          <input type="radio" id="no" formControlName="driverSmokingOption" value="No" [(ngModel)]="smokingOption">
+          <input type="radio" id="no" formControlName="driverSmokingOption" value="false" [(ngModel)]="smokingOption">
           <label for="no">No</label>
-        </div></label>
+        </div>
         <span class="text-danger" *ngIf="(submitted || driverForm.get('driverSmokingOption')?.touched) && errorPresent('driverSmokingOption')">
           Smoking Option is required
         </span>
+        </label>
       </fieldset>
 
       <fieldset>
         <label class="driverForm" id = "driverAccessibility" for = "driverAccessibility">Accessibility:  <div class="radio-toolbar">
-          <input type="radio" id="yesAccess" formControlName="driverAccessibility" value="Yes" [(ngModel)]="accessibility">
+          <input type="radio" id="yesAccess" formControlName="driverAccessibility" value="true" [(ngModel)]="accessibility">
           <label for="yesAccess">Yes</label>
-          <input type="radio" id="noAccess" formControlName="driverAccessibility" value="No" [(ngModel)]="accessibility">
+          <input type="radio" id="noAccess" formControlName="driverAccessibility" value="false" [(ngModel)]="accessibility">
           <label for="noAccess">No</label>
         </div>
           <span class="text-danger" *ngIf="(submitted || driverForm.get('driverAccessibility')?.touched) && errorPresent('driverAccessibility')">

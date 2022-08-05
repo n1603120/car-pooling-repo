@@ -1,6 +1,9 @@
 <div id="pageContainer" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
   <div class ="inputContainer">
     <h1>Trip Details</h1>
+    <div *ngIf="currentlyActiveCar">
+      <h5>Current car: {{currentlyActiveCar.registration}} <button id = "changeBut" routerLink="/view-cars">Change Car</button></h5>
+    </div>
     <form [formGroup] ="tripForm" (ngSubmit)="onSubmit()">
       <fieldset>
         <label for = "tripPostcode">Postcode: <input maxlength = "8" type="text" id = "tripPostcode" formControlName="tripPostcode"></label>

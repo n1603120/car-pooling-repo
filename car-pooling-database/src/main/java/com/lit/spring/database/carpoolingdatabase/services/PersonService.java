@@ -50,10 +50,10 @@ public class PersonService {
     if(people.isEmpty()){
       personRepository.findAll().forEach(people :: add);
     }
-//    if(people.stream().anyMatch(person -> Objects.equals(person.getEmail(), newPerson.getEmail()))) {
-//      return badRequest()
-//        .body("Already a person with email: " + newPerson.getEmail());
-//    }
+    if(people.stream().anyMatch(person -> Objects.equals(person.getEmail(), newPerson.getEmail()))) {
+      return badRequest()
+        .body("Already a person with email: " + newPerson.getEmail());
+    }
     personRepository.save(newPerson);
     people.add(newPerson);
     return new ResponseEntity<String>("POST Person Response Ok", HttpStatus.OK);

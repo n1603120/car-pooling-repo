@@ -27,7 +27,7 @@ export const routes: Routes = [
   {path: 'confirmation', component: ConfirmationPageComponent},
   {path: 'passenger-results', component: PassengerResultsComponent},
   {path: 'passenger-summary', component: PassengerSummaryComponent},
-  {path: 'find-trip', component: TripDetailsComponent},
+  {path: 'trip-details', component: TripDetailsComponent},
   {path: '**', redirectTo: 'login'}
 ];
 @NgModule({

@@ -5,6 +5,8 @@ import {TripService} from "../services/trip.service";
 import {Trip} from "../model/trip";
 import {PeopleService} from "../services/person.service";
 import {Router} from "@angular/router";
+import {Car} from "../model/car";
+import {CarService} from "../services/car.service";
 
 
 @Component({
@@ -19,7 +21,7 @@ export class TripDetailsComponent implements OnInit {
   timeValid: boolean = false;
   town: string = "";
   private dataError: ValidationErrors | null | undefined;
-
+  currentlyActiveCar!: Car;
 
   onSubmit(){
     this.submitted = true;
@@ -30,7 +32,7 @@ export class TripDetailsComponent implements OnInit {
     this.submitTrip();
     this.moveToCorrectPage();
   }
-  constructor(private formBuilder: FormBuilder, private readonly router: Router, private tripService: TripService, private peopleService: PeopleService) {
+  constructor(private formBuilder: FormBuilder, private readonly router: Router, private tripService: TripService, private peopleService: PeopleService, private carService: CarService) {
     this.tripForm = formBuilder.group({
       tripPostcode: ['', createRequiredRegexValidator(/[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? ?[0-9][ABD-HJLNP-UW-Zabd-hjlnp-uw-z]{2}/)],
       tripTown:[],
@@ -40,7 +42,7 @@ export class TripDetailsComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    console.log(this.peopleService.driverStatus);
+    this.fetchActiveCar();
   }
   getCurrentDate():string{
     return (new Date()).toISOString().substring(0,10);
@@ -88,13 +90,17 @@ export class TripDetailsComponent implements OnInit {
     const destination = this.tripForm.get('tripDestination')?.value;
     const date = this.tripForm.get('tripDate')?.value;
     const time = this.tripForm.get('tripTime')?.value;
-
-    const currentTrip = new Trip(1,postcode,town, destination, date, time,1)
-    console.log(currentTrip);
-    this.tripService.addTrip(currentTrip).subscribe((data) => {});
+    if(this.peopleService.driverStatus){
+      const currentTrip = new Trip(this.peopleService.currentPerson.id,postcode,town, destination, date, time,this.currentlyActiveCar.id);
+      this.tripService.addTrip(currentTrip).subscribe((data) => {});
+    }else{
+      const currentTrip = new Trip(this.peopleService.currentPerson.id,postcode,town, destination, date, time,0);
+      this.tripService.addTrip(currentTrip).subscribe((data) => {});
+    }
   }
 
   private moveToCorrectPage() {
+    console.log(1);
     if(this.peopleService.driverStatus){
       // driver
       this.router.navigate(['/driver-summary']);
@@ -102,6 +108,11 @@ export class TripDetailsComponent implements OnInit {
       // passenger
       this.router.navigate(['/passenger-summary']);
     }
+  }
+
+  private fetchActiveCar(){
+    this.carService.getActiveCar(this.peopleService.currentPerson.id)
+      .subscribe(car => this.currentlyActiveCar = car);
   }
 
   towns: string[] = ["Acton",

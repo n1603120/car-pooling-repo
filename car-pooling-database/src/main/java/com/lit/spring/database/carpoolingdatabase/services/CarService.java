@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.toList;
@@ -72,8 +73,8 @@ public class CarService {
       return badRequest()
         .body("Already a car with id: " + newCar.getId());
     }
-    cars.add(newCar);
     carRepository.save(newCar);
+    cars.add(newCar);
     return new ResponseEntity<String>("POST Car Response Ok", HttpStatus.OK);
   }
 

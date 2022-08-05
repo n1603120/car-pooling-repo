@@ -11,6 +11,9 @@ import {Trip} from "../model/trip";
 export class CarService{
   private readonly baseUrl: string;
   currentCar!: Car;
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json'
+  });
 
   constructor(private http: HttpClient) {
     this.baseUrl = environment.baseServerUrl + '/cars/';
@@ -43,10 +46,7 @@ export class CarService{
     return this.http.delete(this.baseUrl + id, {responseType: 'text'});
   }
 
-  addCar(car: Car): Observable<string> {
-    return this.http.post(this.baseUrl , car,{
-      headers: new HttpHeaders({'Content-Type': 'application/json'}),
-      responseType: 'text'
-    });
+  addCar(car: Car): Observable<any> {
+    return this.http.post(this.baseUrl, JSON.stringify(car),{'headers':this.headers})
   }
 }

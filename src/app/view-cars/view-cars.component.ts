@@ -32,7 +32,7 @@ export class ViewCarsComponent implements OnInit {
     console.log(this.ownedCarArray.length);
     //if(this.ownedCarArray.length != 0){
      // this.ownedCarArray.forEach(car => this.ownedCarArray.pop());
-      this.ownedCarArray.splice(0,this.ownedCarArray.length)
+      this.ownedCarArray.splice(0,this.ownedCarArray.length);
    // }
     this.carService
       .getCarsByOwnerId(this.peopleService.currentPerson.id)
@@ -117,7 +117,22 @@ export class ViewCarsComponent implements OnInit {
 
   private removeDuplicateCars() {
     // cors causes in situation where if you have a car clicked then if you click off the page then go back to it quickly, the cars are duplicated
-    
+    const uniqueArray = this.ownedCarArray.filter((value, index) => {
+      const _value = JSON.stringify(value);
+      return index === this.ownedCarArray.findIndex(obj => {
+        return JSON.stringify(obj) === _value;
+      });
+    });
+    console.log(uniqueArray);
+    //this.ownedCarArray = uniqueArray;
+    console.log(this.ownedCarArray);
   }
+  // const isPropValuesEqual = (subject, target, propNames) =>
+  //   propNames.every(propName => subject[propName] === target[propName]);
+  //
+  // const getUniqueItemsByProperties = (items, propNames) =>
+  //   items.filter((item, index, array) =>
+  //     index === array.findIndex(foundItem => isPropValuesEqual(foundItem, item, propNames))
+  //   );
 
 }
