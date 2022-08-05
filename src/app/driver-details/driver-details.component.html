@@ -66,15 +66,20 @@
 
       <fieldset>
         <label id ="driverPickUp" for = "driverPickUp">Preferred Pick Up Point<div class="col-12 table-responsive">
+          <div id="selectContainer">
+          <ng-select id="selectedTown" [clearable]="false"
+             [items]="towns" appendTo="body" formControlName="driverPickUp" placeholder="Select Town">
+            </ng-select>
+          <button type="button" id="addTownBut" (click)="onChange()">add</button></div>
           <table class="table">
             <thead>
-            <td>Address</td>
+            <td>Town</td>
             </thead>
-            <tbody>
-            <tr *ngFor="let row of rows; let i = index">
-              <td><input id="pickupAddress" formControlName="driverPickUp" [(ngModel)]="row.key" type="text" name="address" (keyup)="checkAndAddRow(i)"></td>
-            </tr>
-            </tbody>
+            <ng-container *ngFor="let town of townsSelected">
+              <tr class="active-row">
+                <td>{{town}}</td>
+              </tr>
+            </ng-container>
           </table>
           <span class="text-danger" *ngIf="(submitted || driverForm.get('driverPickUp')?.touched) && errorPresent('driverPickUp')">
           At least one pick up point is required
