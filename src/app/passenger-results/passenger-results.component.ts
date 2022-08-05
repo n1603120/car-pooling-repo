@@ -62,10 +62,10 @@ import {Car} from "../model/car";
 })
 export class PassengerResultsComponent implements OnInit {
   pageTitle: string = "Driver Availability";
-  people:any = [];
+  people: Trip[] = [];
   personName:any;
   allTrips: Trip[] = [];
-  driver: any = [];
+  driver: Trip[] = [];
   // drivers: any[] = [
   //
   //   {"name": "Bruce Wayne", "town": "Saintfield"},
@@ -95,11 +95,11 @@ export class PassengerResultsComponent implements OnInit {
       )
   }
   // constructor(id: number, postcode: string, town:string, destination: string,date: string,time: string, car: Car)
-  addTrip(driver:any){
+  addTrip(driver: Trip){
     // let t = new Trip(1, "town", "destination",
     //   "date",
     //   "this");
-    this.driver.push(driver.name);
+    // this.driver.push(driver.name);
     this.tripService.currentTrip = driver
     // console.log(driver)
     // console.log(this.tripService.currentTrip)

@@ -10,22 +10,28 @@
     <!--    *ngIf="trips.length">-->
     <table class='content-table'>
       <tr>
-        <th>First Name</th>
+        <th>Driver</th>
+        <th>Car Make</th>
+        <th>Smoking Option</th>
         <th>Date</th>
         <th>Destination</th>
         <th>Post Code</th>
         <th>Time</th>
-        <th>Town</th>
+        <th>Departure</th>
+        <th>Accessibility</th>
       </tr>
       <tbody>
       <tr>
-
-        <td>{{tripService.currentTrip.car}}</td>
+        <td>{{(currentDriver.firstName) + " " + (currentDriver.lastName)}}</td>
+        <td>{{currentCar.make}}</td>
+        <td>{{currentCar.smokingOption}}</td>
+<!--        <td>{{tripService.currentTrip.car}}</td>-->
         <td>{{tripService.currentTrip.date}}</td>
         <td>{{tripService.currentTrip.destination}}</td>
         <td>{{tripService.currentTrip.postcode}}</td>
         <td>{{tripService.currentTrip.time}}</td>
         <td>{{tripService.currentTrip.town}}</td>
+        <td>{{currentCar.accessibility}}</td>
       </tr>
       <td>
         <button class="backBut" routerLink="/passenger-results" style="float: left;"> Back </button>
