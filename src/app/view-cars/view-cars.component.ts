@@ -24,6 +24,7 @@ export class ViewCarsComponent implements OnInit {
     this.fetchActiveCar();
     this.fetchAllOwnedCars();
    // this.fillRadioAtStart();
+    this.removeDuplicateCars();
   }
 
   private fetchAllOwnedCars() {
@@ -69,10 +70,7 @@ export class ViewCarsComponent implements OnInit {
     console.log(this.ownedCarArray);
   }
 
-
-
-  fetchActiveCar(){
-    console.log(10);
+  private fetchActiveCar(){
     this.carService.getActiveCar(this.peopleService.currentPerson.id)
       .subscribe(car => this.currentlyActiveCar = car);
   }
@@ -116,4 +114,10 @@ export class ViewCarsComponent implements OnInit {
     // document.getElementById(idOfActiveCar.id).checked = true;
     // console.log(1);
   }
+
+  private removeDuplicateCars() {
+    // cors causes in situation where if you have a car clicked then if you click off the page then go back to it quickly, the cars are duplicated
+    
+  }
+
 }
