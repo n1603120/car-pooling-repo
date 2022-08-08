@@ -5,6 +5,7 @@ import {CarService} from "../services/car.service";
 import {Car} from "../model/car";
 import  {PeopleService} from "../services/person.service";
 import {Person} from "../model/person";
+import {Trip} from "../model/trip";
 
 @Component({
   selector: 'app-passenger-summary',
@@ -15,7 +16,7 @@ export class PassengerSummaryComponent implements OnInit {
   pageTitle: string = "Summary Screen";
   currentCar!: Car;
   currentDriver!: Person;
-
+  driverTripSelected!: Trip;
   trips:any;
   // drivers: any[] = [
   //   {"name": "Alfred Hitchcock"},
@@ -46,18 +47,14 @@ export class PassengerSummaryComponent implements OnInit {
   //
   //
   // }
-  constructor(private http:HttpClient, public tripService: TripService, public carService: CarService, public peopleService: PeopleService) { }
+  constructor(private tripService: TripService, private carService: CarService, private peopleService: PeopleService) { }
 
 
   ngOnInit(): void {
     this.fetchDetails()
     console.log(this.currentCar)
-    console.log(this.tripService.currentTrip)
+    console.log(this.tripService.driverTripSelected)
 
-    // let response = this.http.get("http://localhost:8080/people")
-    // response.subscribe((data)=>this.trips=data);
-    // console.log(this.tripService.currentTrip)
-    // this.tripService.currentTrip
   }
   private delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
@@ -65,13 +62,15 @@ export class PassengerSummaryComponent implements OnInit {
 
   private async fetchDetails()
     {
-      this.carService.getCarById(this.tripService.currentTrip.carId)
+      this.carService.getCarById(this.tripService.driverTripSelected.carId)
         .subscribe(car => this.currentCar = car)
       await this.delay(100);
       this.carService.currentCar = this.currentCar
 
       this.peopleService.getPersonById(this.currentCar.ownerId)
         .subscribe(person => this.currentDriver = person)
+
+      this.driverTripSelected = this.tripService.driverTripSelected;
     }
 
 }

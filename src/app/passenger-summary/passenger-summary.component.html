@@ -25,17 +25,17 @@
         <td>{{(currentDriver.firstName) + " " + (currentDriver.lastName)}}</td>
         <td>{{currentCar.make}}</td>
         <td>{{currentCar.smokingOption}}</td>
-        <td>{{tripService.currentTrip.date}}</td>
-        <td>{{tripService.currentTrip.destination}}</td>
-        <td>{{tripService.currentTrip.postcode}}</td>
-        <td>{{tripService.currentTrip.time}}</td>
-        <td>{{tripService.currentTrip.town}}</td>
+        <td>{{driverTripSelected.date}}</td>
+        <td>{{driverTripSelected.destination}}</td>
+        <td>{{driverTripSelected.postcode}}</td>
+        <td>{{driverTripSelected.time}}</td>
+        <td>{{driverTripSelected.town}}</td>
         <td>{{currentCar.accessibility}}</td>
       </tr>
       <td>
         <button class="backBut" routerLink="/passenger-results" style="float: left;"> Back </button>
 <!--        <button class="button" (click)="addTrip(driver)" routerLink="/confirmation" style="float: right;"> Confirm</button>-->
-        <button  class="confirmBut"routerLink="/confirmation" style="float: right;"> Confirm </button>
+        <button  class="confirmBut" routerLink="/confirmation" style="float: right;"> Confirm </button>
       </td>
       </tbody>
     </table>

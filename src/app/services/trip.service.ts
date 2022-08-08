@@ -10,6 +10,8 @@ import {Car} from "../model/car";
 export class TripService{
   private readonly baseUrl: string;
   currentTrip!: Trip;
+  driverTripSelected!: Trip;
+
   headers = new HttpHeaders({
     'Content-Type': 'application/json'
   });
