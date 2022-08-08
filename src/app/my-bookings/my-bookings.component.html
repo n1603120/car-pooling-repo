@@ -33,17 +33,16 @@
               {{ booking.time}}
             </td>
             <td>
-<!--              {{ booking.car.getDriver().firstName}}-->
-<!--              {{ booking.car.getDriver().lastName}}-->
+              {{ getDriver(booking.carId).firstName + " " + getDriver(booking.carId).lastName}}
             </td>
             <td>
-<!--              {{ booking.car.preferredContact}}-->
+              {{ getCar(booking.carId).preferredContact }}
             </td>
             <td>
-<!--              {{ booking.car.getDriver().email}}-->
+              {{ getDriver(booking.carId).email}}
             </td>
             <td>
-<!--              {{ booking.car.getDriver().phoneNumber}}-->
+              {{ getDriver(booking.carId).phoneNumber}}
             </td>
             <td>
               {{ booking.destination}}
