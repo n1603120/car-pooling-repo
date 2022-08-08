@@ -5,7 +5,7 @@
     {{pageTitle}}    <p>Request a Driver to car share with:</p>
   </div>
   <div class='table-responsive'>
-    <table class='content-table' *ngIf="people.length">
+    <table class='content-table' *ngIf="allTrips.length">
       <thead>
       <tr>
         <th>Driver Destination</th>
@@ -16,7 +16,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr class= "active-row" *ngFor="let driver of people" >
+      <tr class= "active-row" *ngFor="let driver of allTrips" >
         <td>
           {{driver.destination}}        </td>
         <td>

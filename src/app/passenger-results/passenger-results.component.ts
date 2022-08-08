@@ -1,52 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-// import {Person} from "../model/person";
-// import {Trip} from "../model/trip";
-// import {PeopleService} from "../services/person.service";
-// import {TripService} from "../services/trip.service";
-// import {HttpClient} from "@angular/common/http";
-//
-// @Component({
-//   selector: 'app-passenger-results',
-//   templateUrl: './passenger-results.component.html',
-//   styleUrls: ['./passenger-results.component.css']
-// })
-// export class PassengerResultsComponent implements OnInit {
-//   pageTitle: string = "Driver Availability";
-//   people:any;
-//   personName:any;
-//   allTrips: Trip[] = [];
-//   // drivers: any[] = [
-//   //
-//   //   {"name": "Bruce Wayne", "town": "Saintfield"},
-//   //   {"name": "Bruce Wayne", "town": "Saintfield"},
-//   //   {"name": "Alfred Hitchcock", "town": "Newcastle"},
-//   //   {"name": "Darth Vader", "town": "Bangor"},
-//   //   {"name": "Peter Pan", "town": "Carryduff"}
-//   // ]
-//
-//   constructor(private tripService: TripService,private peopleService: PeopleService,private http:HttpClient) {
-//
-//   }
-//
-//   ngOnInit(): void {
-//     this.fetchAllTrips();
-//     console.log(this.allTrips);
-//
-//     let response1 = this.http.get("http://localhost:8080/trips")
-//     response1.subscribe((data)=>this.people=data);
-//
-//     let response = this.http.get("http://localhost:8080/people")
-//     response.subscribe((data)=>this.personName=data);
-//
-//   }
-//   private fetchAllTrips() {
-//     this.tripService
-//       .getAllTrips()
-//       .subscribe(
-//         trip => trip.forEach( trip => this.allTrips.push(trip))
-//       )
-//   }
-// }
 
 import { Component, OnInit } from '@angular/core';
 import {Person} from "../model/person";
@@ -62,8 +13,10 @@ import {Car} from "../model/car";
 })
 export class PassengerResultsComponent implements OnInit {
   pageTitle: string = "Driver Availability";
-  people: Trip[] = [];
   allTrips: Trip[] = [];
+  matchedTrips: Trip[] = [];
+  unmatchedTrips: Trip[] = [];
+  currentTrip!: Trip;
 
   constructor(private tripService: TripService,private peopleService: PeopleService,private http:HttpClient) {
 
@@ -71,18 +24,42 @@ export class PassengerResultsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchAllTrips();
+    this.fetchCurrentTrip();
     console.log(this.allTrips);
-    this.tripService.getAll()
-      .subscribe(trips => trips.forEach( trip => this.people.push(trip)))
   }
   private fetchAllTrips() {
     this.tripService
       .getAllTrips()
       .subscribe(
-        trip => trip.forEach( trip => this.allTrips.push(trip))
-      )
+        trip => trip.forEach( trip => {
+          if(trip.carId != 0 && this.checkDateValid(trip)){
+            this.allTrips.push(trip);
+          }
+        }
+      ))
+  }
+  private fetchCurrentTrip() {
+    this.currentTrip = this.tripService.currentTrip;
   }
   requestDriver(driver: Trip){
     this.tripService.driverTripSelected = driver;
   }
+  getCurrentDate():string{
+    return (new Date()).toISOString().substring(0,10);
+  }
+  getCurrentTime():String{
+    return (new Date()).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+  }
+  checkDateValid(booking: Trip): boolean {
+    if(booking.date > this.getCurrentDate()){
+      return true;
+    }
+    else if(booking.date === this.getCurrentDate()){
+      return booking.time >= this.getCurrentTime();
+    }
+    else{
+      return false;
+    }
+  }
+
 }

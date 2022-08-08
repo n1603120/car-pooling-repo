@@ -23,6 +23,7 @@ export class TripDetailsComponent implements OnInit {
   driverStatus: boolean = false;
   private dataError: ValidationErrors | null | undefined;
   currentlyActiveCar!: Car;
+  townsSelected:string[] = [];
 
   onSubmit(){
     this.submitted = true;
@@ -89,7 +90,7 @@ export class TripDetailsComponent implements OnInit {
 
   private submitTrip(){
     const postcode = this.tripForm.get('tripPostcode')?.value;
-    const town = this.tripForm.get('tripTown')?.value;
+    const town = this.townsSelected.toString();
     const destination = this.tripForm.get('tripDestination')?.value;
     const date = this.tripForm.get('tripDate')?.value;
     const time = this.tripForm.get('tripTime')?.value;
@@ -122,6 +123,18 @@ export class TripDetailsComponent implements OnInit {
 
   private fetchDriverStatus() {
     this.driverStatus = this.peopleService.driverStatus;
+  }
+
+  onChange(): void{
+    // @ts-ignore
+    this.town = document.getElementById("selectedTown").innerText.trim();
+    if(this.townsSelected.includes(this.town)){
+      return;
+    }else {
+      // @ts-ignore
+      this.townsSelected.push(document.getElementById("selectedTown").innerText.trim());
+    }
+    console.log(this.townsSelected.toString());
   }
 
   towns: string[] = ["Acton",

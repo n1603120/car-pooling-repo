@@ -30,7 +30,7 @@ export class ConfirmationPageComponent implements OnInit {
   ngOnInit(): void {
     // let response = this.http.get("http://localhost:8080/cars")
     // response.subscribe((data)=>this.results=data);
-    this.tripService.getAll()
+    this.tripService.getAllTrips()
       .subscribe(trips => trips.forEach( trip => this.results.push(trip)))
 
   }

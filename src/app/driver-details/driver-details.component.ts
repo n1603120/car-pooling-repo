@@ -148,7 +148,7 @@ export class DriverDetailsComponent implements OnInit {
     }
     console.log(this.townsSelected.toString());
   }
-  
+
 
   towns: string[] = ["Acton",
     " Aghacommon",

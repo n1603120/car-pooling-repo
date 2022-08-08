@@ -67,13 +67,14 @@
       <fieldset>
         <label id ="driverPickUp" for = "driverPickUp">Preferred Pick Up Point<div class="col-12 table-responsive">
           <div id="selectContainer">
-          <ng-select id="selectedTown" [clearable]="false"
-             [items]="towns" appendTo="body" formControlName="driverPickUp" placeholder="Select Town">
-            </ng-select>
-          <button type="button" id="addTownBut" (click)="onChange()">add</button></div>
+            <ng-select id="selectedTown" [clearable]="false"
+               [items]="towns" appendTo="body" formControlName="driverPickUp" placeholder="Select Town">
+              </ng-select>
+            <button type="button" id="addTownBut" (click)="onChange()">Add Town</button>
+          </div>
           <table class="table">
-            <thead>
-            <td>Town</td>
+            <thead *ngIf="townsSelected.length > 0">
+            <td>Towns Selected</td>
             </thead>
             <ng-container *ngFor="let town of townsSelected">
               <tr class="active-row">
