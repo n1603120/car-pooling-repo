@@ -137,6 +137,10 @@ export class TripDetailsComponent implements OnInit {
     console.log(this.townsSelected.toString());
   }
 
+  onRemove(): void{
+
+  }
+
   towns: string[] = ["Acton",
     " Aghacommon",
     " Aghadowey",

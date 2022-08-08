@@ -26,10 +26,6 @@ input{
   box-sizing: border-box;
   color:#343741;
 }
-ng-select{
-  font-size: 1em;
-  width: 100%;
-}
 
 #tripDestination{
   width: 100%;
@@ -60,6 +56,16 @@ label{
   font-weight: bold;
 }
 
+ng-select{
+  font-size: 1em;
+  width: 74%;
+  border: 1px solid black;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color:#343741;
+  display: inline-block;
+}
+
 #changeBut {
   float: right;
   background: #04AA6D;
@@ -69,18 +75,18 @@ label{
   box-sizing: border-box;
   color: #FFFFFF;
   cursor: pointer;
-  display: inline-block;
+  display: inline;
   font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
   font-size: 16px;
   font-weight: 800;
   line-height: 16px;
   outline: 0;
-  padding: 6px 50px;
+  width: 25%;
+  margin-top: 0;
+
+  padding: 12px 50px;
   text-align: center;
   text-rendering: geometricprecision;
-  text-transform: none;
-  user-select: none;
-  -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: middle;
 }
@@ -100,15 +106,6 @@ label{
   background-color: initial;
   background-position: 0 0;
   color: #04AA6D;
-}
-ng-select{
-  font-size: 1em;
-  width: 74%;
-  border: 1px solid black;
-  border-radius: 4px;
-  box-sizing: border-box;
-  color:#343741;
-  display: inline-block;
 }
 
 #addTownBut {
@@ -152,6 +149,31 @@ ng-select{
   background-color: initial;
   background-position: 0 0;
   color: #04AA6D;
+}
+
+#removeTownBut {
+  float: right;
+  background: #04AA6D;
+  border: 1px solid #04AA6D;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  outline: 0;
+  width: 25%;
+  margin-top: 0;
+
+  padding: 12px 50px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  touch-action: manipulation;
+  vertical-align: middle;
 }
 
 #selectContainer{
