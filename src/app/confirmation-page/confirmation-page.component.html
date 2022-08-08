@@ -10,9 +10,9 @@
   <div class='table-responsive'>
     <table class='content-table' *ngIf="results.length">
       <thead>
-      <tr>
-        <th>Summary Details</th>
-      </tr>
+<!--      <tr>-->
+<!--        <th>Summary Details</th>-->
+<!--      </tr>-->
       </thead>
       <tbody>
       <tr class= "active-row" *ngFor="let result of results" >
@@ -25,19 +25,20 @@
         <th>Preferred Contact</th>
         <th>Accessibility</th>
         <th>Preferred PickUp</th>
+        <th>Smoking Option</th>
 
 
       </tr>
 
       <tbody>
 
-      <tr *ngFor="let result of results">
-        <td>{{result.make}}</td>
-        <td>{{result.registration}}</td>
-        <td>{{result.numOfSeats}}</td>
-        <td>{{result.preferredContact}}</td>
-        <td>{{result.accessibility}}</td>
-        <td>{{result.preferredPickUp}}</td>
+    <td>{{carService.currentCar.make}}</td>
+    <td>{{carService.currentCar.registration}}</td>
+    <td>{{carService.currentCar.numOfSeats}}</td>
+    <td>{{carService.currentCar.preferredContact}}</td>
+    <td>{{carService.currentCar.accessibility}}</td>
+    <td>{{carService.currentCar.preferredPickUp}}</td>
+    <td>{{carService.currentCar.smokingOption}}</td>
 
 
 
