@@ -16,6 +16,8 @@ export class PassengerResultsComponent implements OnInit {
   allTrips: Trip[] = [];
   matchedTrips: Trip[] = [];
   unmatchedTrips: Trip[] = [];
+  currentTripTowns: string[] = [];
+  tripTowns: string[] = [];
   currentTrip!: Trip;
 
   constructor(private tripService: TripService,private peopleService: PeopleService,private http:HttpClient) {
@@ -24,22 +26,31 @@ export class PassengerResultsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchAllTrips();
-    this.fetchCurrentTrip();
+    //this.fetchCurrentTrip();
     console.log(this.allTrips);
+    //this.matchTrips();
   }
-  private fetchAllTrips() {
+  private async fetchAllTrips() {
     this.tripService
       .getAllTrips()
       .subscribe(
         trip => trip.forEach( trip => {
-          if(trip.carId != 0 && this.checkDateValid(trip)){
+          if(trip.carId != 0 && trip.personId != this.peopleService.currentPerson.id && this.checkDateValid(trip)){
             this.allTrips.push(trip);
           }
         }
-      ))
+      ));
+    await this.delay(100);
+    this.fetchCurrentTrip();
+  }
+  private delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
   }
   private fetchCurrentTrip() {
     this.currentTrip = this.tripService.currentTrip;
+    const trimmedTowns = this.currentTrip.town.split(",").toString().trim();
+    this.currentTripTowns = trimmedTowns.split(",");
+    this.matchTrips();
   }
   requestDriver(driver: Trip){
     this.tripService.driverTripSelected = driver;
@@ -62,4 +73,26 @@ export class PassengerResultsComponent implements OnInit {
     }
   }
 
+  private matchTrips() {
+    console.log(this.allTrips);
+    this.allTrips.forEach(trip => {
+      this.tripTowns = trip.town.split(",");
+      console.log(this.tripTowns);
+      this.tripTowns.forEach(t => {
+        let found = this.currentTripTowns.includes(t);
+        if(found){
+          if(trip.date === this.currentTrip.date && trip.destination === this.currentTrip.destination ){
+            this.matchedTrips.push(trip);
+          }
+          else{
+            this.unmatchedTrips.push(trip);
+          }
+        }else{
+          this.unmatchedTrips.push(trip);
+        }
+      })
+    });
+    console.log(this.matchedTrips);
+    console.log(this.unmatchedTrips);
+  }
 }

@@ -8,9 +8,11 @@
   overflow:hidden;
   box-shadow: 0 0 20px rgba(0,0,0,0.15);
 }
+.content-table th{
+  padding: 8px;
+}
 .content-table td{
   padding: 12px 15px;
-  border: solid 1pt black;
 }
 .content-table tbody tr{
   border-bottom: 1px solid #dddddd;
