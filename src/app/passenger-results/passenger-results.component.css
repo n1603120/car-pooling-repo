@@ -125,14 +125,18 @@
 
 .alertDiv{
   text-align: center;
-  width: 70%;
+  width: 50%;
   margin: 0 auto;
   font-weight: bold;
   font-size: 1em;
-  color: red;
   padding: 1%;
-  background-color: lightgrey;
+  border: 2pt #f44336 solid;
+  background-color: white; /* Red */
 }
 .table-responsive{
   background-color: #F5F5F5;
+}
+h4{
+  margin-top: 1%;
+  margin-bottom: 1%;
 }

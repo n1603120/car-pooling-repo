@@ -12,7 +12,6 @@ import {Car} from "../model/car";
   styleUrls: ['./passenger-results.component.css']
 })
 export class PassengerResultsComponent implements OnInit {
-  pageTitle: string = "Driver Availability";
   allTrips: Trip[] = [];
   matchedTrips: Trip[] = [];
   unmatchedTrips: Trip[] = [];
