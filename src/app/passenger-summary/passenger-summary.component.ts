@@ -15,7 +15,7 @@ export class PassengerSummaryComponent implements OnInit {
   pageTitle: string = "Summary Screen";
   currentCar!: Car;
   currentDriver!: Person;
-
+  results: any =[];
   trips:any;
   // drivers: any[] = [
   //   {"name": "Alfred Hitchcock"},
@@ -51,27 +51,27 @@ export class PassengerSummaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchDetails()
-    console.log(this.currentCar)
-    console.log(this.tripService.currentTrip)
 
-    // let response = this.http.get("http://localhost:8080/people")
-    // response.subscribe((data)=>this.trips=data);
-    // console.log(this.tripService.currentTrip)
-    // this.tripService.currentTrip
+
+    // let response = this.http.get("http://localhost:8080/cars")
+    // response.subscribe((data)=>this.results=data);
+    this.tripService.getAll()
+      .subscribe(trips => trips.forEach( trip => this.results.push(trip)))
+
   }
   private delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
   }
-
   private async fetchDetails()
-    {
-      this.carService.getCarById(this.tripService.currentTrip.carId)
-        .subscribe(car => this.currentCar = car)
-      await this.delay(100);
-      this.carService.currentCar = this.currentCar
+  {
+    this.carService.getCarById(this.tripService.currentTrip.carId)
+      .subscribe(car => this.currentCar = car)
+    await this.delay(100);
+    this.carService.currentCar = this.currentCar
 
-      this.peopleService.getPersonById(this.currentCar.ownerId)
-        .subscribe(person => this.currentDriver = person)
-    }
+    this.peopleService.getPersonById(this.currentCar.ownerId)
+      .subscribe(person => this.currentDriver = person)
+  }
+
 
 }
