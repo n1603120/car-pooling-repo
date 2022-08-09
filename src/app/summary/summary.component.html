@@ -12,25 +12,33 @@
       <tr>
         <th>Driver</th>
         <th>Car Make</th>
-        <th>Smoking Option</th>
+<!--        <th>Smoking Option</th>-->
         <th>Date</th>
         <th>Destination</th>
         <th>Post Code</th>
         <th>Time</th>
         <th>Departure</th>
         <th>Accessibility</th>
+        <th>Preferred contact</th>
+        <th>Phone number</th>
+        <th>Email</th>
+        <th>Preferred pickup</th>
       </tr>
       <tbody>
       <tr>
         <td>{{(currentDriver.firstName) + " " + (currentDriver.lastName)}}</td>
         <td>{{currentCar.make}}</td>
-        <td>{{currentCar.smokingOption}}</td>
+<!--        <td>{{currentCar.smokingOption}}</td>-->
         <td>{{driverTripSelected.date}}</td>
         <td>{{driverTripSelected.destination}}</td>
         <td>{{driverTripSelected.postcode}}</td>
         <td>{{driverTripSelected.time}}</td>
         <td>{{driverTripSelected.town}}</td>
         <td>{{currentCar.accessibility}}</td>
+        <td>{{currentCar.preferredContact}}</td>
+        <td>{{currentDriver.phoneNumber}}</td>
+        <td>{{currentDriver.email}}</td>
+        <td>{{currentCar.preferredPickUp}}</td>
       </tr>
       <td>
         <button class="backBut" routerLink="/login" style="float: left;"> Sign out </button>
