@@ -9,24 +9,19 @@
 <div class = "test2">
   <div class='table-responsive'>
     <table class='content-table'>
-      <thead>
-<!--      <tr>-->
-<!--        <th>Summary Details</th>-->
-<!--      </tr>-->
-      </thead>
       <tbody>
       <tr class= "active-row" *ngIf="driverTripSelected" >
-      <tr>
-        <th>Driver Name</th>
-        <th>Car Make</th>
-        <th>Registration</th>
-        <th>No. Seats</th>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Destination</th>
-        <th>Postcode</th>
-        <th>Preferred PickUp</th>
-      </tr>
+        <tr class="tableHeader">
+          <th>Full name</th>
+          <th>Car Make</th>
+          <th>Smoking option</th>
+          <th>Date</th>
+          <th>Destination</th>
+          <th>Post code</th>
+          <th>Time</th>
+          <th>Town</th>
+          <th>Accessibility</th>
+        </tr>
       <tbody>
         <td>{{(currentDriver.firstName) + " " + (currentDriver.lastName)}}</td>
         <td>{{currentCar.make}}</td>

@@ -1,9 +1,19 @@
+.tableHeader{
+  text-align: center;
+  font-weight: bold;
+  background-color: #ffd000;
+
+}
+.content-table th{
+  padding: 12px;
+}
 .content-table {
   border-collapse: collapse;
   /*margin: 100px 450px;*/
-  margin: 5px auto;
-  font-size: 1.3em;
-  min-width: 600px;
+  margin: 0 auto;
+  /*margin: 5px auto;*/
+  font-size: 1.1em;
+  min-width: 800px;
   border-radius: 5px 5px 0 0;
   overflow:hidden;
   box-shadow: 0 0 20px rgba(0,0,0,0.15);

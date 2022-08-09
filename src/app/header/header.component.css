@@ -33,8 +33,8 @@ a:visited {
 
 /* mouse over link */
 a:hover {
-  color: #343741;
-  text-decoration: underline;
+  color: #a0a0a0;
+  text-decoration: blink;
 }
 
 /* selected link */
@@ -42,4 +42,11 @@ a:active {
   color: #343741;
   text-decoration: underline;
 }
+a{
+  padding: 0px 10px;
+  transition: all 0.3s ease 0s;
 
+}
+.navbar{
+  justify-content: flex-end;
+}
