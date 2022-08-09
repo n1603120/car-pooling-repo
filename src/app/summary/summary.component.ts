@@ -60,17 +60,15 @@ export class SummaryComponent implements OnInit {
     return new Promise( resolve => setTimeout(resolve, ms) );
   }
 
-  private async fetchDetails()
-    {
-      this.carService.getCarById(this.tripService.driverTripSelected.carId)
-        .subscribe(car => this.currentCar = car)
-      await this.delay(100);
-      this.carService.currentCar = this.currentCar
+  private async fetchDetails() {
+    this.carService.getCarById(this.tripService.driverTripSelected.carId)
+      .subscribe(car => this.currentCar = car)
+    await this.delay(100);
+    this.carService.currentCar = this.currentCar
 
-      this.peopleService.getPersonById(this.currentCar.ownerId)
-        .subscribe(person => this.currentDriver = person)
+    this.peopleService.getPersonById(this.currentCar.ownerId)
+      .subscribe(person => this.currentDriver = person)
 
-      this.driverTripSelected = this.tripService.driverTripSelected;
-    }
-
+    this.driverTripSelected = this.tripService.driverTripSelected;
+  }
 }

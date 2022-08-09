@@ -20,5 +20,4 @@ constructor(personId: number, postcode: string, town:string, destination: string
   this.time = time;
   this.carId = carId;
 }
-
 }

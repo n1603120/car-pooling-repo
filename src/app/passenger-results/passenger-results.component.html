@@ -1,7 +1,8 @@
 
 <div class='card'>
   <div class='card-header' style="text-align:center">
-    {{pageTitle}}    <p>Request a Driver to car share with:</p>
+    <h1>Driver Availability</h1>
+    <h4>Request a Driver to car share with:</h4>
   </div>
   <div class='table-responsive'>
     <div *ngIf ="!matchedTrips.length" class = "alertDiv">There are no drivers matching your trip details, check below for other drivers.</div>
@@ -33,10 +34,10 @@
     </table>
   </div>
   <div class='card-header' style="text-align:center">
-    <p>Drivers Outside Your Area</p>
+    <h4>Other Drivers</h4>
   </div>
   <div class='table-responsive'>
-    <div *ngIf ="!unmatchedTrips.length" class = "alertDiv">There are no other drivers currently available, come back later or become a driver for others.</div>
+    <div *ngIf ="!unmatchedTrips.length" class = "alertDiv">No other drivers are currently available, come back later or become a driver for others.</div>
     <table class='content-table' *ngIf="unmatchedTrips.length">
       <thead>
       <tr class="tableHeader">

@@ -12,6 +12,7 @@ export class PeopleService{
   currentPerson!: Person;
   driverStatus!: boolean;
   people!: Person[] ;
+
   headers = new HttpHeaders({
     'Content-Type': 'application/json'
   });
@@ -49,5 +50,4 @@ export class PeopleService{
   addPerson(person: Person): Observable<any> {
     return this.http.post(this.baseUrl, JSON.stringify(person),{'headers':this.headers})
   }
-
 }
