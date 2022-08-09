@@ -2,27 +2,25 @@
 <link rel="stylesheet" type="text/css" href="summary.component.css">
 <div class='card'>
   <div class='card-header' style="text-align:center">
-    <h2>Review Details:</h2>
+    <h2>Your order has been successful</h2>
+    <h3>Thank you:</h3>
   </div>
 </div>
 <div class = "test2">
   <div class='table-responsive'>
     <!--    *ngIf="trips.length">-->
     <table class='content-table'>
-      <tr>
+      <tr class="tableHeader">
         <th>Driver</th>
         <th>Car Make</th>
 <!--        <th>Smoking Option</th>-->
         <th>Date</th>
         <th>Destination</th>
-        <th>Post Code</th>
         <th>Time</th>
         <th>Departure</th>
-        <th>Accessibility</th>
         <th>Preferred contact</th>
         <th>Phone number</th>
         <th>Email</th>
-        <th>Preferred pickup</th>
       </tr>
       <tbody>
       <tr>
@@ -31,22 +29,26 @@
 <!--        <td>{{currentCar.smokingOption}}</td>-->
         <td>{{driverTripSelected.date}}</td>
         <td>{{driverTripSelected.destination}}</td>
-        <td>{{driverTripSelected.postcode}}</td>
         <td>{{driverTripSelected.time}}</td>
         <td>{{driverTripSelected.town}}</td>
-        <td>{{currentCar.accessibility}}</td>
         <td>{{currentCar.preferredContact}}</td>
         <td>{{currentDriver.phoneNumber}}</td>
         <td>{{currentDriver.email}}</td>
-        <td>{{currentCar.preferredPickUp}}</td>
       </tr>
-      <td>
-        <button class="backBut" routerLink="/login" style="float: left;"> Sign out </button>
-<!--        <button class="button" (click)="addTrip(driver)" routerLink="/confirmation" style="float: right;"> Confirm</button>-->
-        <button  class="confirmBut" routerLink="/home" style="float: right;"> Home </button>
-<!--        <button  class="confirmBut" (click)=onSubmit routerLink="/home" style="float: right;"> Home </button>-->
-      </td>
+<!--      <button class="backBut" routerLink="/login" style="float: left;"> Sign out </button>-->
+<!--&lt;!&ndash;        <button class="button" (click)="addTrip(driver)" routerLink="/confirmation" style="float: right;"> Confirm</button>&ndash;&gt;-->
+<!--&lt;!&ndash;        <button  class="confirmBut" routerLink="/home" style="float: right;"> Home </button>&ndash;&gt;-->
+<!--&lt;!&ndash;        <button  class="confirmBut" (click)=onSubmit routerLink="/home" style="float: right;"> Home </button>&ndash;&gt;-->
+<!--      <button  class="confirmBut" routerLink="/home" style="float: right;"> Home </button>-->
+      <tr>
+        <td><button class="backBut" routerLink="/login" style="float: left;"> Sign out </button></td>
+        <td colspan="7"></td>
+        <td><button  class="confirmBut" routerLink="/home" style="float: right;"> Home </button></td>
+      </tr>
       </tbody>
+
     </table>
+<!--    <button class="backBut" routerLink="/login" style="float: left;"> Sign out </button>-->
+<!--    <button  class="confirmBut" routerLink="/home" style="float: right;"> Home </button>-->
   </div>
 </div>

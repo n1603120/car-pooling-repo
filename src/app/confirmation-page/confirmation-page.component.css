@@ -11,8 +11,16 @@
   overflow:hidden;
   box-shadow: 0 0 20px rgba(0,0,0,0.15);
 }
+.tableHeader{
+  text-align: center;
+  font-weight: bold;
+  background-color: #ffd000;
+  margin: 0 auto;
+
+}
 .content-table td{
   padding: 12px 15px;
+
 
 }
 .content-table tbody tr{
@@ -20,6 +28,7 @@
   /*text-align: center;*/
 }
 .content-table thead tr{
+
   text-align: center;
   font-weight: bold;
   background-color: #ffd000;
