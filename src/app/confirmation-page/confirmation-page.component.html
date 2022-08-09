@@ -14,7 +14,7 @@
         <tr class="tableHeader">
           <th>Full name</th>
           <th>Car Make</th>
-          <th>Smoking option</th>
+          <th>Registration</th>
           <th>Date</th>
           <th>Destination</th>
           <th>Post code</th>
@@ -26,12 +26,12 @@
         <td>{{(currentDriver.firstName) + " " + (currentDriver.lastName)}}</td>
         <td>{{currentCar.make}}</td>
         <td>{{currentCar.registration}}</td>
-        <td>{{currentCar.numOfSeats}}</td>
         <td>{{driverTripSelected.date}}</td>
-        <td>{{driverTripSelected.time}}</td>
         <td>{{driverTripSelected.destination}}</td>
         <td>{{driverTripSelected.postcode}}</td>
+        <td>{{driverTripSelected.time}}</td>
         <td>{{driverTripSelected.town}}</td>
+        <td>{{currentCar.accessibility}}</td>
       </tbody>
       <tr>
         <td><button class="button1" routerLink="/passenger-results" style="float: left;">Back</button></td>
