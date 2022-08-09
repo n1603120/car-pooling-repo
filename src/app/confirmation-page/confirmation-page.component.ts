@@ -13,11 +13,10 @@ import {Trip} from "../model/trip";
   styleUrls: ['./confirmation-page.component.css']
 })
 export class ConfirmationPageComponent implements OnInit {
-
-  results: any =[];
   currentCar!: Car;
   currentDriver!: Person;
   driverTripSelected!: Trip;
+  driverStatus: boolean = false;
   // summary2: any[] = [
   //   {"name": "Driver name: Bruce Wayne"},
   //   {"name": "Car Make: Audi"},
@@ -29,18 +28,10 @@ export class ConfirmationPageComponent implements OnInit {
   //   {"name": "Preferred Pick up Point: Tesco"},
   // ]
 
-
-  constructor(public tripService: TripService,private http:HttpClient, public carService: CarService, private peopleService: PeopleService) {
-
-
+  constructor(public tripService: TripService, public carService: CarService, private peopleService: PeopleService) {
   }
   ngOnInit(): void {
-    // let response = this.http.get("http://localhost:8080/cars")
-    // response.subscribe((data)=>this.results=data);
-    this.fetchDetails()
-    this.tripService.getAllTrips()
-      .subscribe(trips => trips.forEach( trip => this.results.push(trip)))
-
+    this.fetchDetails();
   }
 
   private delay(ms: number) {
@@ -50,19 +41,22 @@ export class ConfirmationPageComponent implements OnInit {
   private async fetchDetails()
   {
     this.carService.getCarById(this.tripService.driverTripSelected.carId)
-      .subscribe(car => this.currentCar = car)
+      .subscribe(car => this.currentCar = car);
     await this.delay(100);
-    this.carService.currentCar = this.currentCar
+    this.carService.currentCar = this.currentCar;
 
     this.peopleService.getPersonById(this.currentCar.ownerId)
-      .subscribe(person => this.currentDriver = person)
+      .subscribe(person => this.currentDriver = person);
 
+    this.driverStatus = this.peopleService.driverStatus;
     this.driverTripSelected = this.tripService.driverTripSelected;
   }
 
   onSubmit(){
-    this.tripService.currentTrip.carId = this.tripService.driverTripSelected.carId
-    console.log(this.tripService.currentTrip.carId)
+    if(!this.driverStatus){
+      this.tripService.currentTrip.carId = this.tripService.driverTripSelected.carId
+    }
+    console.log(this.tripService.currentTrip);
     this.tripService.addTrip(this.tripService.currentTrip).subscribe((data) => {});
   }
 

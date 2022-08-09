@@ -1,16 +1,18 @@
 .content-table {
   border-collapse: collapse;
   /*margin: 100px 450px;*/
-  margin: 0 auto;
   font-size: 1.1em;
   min-width: 800px;
   border-radius: 5px 5px 0 0;
   overflow:hidden;
   box-shadow: 0 0 20px rgba(0,0,0,0.15);
+  margin: 0 auto 3%;
+}
+.content-table th{
+  padding: 8px;
 }
 .content-table td{
   padding: 12px 15px;
-  border: solid 1pt black;
 }
 .content-table tbody tr{
   border-bottom: 1px solid #dddddd;

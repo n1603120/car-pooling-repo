@@ -18,35 +18,7 @@ export class SummaryComponent implements OnInit {
   currentDriver!: Person;
   driverTripSelected!: Trip;
   trips:any;
-  // drivers: any[] = [
-  //   {"name": "Alfred Hitchcock"},
-  //   {"name": "Bruce Wayne"},
-  //   {"name": "Darth Vader"},
-  //   {"name": "Peter Pan"}
-  // ]
-  //
-  // summary1: any[] = [
-  //   {"name": "Driver name: Bruce Wayne"},
-  //   {"name": "Driver Registration: WUI 9999"},
-  //   {"name": "Pick up point:   Nerwy"},
-  //   {"name": "pick location: Nerwy"},
-  //   {"name": "Pick up time:  10:00am"},
-  //   {"name": "Return: no"}
-  // ]
-  onClick() {
-    // console.log(this.drivers)
-  }
-  // constructor(private http:HttpClient) { }
-  //
-  //
-  // ngOnInit(): void {
-  //
-  //   let response = this.http.get("http://localhost:8080/people")
-  //   response.subscribe((data)=>this.trips=data);
-  //
-  //
-  //
-  // }
+
   constructor(private tripService: TripService, private carService: CarService, private peopleService: PeopleService) { }
 
 

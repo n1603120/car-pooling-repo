@@ -2,9 +2,16 @@
 <div class='card'>
   <div class='card-header' style="text-align:center">
     <h1>Driver Availability</h1>
-    <h4>Request a Driver to car share with:</h4>
+    <div *ngIf="!unmatchedTrips.length && !matchedTrips.length" class="alertDiv">
+      <h4>There are no drivers currently, come back later or become a driver for others!</h4>
+      <button id = "homeBut" routerLink="/home">Home</button>
+    </div>
+    <div *ngIf="unmatchedTrips.length || matchedTrips.length">
+      <h4>Request a Driver to car share with:</h4>
+      <button id = "backBut" routerLink="/trip-details">Change Search</button>
+    </div>
   </div>
-  <div class='table-responsive'>
+  <div class='table-responsive' *ngIf="unmatchedTrips.length || matchedTrips.length">
     <div *ngIf ="!matchedTrips.length" class = "alertDiv">There are no drivers matching your trip details, check below for other drivers.</div>
     <table class='content-table' *ngIf="matchedTrips.length">
       <thead>
@@ -27,17 +34,17 @@
         <td>
           {{driver.town}}        </td>
         <td>
-          <button class="button" (click)="requestDriver(driver)" routerLink="/summary" style="float: right;"> Request Driver</button>
+          <button class="button" (click)="requestDriver(driver)" routerLink="/confirmation" style="float: right;"> Request Driver</button>
         </td>
       </tr>
       </tbody>
     </table>
   </div>
-  <div class='card-header' style="text-align:center">
+  <div class='card-header' style="text-align:center" *ngIf="unmatchedTrips.length || matchedTrips.length">
     <h4>Other Drivers</h4>
   </div>
-  <div class='table-responsive'>
-    <div *ngIf ="!unmatchedTrips.length" class = "alertDiv">No other drivers are currently available, come back later or become a driver for others.</div>
+  <div class='table-responsive'  *ngIf="unmatchedTrips.length || matchedTrips.length">
+    <div *ngIf ="!unmatchedTrips.length" class = "alertDiv">No other drivers are currently available.</div>
     <table class='content-table' *ngIf="unmatchedTrips.length">
       <thead>
       <tr class="tableHeader">
@@ -60,7 +67,7 @@
           {{driver.town}}        </td>
         <td>
 
-          <button class="button" (click)="requestDriver(driver)" routerLink="/summary" style="float: right;"> Request Driver</button>
+          <button class="button" (click)="requestDriver(driver)" routerLink="/confirmation" style="float: right;"> Request Driver</button>
         </td>
       </tr>
       </tbody>

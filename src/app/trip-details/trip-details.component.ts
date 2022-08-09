@@ -1,5 +1,5 @@
-import {Component, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, ViewChild} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {createRequiredRegexValidator} from "../utility/validators";
 import {TripService} from "../services/trip.service";
 import {Trip} from "../model/trip";
@@ -37,15 +37,39 @@ export class TripDetailsComponent implements OnInit {
   onSubmit(){
     this.submitted = true;
     this.checkTimeValid();
-    if(!this.tripForm.valid || !this.timeValid){
-      return;
+    if(this.checkValidForm()){
+      this.submitTrip();
+      this.moveToCorrectPage();
     }
-    this.submitTrip();
-    this.moveToCorrectPage();
   }
   ngOnInit(): void {
     this.fetchActiveCar();
     this.fetchDriverStatus();
+  }
+  checkValidForm(): boolean{
+    if(!this.timeValid){
+      return false;
+    }
+    if(!this.tripForm.valid){
+      const invalid = [];
+      const controls = this.tripForm.controls;
+      for (const name in controls) {
+        console.log(name)
+        if (controls[name].invalid) {
+          if(name === "tripTown" && (this.townsSelected.length > 0 || this.tripForm.value.tripTown.length != 0)){
+            // dont add
+          }else{
+            console.log(1)
+            console.log(name)
+            invalid.push(name);
+          }
+        }
+      }
+      if(invalid.length > 0){
+        return false;
+      }
+    }
+    return true;
   }
   getCurrentDate():string{
     return (new Date()).toISOString().substring(0,10);
@@ -59,6 +83,7 @@ export class TripDetailsComponent implements OnInit {
     console.log(this.getCurrentDate());
     if(this.tripForm.value.tripDate === this.getCurrentDate()){
       this.timeValid = this.tripForm.value.tripTime >= this.getCurrentTime();
+      console.log(this.timeValid);
       if(!this.timeValid){
         // @ts-ignore
         document.getElementById("tripTime").style.border = '2pt solid red';
@@ -110,13 +135,10 @@ export class TripDetailsComponent implements OnInit {
       town = town.toString().trim();
     }
     if(this.driverStatus){
-      const currentTrip = new Trip(this.peopleService.currentPerson.id,postcode,town, destination, date, time,this.currentlyActiveCar.id);
-      this.tripService.addTrip(currentTrip).subscribe((data) => {});
-      this.tripService.currentTrip = currentTrip;
+      this.tripService.currentTrip = new Trip(this.peopleService.currentPerson.id, postcode, town, destination, date, time, this.currentlyActiveCar.id);
+      this.tripService.driverTripSelected = this.tripService.currentTrip;
     }else{
-      const currentTrip = new Trip(this.peopleService.currentPerson.id,postcode,town, destination, date, time,0);
-      this.tripService.addTrip(currentTrip).subscribe((data) => {});
-      this.tripService.currentTrip = currentTrip;
+      this.tripService.currentTrip = new Trip(this.peopleService.currentPerson.id, postcode, town, destination, date, time, 0);
     }
   }
 
@@ -164,7 +186,7 @@ export class TripDetailsComponent implements OnInit {
 
   private moveToCorrectPage() {
     if(this.driverStatus){
-      this.router.navigate(["/summary"]);
+      this.router.navigate(["/confirmation"]);
     }
     else{
       this.router.navigate(["/passenger-results"]);

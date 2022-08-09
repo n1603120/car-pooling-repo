@@ -8,54 +8,39 @@
 </div>
 <div class = "test2">
   <div class='table-responsive'>
-    <table class='content-table' *ngIf="results.length">
+    <table class='content-table'>
       <thead>
 <!--      <tr>-->
 <!--        <th>Summary Details</th>-->
 <!--      </tr>-->
       </thead>
       <tbody>
-      <tr class= "active-row" *ngFor="let result of results" >
-
+      <tr class= "active-row" *ngIf="driverTripSelected" >
       <tr>
-
+        <th>Driver Name</th>
         <th>Car Make</th>
         <th>Registration</th>
         <th>No. Seats</th>
-        <th>Preferred Contact</th>
-        <th>Accessibility</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Destination</th>
+        <th>Postcode</th>
         <th>Preferred PickUp</th>
-        <th>Smoking Option</th>
-
-
       </tr>
-
       <tbody>
-
-<!--    <td>{{carService.currentCar.make}}</td>-->
-<!--    <td>{{carService.currentCar.registration}}</td>-->
-<!--    <td>{{carService.currentCar.numOfSeats}}</td>-->
-<!--    <td>{{carService.currentCar.preferredContact}}</td>-->
-<!--    <td>{{carService.currentCar.accessibility}}</td>-->
-<!--    <td>{{carService.currentCar.preferredPickUp}}</td>-->
-<!--    <td>{{carService.currentCar.smokingOption}}</td>-->
-      <td>{{(currentDriver.firstName) + " " + (currentDriver.lastName)}}</td>
-      <td>{{currentCar.make}}</td>
-      <td>{{currentCar.smokingOption}}</td>
-      <td>{{driverTripSelected.date}}</td>
-      <td>{{driverTripSelected.destination}}</td>
-      <td>{{driverTripSelected.postcode}}</td>
-      <td>{{driverTripSelected.time}}</td>
-      <td>{{driverTripSelected.town}}</td>
-      <td>{{currentCar.accessibility}}</td>
-
-
-
-
+        <td>{{(currentDriver.firstName) + " " + (currentDriver.lastName)}}</td>
+        <td>{{currentCar.make}}</td>
+        <td>{{currentCar.registration}}</td>
+        <td>{{currentCar.numOfSeats}}</td>
+        <td>{{driverTripSelected.date}}</td>
+        <td>{{driverTripSelected.time}}</td>
+        <td>{{driverTripSelected.destination}}</td>
+        <td>{{driverTripSelected.postcode}}</td>
+        <td>{{driverTripSelected.town}}</td>
       </tbody>
       <td>
-        <button class="button1"  routerLink="/passenger-results" style="float: left;"> Back </button>
-        <button  class="button" (click)=onSubmit routerLink="/passenger-summary" style="float: right;"> Confirm </button>
+        <button class="button1"  routerLink="/passenger-results" style="float: left;">Back</button>
+        <button class="button" (click)=onSubmit() routerLink="/summary" style="float: right;">Confirm</button>
       </td>
     </table>
   </div>
