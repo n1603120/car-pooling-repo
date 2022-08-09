@@ -70,7 +70,7 @@
             <ng-select id="selectedTown" [clearable]="false"
                [items]="towns" appendTo="body" formControlName="driverPickUp" placeholder="Select Town">
               </ng-select>
-            <button type="button" id="addTownBut" (click)="onChange()">Add Town</button>
+            <button type="button" id="addTownBut" (click)="onChange()">Add</button>
           </div>
           <table class="table">
             <thead *ngIf="townsSelected.length > 0">
@@ -78,7 +78,7 @@
             </thead>
             <ng-container *ngFor="let town of townsSelected">
               <tr class="active-row">
-                <td>{{town}}</td>
+                <td>{{town}}<button type="button" id="removeTownBut" (click)="onRemove(town)">Remove</button></td>
               </tr>
             </ng-container>
           </table>

@@ -24,17 +24,14 @@ export class DriverDetailsComponent implements OnInit {
   allCars: Car[] = [];
   currentPerson!: Person;
   private currentlyActiveCar!: Car;
-
   address: string = '';
   preferredContact = '';
   smokingOption = '';
   accessibility = '';
-
-
-
+  town:string = "";
+  townsSelected:string[] = [];
   isEmail: boolean = false;
   isPhone: boolean = false;
-
   rows: any[] = [{
     checked:false,
     key:'',
@@ -76,15 +73,25 @@ export class DriverDetailsComponent implements OnInit {
   }
 
   errorPresent(driverData: string): boolean {
-    this.dataError = this.driverForm.get(driverData)?.errors
+    this.dataError = this.driverForm.get(driverData)?.errors;
+    if(driverData === "driverPickUp" && this.townsSelected.length > 0){
+      // @ts-ignore
+      document.getElementById(driverData).style.border = '0pt';
+      return false;
+    }
     if(this.dataError){
       // @ts-ignore
       document.getElementById(driverData).style.border = '2pt solid red';
       return true;
     }
     else{
+      if(driverData === "driverPickUp"){
+        // @ts-ignore
+        document.getElementById(driverData).style.border = '0pt';
+        return false;
+      }
       // @ts-ignore
-      document.getElementById(driverData).style.border = '0pt';
+      document.getElementById(driverData).style.border = '1pt solid black';
       return false;
     }
   }
@@ -119,7 +126,12 @@ export class DriverDetailsComponent implements OnInit {
     const preferredContact = this.driverForm.get('driverPreferredContact')?.value;
     const smokingOption = this.driverForm.get('driverSmokingOption')?.value;
     const accessibility = this.driverForm.get('driverAccessibility')?.value;
-    const pickUpAddress = this.townsSelected.toString();
+    let pickUpAddress: string;
+    if(this.townsSelected.length > 0){
+      pickUpAddress = this.townsSelected.toString();
+    }else{
+      pickUpAddress = this.driverForm.get('driverPickUp')?.value;
+    }
 
     if(this.currentlyActiveCar){
       this.currentlyActiveCar.activeCar = false;
@@ -135,8 +147,7 @@ export class DriverDetailsComponent implements OnInit {
 
 
   }
-  town:string = "";
-  townsSelected:string[] = [];
+
   onChange(): void{
     // @ts-ignore
     this.town =document.getElementById("selectedTown").innerText.trim();
@@ -148,7 +159,10 @@ export class DriverDetailsComponent implements OnInit {
     }
     console.log(this.townsSelected.toString());
   }
-
+  onRemove(townToBeRemoved: string): void{
+    this.townsSelected = this.townsSelected .filter(town => town !== townToBeRemoved);
+    console.log(this.townsSelected);
+  }
 
   towns: string[] = ["Acton",
     " Aghacommon",

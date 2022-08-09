@@ -25,6 +25,15 @@ export class TripDetailsComponent implements OnInit {
   currentlyActiveCar!: Car;
   townsSelected:string[] = [];
 
+  constructor(private formBuilder: FormBuilder, private readonly router: Router, private tripService: TripService, private peopleService: PeopleService, private carService: CarService) {
+    this.tripForm = formBuilder.group({
+      tripPostcode: ['', createRequiredRegexValidator(/[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? ?[0-9][ABD-HJLNP-UW-Zabd-hjlnp-uw-z]{2}/)],
+      tripTown:['', Validators.required],
+      tripDestination: ['', Validators.required],
+      tripDate: [this.getCurrentDate(), Validators.required],
+      tripTime: [this.getCurrentTime(), Validators.required]
+    });
+  }
   onSubmit(){
     this.submitted = true;
     this.checkTimeValid();
@@ -32,17 +41,7 @@ export class TripDetailsComponent implements OnInit {
       return;
     }
     this.submitTrip();
-    this.router.navigate(['/passenger-summary']);
-    //this.moveToCorrectPage();
-  }
-  constructor(private formBuilder: FormBuilder, private readonly router: Router, private tripService: TripService, private peopleService: PeopleService, private carService: CarService) {
-    this.tripForm = formBuilder.group({
-      tripPostcode: ['', createRequiredRegexValidator(/[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? ?[0-9][ABD-HJLNP-UW-Zabd-hjlnp-uw-z]{2}/)],
-      tripTown:[],
-      tripDestination: ['', Validators.required],
-      tripDate: [this.getCurrentDate(), Validators.required],
-      tripTime: [this.getCurrentTime(), Validators.required]
-    });
+    this.moveToCorrectPage();
   }
   ngOnInit(): void {
     this.fetchActiveCar();
@@ -75,13 +74,23 @@ export class TripDetailsComponent implements OnInit {
   }
 
   errorPresent(tripData: string): boolean {
-    this.dataError = this.tripForm.get(tripData)?.errors
+    this.dataError = this.tripForm.get(tripData)?.errors;
+    if(tripData === "tripTown" && this.townsSelected.length > 0){
+      // @ts-ignore
+      document.getElementById(tripData).style.border = '0pt';
+      return false;
+    }
     if(this.dataError){
       // @ts-ignore
       document.getElementById(tripData).style.border = '2pt solid red';
       return true;
     }
     else{
+      if(tripData === "tripTown"){
+        // @ts-ignore
+        document.getElementById(tripData).style.border = '0pt';
+        return false;
+      }
       // @ts-ignore
       document.getElementById(tripData).style.border = '1pt solid black';
       return false;
@@ -90,10 +99,16 @@ export class TripDetailsComponent implements OnInit {
 
   private submitTrip(){
     const postcode = this.tripForm.get('tripPostcode')?.value;
-    const town = this.townsSelected.toString();
     const destination = this.tripForm.get('tripDestination')?.value;
     const date = this.tripForm.get('tripDate')?.value;
     const time = this.tripForm.get('tripTime')?.value;
+    let town: string;
+    if(this.townsSelected.length > 0){
+      town = this.townsSelected.toString().trim();
+    }else{
+      town = this.tripForm.get('tripTown')?.value;
+      town = town.toString().trim();
+    }
     if(this.driverStatus){
       const currentTrip = new Trip(this.peopleService.currentPerson.id,postcode,town, destination, date, time,this.currentlyActiveCar.id);
       this.tripService.addTrip(currentTrip).subscribe((data) => {});
@@ -105,20 +120,11 @@ export class TripDetailsComponent implements OnInit {
     }
   }
 
-  private moveToCorrectPage() {
-    console.log(1);
-    if(this.peopleService.driverStatus){
-      // driver
-      this.router.navigate(['/passenger-summary']);
-    }else{
-      // passenger
-      this.router.navigate(['/passenger-summary']);
-    }
-  }
-
-  private fetchActiveCar(){
+  private async fetchActiveCar(){
     this.carService.getActiveCar(this.peopleService.currentPerson.id)
       .subscribe(car => this.currentlyActiveCar = car);
+    await this.delay(100);
+    this.fillPickUpPoints();
   }
 
   private fetchDriverStatus() {
@@ -128,19 +134,42 @@ export class TripDetailsComponent implements OnInit {
   onChange(): void{
     // @ts-ignore
     this.town = document.getElementById("selectedTown").innerText.trim();
-    if(this.townsSelected.includes(this.town)){
-      return;
-    }else {
-      // @ts-ignore
-      this.townsSelected.push(document.getElementById("selectedTown").innerText.trim());
+    if(this.town.length > 0){
+      if(this.townsSelected.includes(this.town)){
+        return;
+      }else {
+        // @ts-ignore
+        this.townsSelected.push(document.getElementById("selectedTown").innerText.trim());
+      }
+      console.log(this.townsSelected.toString());
     }
-    console.log(this.townsSelected.toString());
   }
 
-  onRemove(): void{
-
+  onRemove(townToBeRemoved: string): void{
+    this.townsSelected = this.townsSelected .filter(town => town !== townToBeRemoved);
+    console.log(this.townsSelected);
   }
 
+  private fillPickUpPoints() {
+    console.log(this.currentlyActiveCar);
+    if(this.driverStatus){
+      console.log(this.currentlyActiveCar.preferredPickUp)
+      this.townsSelected = this.currentlyActiveCar.preferredPickUp.split(",");
+      console.log(this.townsSelected);
+    }
+  }
+  private delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
+
+  private moveToCorrectPage() {
+    if(this.driverStatus){
+      this.router.navigate(["/passenger-summary"]);
+    }
+    else{
+      this.router.navigate(["/passenger-results"]);
+    }
+  }
   towns: string[] = ["Acton",
     " Aghacommon",
     " Aghadowey",

@@ -1,25 +1,26 @@
 
-<link rel="stylesheet" type="text/css" href="passenger-results.component.css">
 <div class='card'>
   <div class='card-header' style="text-align:center">
-    {{pageTitle}}    <p>Request a Driver to car share with:</p>
+    <h1>Driver Availability</h1>
+    <h4>Request a Driver to car share with:</h4>
   </div>
   <div class='table-responsive'>
-    <table class='content-table' *ngIf="allTrips.length">
+    <div *ngIf ="!matchedTrips.length" class = "alertDiv">There are no drivers matching your trip details, check below for other drivers.</div>
+    <table class='content-table' *ngIf="matchedTrips.length">
       <thead>
-      <tr>
+      <tr class="tableHeader">
         <th>Driver Destination</th>
-        <th>Pick up Date</th>
-        <th>Pick up Date</th>
+        <th colspan="2">Pick up Date</th>
+        <th>Pick up Time</th>
         <th>Your Location</th>
-        <th style="text-align:center">Request</th>
+        <th>Request</th>
       </tr>
       </thead>
       <tbody>
-      <tr class= "active-row" *ngFor="let driver of allTrips" >
+      <tr class= "active-row" *ngFor="let driver of matchedTrips" >
         <td>
           {{driver.destination}}        </td>
-        <td>
+        <td colspan="2">
           {{driver.date}}        </td>
         <td>
           {{driver.time}}        </td>
@@ -27,34 +28,42 @@
           {{driver.town}}        </td>
         <td>
 
+
           <button class="button" (click)="requestDriver(driver)" routerLink="/confirmation" style="float: right;"> Request Driver</button>
+
         </td>
       </tr>
-      <!--      <tr class= "active-row" *ngFor="let drivers of personName" >-->
-      <!--        <td>-->
-      <!--          {{drivers.firstName}}-->
-      <!--        </td>-->
       </tbody>
     </table>
   </div>
   <div class='card-header' style="text-align:center">
-    <p>Drivers Outside Your Area</p>
+    <h4>Other Drivers</h4>
   </div>
   <div class='table-responsive'>
-    <table class='content-table' >
+    <div *ngIf ="!unmatchedTrips.length" class = "alertDiv">No other drivers are currently available, come back later or become a driver for others.</div>
+    <table class='content-table' *ngIf="unmatchedTrips.length">
       <thead>
-      <tr>
-        <th>Driver Name</th>
-        <th>Town</th>
-        <th style="text-align:center">Request</th>
+      <tr class="tableHeader">
+        <th>Driver Destination</th>
+        <th colspan="2">Pick up Date</th>
+        <th>Pick up Time</th>
+        <th>Your Location</th>
+        <th>Request</th>
       </tr>
       </thead>
       <tbody>
-      <tr class= "active-row"  >
-        <td></td>
-        <td></td>
+      <tr class= "active-row" *ngFor="let driver of unmatchedTrips" >
         <td>
-          <button class="button" routerLink="/passenger-summary" style="float: right;"> Request Driver</button>
+          {{driver.destination}}        </td>
+        <td colspan="2">
+          {{driver.date}}        </td>
+        <td>
+          {{driver.time}}        </td>
+        <td>
+          {{driver.town}}        </td>
+        <td>
+
+          <button class="button" (click)="requestDriver(driver)" routerLink="/passenger-summary" style="float: right;"> Request Driver</button>
         </td>
       </tr>
       </tbody>

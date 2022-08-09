@@ -5,13 +5,16 @@
 
 .content-table {
   border-collapse: collapse;
-  text-align: left;
-  /*margin: 25px 200px;*/
-  margin-inline: auto;
-  font-size: 1.3em;
-  width: min(95% - 2rem, 600px);
+  /*margin: 100px 450px;*/
+  margin: 0 auto;
+  font-size: 1.1em;
+  min-width: 800px;
   border-radius: 5px 5px 0 0;
+  overflow:hidden;
   box-shadow: 0 0 20px rgba(0,0,0,0.15);
+}
+.content-table th{
+  padding: 12px;
 }
 .content-table td{
   padding: 12px 15px;
@@ -34,7 +37,11 @@
   font-weight: bold;
   color: #424141;
 }
-
+.tableHeader{
+  text-align: center;
+  font-weight: bold;
+  background-color: #ffd000;
+}
 .button {
   background: #04AA6D;
   border: 1px solid #04AA6D;
@@ -116,4 +123,20 @@
   opacity: .5;
 }
 
-
+.alertDiv{
+  text-align: center;
+  width: 50%;
+  margin: 0 auto;
+  font-weight: bold;
+  font-size: 1em;
+  padding: 1%;
+  border: 2pt #f44336 solid;
+  background-color: white; /* Red */
+}
+.table-responsive{
+  background-color: #F5F5F5;
+}
+h4{
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
