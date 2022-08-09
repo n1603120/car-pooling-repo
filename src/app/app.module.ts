@@ -10,7 +10,7 @@ import { MenuComponent } from './menu/menu.component';
 import {PassengerResultsComponent} from "./passenger-results/passenger-results.component";
 import {DriverDetailsComponent} from "./driver-details/driver-details.component";
 import {CreateAccountComponent} from "./create-account/create-account.component";
-import {PassengerSummaryComponent} from "./passenger-summary/passenger-summary.component";
+import {SummaryComponent} from "./summary/summary.component";
 import {ConfirmationPageComponent} from "./confirmation-page/confirmation-page.component";
 import {SignInComponent} from "./sign-in/sign-in.component";
 import {MyBookingsComponent} from "./my-bookings/my-bookings.component";
@@ -35,7 +35,7 @@ import {NgSelectModule} from "@ng-select/ng-select";
     PassengerResultsComponent,
     DriverDetailsComponent,
     CreateAccountComponent,
-    PassengerSummaryComponent,
+    SummaryComponent,
     ConfirmationPageComponent,
     SignInComponent,
     MyBookingsComponent,

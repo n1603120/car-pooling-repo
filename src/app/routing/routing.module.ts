@@ -10,7 +10,7 @@ import {DriverDetailsComponent} from "../driver-details/driver-details.component
 import {DriverSummaryComponent} from "../driver-summary/driver-summary.component";
 import {MyBookingsComponent} from "../my-bookings/my-bookings.component";
 import {PassengerResultsComponent} from "../passenger-results/passenger-results.component";
-import {PassengerSummaryComponent} from "../passenger-summary/passenger-summary.component";
+import {SummaryComponent} from "../summary/summary.component";
 import {ConfirmationPageComponent} from "../confirmation-page/confirmation-page.component";
 import {EditAccountComponent} from "../edit-account/edit-account.component";
 import {ViewCarsComponent} from "../view-cars/view-cars.component";
@@ -26,7 +26,7 @@ export const routes: Routes = [
   {path: 'bookings', component: MyBookingsComponent},
   {path: 'confirmation', component: ConfirmationPageComponent},
   {path: 'passenger-results', component: PassengerResultsComponent},
-  {path: 'passenger-summary', component: PassengerSummaryComponent},
+  {path: 'summary', component: SummaryComponent},
   {path: 'trip-details', component: TripDetailsComponent},
   {path: '**', redirectTo: 'login'}
 ];

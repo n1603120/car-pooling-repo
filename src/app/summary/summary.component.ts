@@ -8,11 +8,11 @@ import {Person} from "../model/person";
 import {Trip} from "../model/trip";
 
 @Component({
-  selector: 'app-passenger-summary',
-  templateUrl: './passenger-summary.component.html',
-  styleUrls: ['./passenger-summary.component.css']
+  selector: 'app-summary',
+  templateUrl: './summary.component.html',
+  styleUrls: ['./summary.component.css']
 })
-export class PassengerSummaryComponent implements OnInit {
+export class SummaryComponent implements OnInit {
   pageTitle: string = "Summary Screen";
   currentCar!: Car;
   currentDriver!: Person;

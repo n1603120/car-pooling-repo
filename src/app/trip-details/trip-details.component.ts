@@ -164,7 +164,7 @@ export class TripDetailsComponent implements OnInit {
 
   private moveToCorrectPage() {
     if(this.driverStatus){
-      this.router.navigate(["/passenger-summary"]);
+      this.router.navigate(["/summary"]);
     }
     else{
       this.router.navigate(["/passenger-results"]);

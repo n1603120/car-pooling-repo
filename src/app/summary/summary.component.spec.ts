@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PassengerSummaryComponent } from './passenger-summary.component';
+import { SummaryComponent } from './summary.component';
 
 describe('PassengerSummaryComponent', () => {
-  let component: PassengerSummaryComponent;
-  let fixture: ComponentFixture<PassengerSummaryComponent>;
+  let component: SummaryComponent;
+  let fixture: ComponentFixture<SummaryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PassengerSummaryComponent ]
+      declarations: [ SummaryComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PassengerSummaryComponent);
+    fixture = TestBed.createComponent(SummaryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
