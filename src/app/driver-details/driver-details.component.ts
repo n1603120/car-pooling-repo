@@ -85,7 +85,7 @@ export class DriverDetailsComponent implements OnInit {
       return true;
     }
     else{
-      if(driverData === "driverPickUp"){
+      if(driverData === "driverPickUp" || driverData === "driverAccessibility" || driverData === "driverPreferredContact" || driverData === "driverSmokingOption"){
         // @ts-ignore
         document.getElementById(driverData).style.border = '0pt';
         return false;

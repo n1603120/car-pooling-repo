@@ -6,6 +6,9 @@ h2{
 img{
   height: 70%;
 }
+#homeBut{
+  float:left;
+}
 
 #header{
   width: 100%;
@@ -43,10 +46,11 @@ a:active {
   text-decoration: underline;
 }
 a{
+  font-size: 1.3em;
   padding: 0px 10px;
   transition: all 0.3s ease 0s;
 
 }
 .navbar{
-  justify-content: flex-end;
+  float: right;
 }

@@ -143,6 +143,7 @@ export class TripDetailsComponent implements OnInit {
   }
 
   private async fetchActiveCar(){
+    await this.delay(100);
     this.carService.getActiveCar(this.peopleService.currentPerson.id)
       .subscribe(car => this.currentlyActiveCar = car);
     await this.delay(100);
