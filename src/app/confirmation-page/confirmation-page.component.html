@@ -33,10 +33,11 @@
         <td>{{driverTripSelected.postcode}}</td>
         <td>{{driverTripSelected.town}}</td>
       </tbody>
-      <td>
-        <button class="button1"  routerLink="/passenger-results" style="float: left;">Back</button>
-        <button class="button" (click)=onSubmit() routerLink="/summary" style="float: right;">Confirm</button>
-      </td>
+      <tr>
+        <td><button class="button1" routerLink="/passenger-results" style="float: left;">Back</button></td>
+        <td colspan="7"></td>
+        <td><button  class="button" routerLink="/summary" style="float: right;">Confirm</button></td>
+      </tr>
     </table>
   </div>
 </div>
