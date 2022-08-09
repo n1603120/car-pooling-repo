@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit{
 
   setDriverStatus(option: string) {
     this.peopleService.driverStatus = option === "Driver";
-    if(this.currentlyActiveCar){
+    if(!this.peopleService.driverStatus || this.currentlyActiveCar){
       this.router.navigate(['trip-details']);
     }
     else{

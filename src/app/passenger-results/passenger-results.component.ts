@@ -6,6 +6,8 @@ import {PeopleService} from "../services/person.service";
 import {TripService} from "../services/trip.service";
 import {HttpClient} from "@angular/common/http";
 import {Car} from "../model/car";
+import {CarService} from "../services/car.service";
+import {delay} from "rxjs";
 @Component({
   selector: 'app-passenger-results',
   templateUrl: './passenger-results.component.html',
@@ -19,7 +21,7 @@ export class PassengerResultsComponent implements OnInit {
   tripTowns: string[] = [];
   currentTrip!: Trip;
 
-  constructor(private tripService: TripService,private peopleService: PeopleService,private http:HttpClient) {
+  constructor(private tripService: TripService, private carService: CarService, private peopleService: PeopleService,private http:HttpClient) {
 
   }
 
@@ -42,6 +44,22 @@ export class PassengerResultsComponent implements OnInit {
     await this.delay(100);
     this.fetchCurrentTrip();
   }
+  // private async checkTripIsDriver(trip: Trip): Promise<boolean> {
+  //   const ownedCarArray: Car[] = [];
+  //   const carId = trip.carId;
+  //   const personId = trip.personId;
+  //   console.log(carId);
+  //   console.log(personId);
+  //   this.carService
+  //     .getCarsByOwnerId(personId)
+  //     .subscribe(
+  //       cars => cars.forEach( car => ownedCarArray.push(car))
+  //     )
+  //   await this.delay(30);
+  //   const result = ownedCarArray.find(car => {return car.id === carId});
+  //   console.log(result);
+  //   return !!result;
+  // }
   private delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
   }

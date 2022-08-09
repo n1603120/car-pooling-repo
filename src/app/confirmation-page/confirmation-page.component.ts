@@ -54,10 +54,14 @@ export class ConfirmationPageComponent implements OnInit {
 
   onSubmit(){
     if(!this.driverStatus){
-      this.tripService.currentTrip.carId = this.tripService.driverTripSelected.carId
+      this.tripService.currentTrip.date = this.tripService.driverTripSelected.date;
+      this.tripService.currentTrip.time = this.tripService.driverTripSelected.time;
+      this.tripService.currentTrip.carId = this.tripService.driverTripSelected.carId;
+      this.tripService.currentTrip.destination = this.tripService.driverTripSelected.destination;
+      this.tripService.addTrip(this.tripService.currentTrip).subscribe((data) => {});
+    }else{
+      this.tripService.addTrip(this.tripService.driverTripSelected).subscribe((data) => {});
     }
-    console.log(this.tripService.currentTrip);
-    this.tripService.addTrip(this.tripService.currentTrip).subscribe((data) => {});
   }
 
 
