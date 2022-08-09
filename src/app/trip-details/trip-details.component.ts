@@ -135,10 +135,10 @@ export class TripDetailsComponent implements OnInit {
       town = town.toString().trim();
     }
     if(this.driverStatus){
-      this.tripService.currentTrip = new Trip(this.peopleService.currentPerson.id, postcode, town, destination, date, time, this.currentlyActiveCar.id);
+      this.tripService.currentTrip = new Trip(this.peopleService.currentPerson.id, postcode, town, destination, date, time, this.currentlyActiveCar.id, this.driverStatus);
       this.tripService.driverTripSelected = this.tripService.currentTrip;
     }else{
-      this.tripService.currentTrip = new Trip(this.peopleService.currentPerson.id, postcode, town, destination, date, time, 0);
+      this.tripService.currentTrip = new Trip(this.peopleService.currentPerson.id, postcode, town, destination, date, time, 0, this.driverStatus);
     }
   }
 

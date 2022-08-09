@@ -36,7 +36,7 @@ export class PassengerResultsComponent implements OnInit {
       .getAllTrips()
       .subscribe(
         trip => trip.forEach( trip => {
-          if(trip.carId != 0 && trip.personId != this.peopleService.currentPerson.id && this.checkDateValid(trip)){
+          if(trip.carId != 0 && trip.personId != this.peopleService.currentPerson.id && trip.driverStatus && this.checkDateValid(trip)){
             this.allTrips.push(trip);
           }
         }

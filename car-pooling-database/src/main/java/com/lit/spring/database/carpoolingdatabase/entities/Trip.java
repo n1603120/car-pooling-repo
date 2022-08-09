@@ -15,6 +15,7 @@ public class Trip implements Serializable {
   private String date;
   private String time;
   private int carId;
+  private boolean driverStatus;
 
   @Id
   @Column(name = "tripid")
@@ -85,6 +86,14 @@ public class Trip implements Serializable {
   }
   public void setPersonId(int personId) {
     this.personId = personId;
+  }
+
+  @Column(name = "driverstatus")
+  public boolean isDriverStatus() {
+    return driverStatus;
+  }
+  public void setDriverStatus(boolean driverStatus) {
+    this.driverStatus = driverStatus;
   }
 
 }

@@ -9,8 +9,9 @@ export class Trip {
   date: string;
   time: string;
   carId: number;
+  driverStatus: boolean;
 
-constructor(personId: number, postcode: string, town:string, destination: string,date: string,time: string, carId: number ) {
+constructor(personId: number, postcode: string, town:string, destination: string,date: string,time: string, carId: number ,driverStatus: boolean) {
   this.id = 0;
   this.personId = personId;
   this.postcode = postcode;
@@ -19,5 +20,6 @@ constructor(personId: number, postcode: string, town:string, destination: string
   this.date = date;
   this.time = time;
   this.carId = carId;
+  this.driverStatus = driverStatus;
 }
 }
