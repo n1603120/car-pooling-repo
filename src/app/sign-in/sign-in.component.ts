@@ -34,8 +34,6 @@ export class SignInComponent implements OnInit {
   }
 
   checkUserAuth(): void{
-    //TESTING
-    this.loginForm.value.password = "Password1!"
     // @ts-ignore
     this.currentPerson = this.people.find((person: Person) => {
       return person.email === this.loginForm.value.email && person.personPassword === this.loginForm.value.password ;
